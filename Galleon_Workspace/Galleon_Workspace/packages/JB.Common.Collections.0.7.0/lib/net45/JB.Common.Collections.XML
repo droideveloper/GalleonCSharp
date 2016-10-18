@@ -1,0 +1,313 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JB.Common.Collections</name>
+    </assembly>
+    <members>
+        <member name="T:JB.Collections.EnhancedBindingList`1">
+            <summary>
+                Provides a Move operation and also a more details for deleted Item(s).
+                Loosely based on a
+                <see
+                    href="http://stackoverflow.com/questions/23339233/get-deleted-item-in-itemchanging-event-of-bindinglist/23453576#23453576">
+                    StackOverflow
+                </see>
+                post by
+                <see
+                    href="http://stackoverflow.com/questions/23339233/get-deleted-item-in-itemchanging-event-of-bindinglist/23453576#23453576">
+                    Simon
+                    Mourier
+                </see>
+                .
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+        </member>
+        <member name="M:JB.Collections.EnhancedBindingList`1.#ctor(System.Collections.Generic.IList{`0})">
+            <summary>
+                Initializes a new instance of the <see cref="T:JB.Collections.EnhancedBindingList`1" /> class.
+            </summary>
+            <param name="list">
+                An <see cref="T:System.Collections.Generic.IList`1" /> of items to be contained in the
+                <see cref="T:System.ComponentModel.BindingList`1" />.
+            </param>
+        </member>
+        <member name="M:JB.Collections.EnhancedBindingList`1.AddRange(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Adds the range of items. Use <see cref="P:System.ComponentModel.BindingList`1.RaiseListChangedEvents" /> to control whether the range addition will
+            be communicated via an implicit and per-item <see cref="F:System.ComponentModel.ListChangedType.ItemAdded"/> event.
+            </summary>
+            <param name="items">The items.</param>
+            <param name="signalResetWhenFinished">if set to <c>true</c> a <see cref="F:System.ComponentModel.ListChangedType.Reset"/> will be signaled when finished.
+            This and <see cref="P:System.ComponentModel.BindingList`1.RaiseListChangedEvents"/> control if and what <see cref="E:System.ComponentModel.IBindingList.ListChanged" />
+            event will be raised while / after adding the <paramref name="items"/>.</param>
+        </member>
+        <member name="M:JB.Collections.EnhancedBindingList`1.RemoveRange(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Removes the range of items. Use <see cref="P:System.ComponentModel.BindingList`1.RaiseListChangedEvents" /> to control whether the range addition will
+            be communicated via an implicit and per-item <see cref="F:System.ComponentModel.ListChangedType.ItemDeleted"/> event.
+            </summary>
+            <param name="items">The items.</param>
+            <param name="signalResetWhenFinished">if set to <c>true</c> a <see cref="F:System.ComponentModel.ListChangedType.Reset"/> will be signaled when finished.
+            This and <see cref="P:System.ComponentModel.BindingList`1.RaiseListChangedEvents"/> control if and what <see cref="E:System.ComponentModel.IBindingList.ListChanged" />
+            event will be raised while / after adding the <paramref name="items"/>.</param>
+        </member>
+        <member name="M:JB.Collections.EnhancedBindingList`1.Move(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Moves the item at the specified index to a new position in the list.
+            </summary>
+            <param name="itemIndex">The index of the item to move.</param>
+            <param name="newIndex">The new index.</param>
+            <param name="correctNewIndexOnIndexShift">if set to <c>true</c> the <paramref name="newIndex" /> will be adjusted,
+            if required, depending on whether an index shift took place during the move due to the original position of the item.
+            Basically if you move an item from a lower index position to a higher one, the index positions of all items with higher index positions than <paramref name="itemIndex" />
+            will be shifted upwards (logically by -1).
+            Depending on whether the caller intends to move the item strictly or logically to the <paramref name="newIndex"/> position, correction might be useful.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">item</exception>
+        </member>
+        <member name="M:JB.Collections.EnhancedBindingList`1.Move(`0,System.Int32,System.Boolean)">
+            <summary>
+                Moves the specified item to a new index position in the list.
+            </summary>
+            <param name="item">The item.</param>
+            <param name="newIndex">The new index.</param>
+            <param name="correctNewIndexOnIndexShift">if set to <c>true</c> the <paramref name="newIndex" /> will be adjusted,
+            if required, depending on whether an index shift took place during the move due to the original position of the item.
+            Basically if you move an item from a lower index position to a higher one, the index positions of all items with higher index positions than the <paramref name="item" /> ones
+            will be shifted upwards (logically by -1).
+            Depending on whether the caller intends to move the item strictly or logically to the <paramref name="newIndex"/> position, correction might be useful.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">item</exception>
+        </member>
+        <member name="M:JB.Collections.EnhancedBindingList`1.RemoveItem(System.Int32)">
+            <summary>
+                Removes the item at the specified index and follow-up ListChanged event will have an
+                <see cref="T:JB.Collections.ItemDeletedListChangedEventArgs`1" /> as its argument.
+            </summary>
+            <param name="index">The zero-based index of the item to remove.</param>
+            <exception cref="T:System.NotSupportedException">
+                You are removing a newly added item and
+                <see cref="P:System.ComponentModel.IBindingList.AllowRemove" /> is set to false.
+            </exception>
+        </member>
+        <member name="M:JB.Collections.EnhancedBindingList`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds a range of items.
+            </summary>
+            <param name="items">The items.</param>
+        </member>
+        <member name="M:JB.Collections.EnhancedBindingList`1.RemoveRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Removes the specified items.
+            </summary>
+            <param name="items">The items.</param>
+        </member>
+        <member name="M:JB.Collections.IBulkModifiableBindingList`1.AddRange(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Adds the range of items. Use <see cref="P:System.ComponentModel.BindingList`1.RaiseListChangedEvents" /> to control whether the range addition will
+            be communicated via an implicit and per-item <see cref="F:System.ComponentModel.ListChangedType.ItemAdded"/> event.
+            </summary>
+            <param name="items">The items.</param>
+            <param name="signalResetWhenFinished">if set to <c>true</c> a <see cref="F:System.ComponentModel.ListChangedType.Reset"/> will be signaled when finished.
+            This and <see cref="P:System.ComponentModel.BindingList`1.RaiseListChangedEvents"/> control if and what <see cref="E:System.ComponentModel.IBindingList.ListChanged" />
+            event will be raised while / after adding the <paramref name="items"/>.</param>
+        </member>
+        <member name="M:JB.Collections.IBulkModifiableBindingList`1.RemoveRange(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Removes the range of items. Use <see cref="P:System.ComponentModel.BindingList`1.RaiseListChangedEvents" /> to control whether the range addition will
+            be communicated via an implicit and per-item <see cref="F:System.ComponentModel.ListChangedType.ItemDeleted"/> event.
+            </summary>
+            <param name="items">The items.</param>
+            <param name="signalResetWhenFinished">if set to <c>true</c> a <see cref="F:System.ComponentModel.ListChangedType.Reset"/> will be signaled when finished.
+            This and <see cref="P:System.ComponentModel.BindingList`1.RaiseListChangedEvents"/> control if and what <see cref="E:System.ComponentModel.IBindingList.ListChanged" />
+            event will be raised while / after adding the <paramref name="items"/>.</param>
+        </member>
+        <member name="T:JB.Collections.IBulkModifiableCollection`1">
+            <summary>
+            A <see cref="T:System.Collections.Generic.ICollection`1"/> that provides bulk add- and remove modifications.
+            </summary>
+            <typeparam name="T">The type of the items in the collection</typeparam>
+        </member>
+        <member name="M:JB.Collections.IBulkModifiableCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds a range of items.
+            </summary>
+            <param name="items">The items.</param>
+        </member>
+        <member name="M:JB.Collections.IBulkModifiableCollection`1.RemoveRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Removes the specified items.
+            </summary>
+            <param name="items">The items.</param>
+        </member>
+        <member name="T:JB.Collections.IBulkModifiableDictionary`2">
+            <summary>
+            A <see cref="T:System.Collections.Generic.IDictionary`2" /> that provides bulk add- and remove modifications.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+        </member>
+        <member name="M:JB.Collections.IBulkModifiableDictionary`2.AddRange(System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{`0,`1}})">
+            <summary>
+            Adds a range of items.
+            </summary>
+            <param name="items">The items to add.</param>
+        </member>
+        <member name="M:JB.Collections.IBulkModifiableDictionary`2.RemoveRange(System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{`0,`1}})">
+            <summary>
+            Removes the specified items.
+            </summary>
+            <param name="items">The items to remove.</param>
+        </member>
+        <member name="T:JB.Collections.IItemMovableList`1">
+            <summary>
+            A <see cref="T:System.Collections.Generic.IList`1"/> that provides moving of its items from one index position to another
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:JB.Collections.IItemMovableList`1.Move(`0,System.Int32,System.Boolean)">
+            <summary>
+            Moves the specified item to the new index position.
+            </summary>
+            <param name="item">The item.</param>
+            <param name="newIndex">The new index.</param>
+            <param name="correctNewIndexOnIndexShift">if set to <c>true</c> the <paramref name="newIndex" /> will be adjusted,
+            if required, depending on whether an index shift took place during the move due to the original position of the item.
+            Basically if you move an item from a lower index position to a higher one, the index positions of all items with higher index positions than the <paramref name="item" /> ones
+            will be shifted upwards (logically by -1).
+            Depending on whether the caller intends to move the item strictly or logically to the <paramref name="newIndex"/> position, correction might be useful.</param>
+        </member>
+        <member name="M:JB.Collections.IItemMovableList`1.Move(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Moves the item(s) at the specified index to a new position in the list.
+            </summary>
+            <param name="itemIndex">The (starting) index of the item(s) to move.</param>
+            <param name="newIndex">The new index.</param>
+            <param name="correctNewIndexOnIndexShift">if set to <c>true</c> the <paramref name="newIndex" /> will be adjusted,
+                if required, depending on whether an index shift took place during the move due to the original position of the item.
+                Basically if you move an item from a lower index position to a higher one, the index positions of all items with higher index positions than <paramref name="itemIndex" />
+                will be shifted upwards (logically by -1).
+                Depending on whether the caller intends to move the item strictly or logically to the <paramref name="newIndex" /> position, correction might be useful.</param>
+        </member>
+        <member name="T:JB.Collections.ItemDeletedListChangedEventArgs`1">
+            <summary>
+            A custom <see cref="T:System.ComponentModel.ListChangedEventArgs"/> that contains the removed Item.
+            The default <see cref="F:System.ComponentModel.ListChangedType.ItemDeleted"/> event does only contain
+            the deleted index location, but no indication what was actually deleted.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:JB.Collections.ItemDeletedListChangedEventArgs`1.#ctor(`0,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Collections.ItemDeletedListChangedEventArgs`1" /> class.
+            </summary>
+            <param name="item">The removed item.</param>
+            <param name="index">The index of the removed item prior to removal.</param>
+        </member>
+        <member name="P:JB.Collections.ItemDeletedListChangedEventArgs`1.Item">
+            <summary>
+            Gets or sets the item.
+            </summary>
+            <value>
+            The item.
+            </value>
+        </member>
+        <member name="T:JB.Collections.SynchronizationContextCoordinatedBindingList`1">
+            <summary>
+                An <see cref="T:System.ComponentModel.IBindingList" /> implementation that's raising its <see cref="E:System.ComponentModel.BindingList`1.AddingNew"/> and <see cref="E:System.ComponentModel.BindingList`1.ListChanged"/> events
+            	on the provided or <see cref="P:System.Threading.SynchronizationContext.Current">constructor created</see> <see cref="T:System.Threading.SynchronizationContext" />.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+        </member>
+        <member name="M:JB.Collections.SynchronizationContextCoordinatedBindingList`1.#ctor(System.Collections.Generic.IList{`0},System.Threading.SynchronizationContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Collections.SynchronizationContextCoordinatedBindingList`1" /> class.
+            </summary>
+            <param name="list">An <see cref="T:System.Collections.Generic.IList`1" /> of items to be contained in the
+            <see cref="T:System.ComponentModel.BindingList`1" />.</param>
+            <param name="synchronizationContext">The synchronization context.</param>
+        </member>
+        <member name="M:JB.Collections.SynchronizationContextCoordinatedBindingList`1.OnAddingNew(System.ComponentModel.AddingNewEventArgs)">
+            <summary>
+                Raises the <see cref="E:System.ComponentModel.BindingList`1.AddingNew" /> event.
+            </summary>
+            <param name="addingNewEventArgs">An <see cref="T:System.ComponentModel.AddingNewEventArgs" /> that contains the event data. </param>
+        </member>
+        <member name="M:JB.Collections.SynchronizationContextCoordinatedBindingList`1.OnListChanged(System.ComponentModel.ListChangedEventArgs)">
+            <summary>
+                Raises the <see cref="E:System.ComponentModel.BindingList`1.ListChanged" /> event.
+            </summary>
+            <param name="listChangedEventArgs">A <see cref="T:System.ComponentModel.ListChangedEventArgs" /> that contains the event data. </param>
+        </member>
+        <member name="T:JB.Collections.SynchronizationContextSynchronizedBindingList`1">
+            <summary>
+                An <see cref="T:System.ComponentModel.IBindingList" /> implementation that's synchronized via an underlying lock-based
+                <see cref="T:System.Collections.Generic.IList`1" />
+                implementation, but also ensuring all events are raised on the same initially created or provided
+                <see cref="T:System.Threading.SynchronizationContext" />.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+        </member>
+        <member name="M:JB.Collections.SynchronizationContextSynchronizedBindingList`1.#ctor(System.Collections.Generic.IList{`0},System.Object,System.Threading.SynchronizationContext)">
+            <summary>
+                Initializes a new instance of the <see cref="T:JB.Collections.SynchronizationContextSynchronizedBindingList`1" /> class.
+            </summary>
+            <param name="list">
+                An <see cref="T:System.Collections.Generic.IList`1" /> of items to be contained in the
+                <see cref="T:System.ComponentModel.BindingList`1" />.
+            </param>
+            <param name="synchronizationContext">The synchronization context.</param>
+            <param name="syncRoot">The object used to synchronize access the thread-safe collection.</param>
+        </member>
+        <member name="P:JB.Collections.SynchronizationContextSynchronizedBindingList`1.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Gets or sets a value indicating whether this instance is synchronized.
+            </summary>
+            <value>
+              <c>true</c> if this instance is synchronized; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.SynchronizationContextSynchronizedBindingList`1.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Gets an object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
+            </summary>
+            
+            <returns>
+            An object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
+            </returns>
+        </member>
+        <member name="T:JB.Collections.SynchronizedBindingList`1">
+            <summary>
+                An <see cref="T:System.ComponentModel.IBindingList" /> implementation that's synchronized via an underlying lock-based
+                <see cref="T:System.Collections.Generic.IList`1" />
+                implementation.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+        </member>
+        <member name="M:JB.Collections.SynchronizedBindingList`1.#ctor(System.Collections.Generic.IList{`0},System.Object)">
+            <summary>
+                Initializes a new instance of the <see cref="T:JB.Collections.SynchronizedBindingList`1" /> class.
+            </summary>
+            <param name="list">
+                An <see cref="T:System.Collections.Generic.IList`1" /> of items to be contained in the
+                <see cref="T:System.ComponentModel.BindingList`1" />.
+            </param>
+            <param name="syncRoot">The object used to synchronize access to the thread-safe collection.</param>
+        </member>
+        <member name="P:JB.Collections.SynchronizedBindingList`1.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Gets or sets a value indicating whether this instance is synchronized.
+            </summary>
+            <value>
+              <c>true</c> if this instance is synchronized; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.SynchronizedBindingList`1.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Gets an object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
+            </summary>
+            
+            <returns>
+            An object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
+            </returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Leptonica</name>
+    </assembly>
+    <members>
+        <member name="M:Leptonica.InteropNet.LibraryLoader.CheckCurrentAppDomainBin(System.String,System.String)">
+            <summary>
+            Special test for web applications.
+            </summary>
+            <remarks>
+            Note that this makes a couple of assumptions these being:
+            
+            <list type="bullet">
+                <item>That the current application domain's location for web applications corresponds to the web applications root directory.</item>
+                <item>That the tesseract\leptonica dlls reside in the corresponding x86 or x64 directories in the bin directory under the apps root directory.</item>
+            </list>
+            </remarks>
+            <param name="fileName"></param>
+            <param name="platformName"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Leptonica.RotationFill.White">
+            <summary>
+            Bring in white pixels from the outside.
+            </summary>
+        </member>
+        <member name="F:Leptonica.RotationFill.Black">
+            <summary>
+            Bring in black pixels from the outside.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:Leptonica.RotationMethod.AreaMap" -->
+        <member name="F:Leptonica.RotationMethod.Shear">
+            <summary>
+            Use shear rotation.
+            </summary>
+        </member>
+        <member name="F:Leptonica.RotationMethod.Sampling">
+            <summary>
+            Use sampling.
+            </summary>
+        </member>
+    </members>
+</doc>

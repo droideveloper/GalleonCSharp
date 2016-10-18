@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9DDBAEB3-3BE9-4363-B789-94592A8E8506}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Leptonica</RootNamespace>
+    <AssemblyName>Leptonica</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="..\..\Common.targets" />
+  <ItemGroup>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractDisposeable.cs" />
+    <Compile Include="AdaptiveMap.cs" />
+    <Compile Include="Binarize.cs" />
+    <Compile Include="Box.cs" />
+    <Compile Include="Boxa.cs" />
+    <Compile Include="Clip.cs" />
+    <Compile Include="Convert.cs" />
+    <Compile Include="Convolve.cs" />
+    <Compile Include="Dewrap.cs" />
+    <Compile Include="Edge.cs" />
+    <Compile Include="EdgeDirection.cs" />
+    <Compile Include="Enhance.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="GrayMorph.cs" />
+    <Compile Include="ImageSaveFormat.cs" />
+    <Compile Include="InteropNet\ILibraryLoaderLogic.cs" />
+    <Compile Include="InteropNet\InteropRuntimeImplementer.cs" />
+    <Compile Include="InteropNet\LibraryLoader.cs" />
+    <Compile Include="InteropNet\LibraryLoaderTrace.cs" />
+    <Compile Include="InteropNet\RuntimeDllImportAttribute.cs" />
+    <Compile Include="InteropNet\SystemManager.cs" />
+    <Compile Include="InteropNet\UnixLibraryLoaderLogic.cs" />
+    <Compile Include="InteropNet\WindowsLibraryLoaderLogic.cs" />
+    <Compile Include="Interop\Deskew.cs" />
+    <Compile Include="Interop\DeskewNativeApi.cs" />
+    <Compile Include="Interop\DeviceProcessInfo.cs" />
+    <Compile Include="Interop\LeptonicaNativeApi.cs" />
+    <Compile Include="Pix.cs" />
+    <Compile Include="Pixa.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rotate.cs" />
+    <Compile Include="RotationFill.cs" />
+    <Compile Include="RotationMethod.cs" />
+    <Compile Include="Scale.cs" />
+    <Compile Include="Skew.cs" />
+    <Compile Include="Transform.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\install.ps1">
+      <Link>install.ps1</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\lib\x64\liblept172.dll">
+      <Link>x64\liblept172.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\lib\x86\liblept172.dll">
+      <Link>x86\liblept172.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\lib\x64\libdeskew.dll">
+      <Link>x64\libdeskew.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\lib\x86\libdeskew.dll">
+      <Link>x86\libdeskew.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+	<Content Include="..\..\lib\x64\libmupdf.dll">
+      <Link>x64\libmupdf.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\lib\x86\libmupdf.dll">
+      <Link>x86\libmupdf.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

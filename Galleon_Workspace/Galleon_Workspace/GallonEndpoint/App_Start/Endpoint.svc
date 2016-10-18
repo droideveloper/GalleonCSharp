@@ -1,0 +1,3 @@
+﻿<%@ ServiceHost language=c# Debug="true" Service="GallonEndpoint.Endpoint"%>
+
+

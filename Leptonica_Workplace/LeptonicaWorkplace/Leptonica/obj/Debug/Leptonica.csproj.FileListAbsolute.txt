@@ -1,0 +1,12 @@
+C:\Users\ACER\Desktop\Leptonica_Workplace\LeptonicaWorkplace\Leptonica\bin\x64\liblept172.dll
+C:\Users\ACER\Desktop\Leptonica_Workplace\LeptonicaWorkplace\Leptonica\bin\x86\liblept172.dll
+C:\Users\ACER\Desktop\Leptonica_Workplace\LeptonicaWorkplace\Leptonica\bin\x64\libdeskew.dll
+C:\Users\ACER\Desktop\Leptonica_Workplace\LeptonicaWorkplace\Leptonica\bin\x86\libdeskew.dll
+C:\Users\ACER\Desktop\Leptonica_Workplace\LeptonicaWorkplace\Leptonica\bin\x64\libmupdf.dll
+C:\Users\ACER\Desktop\Leptonica_Workplace\LeptonicaWorkplace\Leptonica\bin\x86\libmupdf.dll
+C:\Users\ACER\Desktop\Leptonica_Workplace\LeptonicaWorkplace\Leptonica\bin\install.ps1
+C:\Users\ACER\Desktop\Leptonica_Workplace\LeptonicaWorkplace\Leptonica\bin\Leptonica.xml
+C:\Users\ACER\Desktop\Leptonica_Workplace\LeptonicaWorkplace\Leptonica\bin\Leptonica.dll
+C:\Users\ACER\Desktop\Leptonica_Workplace\LeptonicaWorkplace\Leptonica\bin\Leptonica.pdb
+C:\Users\ACER\Desktop\Leptonica_Workplace\LeptonicaWorkplace\Leptonica\obj\Debug\Leptonica.dll
+C:\Users\ACER\Desktop\Leptonica_Workplace\LeptonicaWorkplace\Leptonica\obj\Debug\Leptonica.pdb

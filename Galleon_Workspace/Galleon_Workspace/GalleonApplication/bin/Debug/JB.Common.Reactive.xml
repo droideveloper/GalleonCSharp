@@ -1,0 +1,549 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JB.Common.Reactive</name>
+    </assembly>
+    <members>
+        <member name="T:JB.Reactive.Linq.ObservableExtensions">
+            <summary>
+            Extension Methods for <see cref="T:System.IObservable`1"/> instances.
+            </summary>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.SplitTwoWays``1(System.IObservable{``0},System.Func{``0,System.Boolean},System.IObserver{``0},System.IObserver{``0},System.Reactive.Concurrency.IScheduler)">
+            <summary>
+            Takes a source observable and splits its sequence forwarding into two target observers based on a given <paramref name="predicate"/> condition.
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+            <param name="source">The source sequence.</param>
+            <param name="predicate">A function to test each element for a condition whether to pipe the value into <paramref name="targetForTrue"/> or <paramref name="targetForFalse"/>.</param>
+            <param name="targetForTrue">The target observer if <paramref name="predicate"/> returned [true].</param>
+            <param name="targetForFalse">The target observer if <paramref name="predicate"/> returned [false].</param>
+            <param name="scheduler">The scheduler to schedule observer notifications on, if any.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.Split``1(System.IObservable{``0},System.IObserver{``0}[])">
+            <summary>
+            Takes a source observable and forwards its sequence into target observers.
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+            <param name="source">The source sequence.</param>
+            <param name="targetObservers">The target observers to forward the sequence to.</param>
+            <returns>An <see cref="T:System.IDisposable"/> representing the inner forwarding <paramref name="source"/> subscription.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.Split``1(System.IObservable{``0},System.Collections.Generic.IEnumerable{System.IObserver{``0}},System.Reactive.Concurrency.IScheduler)">
+            <summary>
+            Takes a source observable and forwards its sequence into target observers.
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+            <param name="source">The source sequence.</param>
+            <param name="targetObservers">The target observers to forward the sequence to.</param>
+            <param name="scheduler">The scheduler to schedule observer notifications on, if any.</param>
+            <returns>
+            An <see cref="T:System.IDisposable" /> representing the inner forwarding <paramref name="source" /> subscription.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.Split``1(System.IObservable{``0},System.Reactive.Concurrency.IScheduler,System.IObserver{``0}[])">
+            <summary>
+            Takes a source observable and forwards its sequence into target observers.
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+            <param name="source">The source sequence.</param>
+            <param name="scheduler">The scheduler to schedule observer notifications on.</param>
+            <param name="targetObservers">The target observers to forward the sequence to.</param>
+            <returns>An <see cref="T:System.IDisposable"/> representing the inner forwarding <paramref name="source"/> subscription.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.Merge``1(System.IObservable{``0},System.IObservable{``0}[])">
+            <summary>
+            Merges elements from multiple observable sequences into a single observable sequence,
+            when specified a scheduler will be used for enumeration of and subscription to the sources.
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequences.</typeparam>
+            <param name="observable">First observable sequence.</param>
+            <param name="others">The observable sequence(s) to merge <paramref name="observable"/> with.</param>
+            <returns>
+            The observable sequence that merges the elements of the given sequences.
+            </returns>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.Merge``1(System.IObservable{``0},System.Reactive.Concurrency.IScheduler,System.IObservable{``0}[])">
+            <summary>
+            Merges elements from multiple observable sequences into a single observable sequence,
+            when specified a scheduler will be used for enumeration of and subscription to the sources.
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequences.</typeparam>
+            <param name="observable">First observable sequence.</param>
+            <param name="others">The observable sequence(s) to merge <paramref name="observable"/> with.</param>
+            <param name="scheduler">Scheduler used to introduce concurrency for making subscriptions to the given sequences.</param>
+            <returns>
+            The observable sequence that merges the elements of the given sequences.
+            </returns>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.Merge``1(System.IObservable{``0},System.Collections.Generic.IEnumerable{System.IObservable{``0}},System.Reactive.Concurrency.IScheduler)">
+            <summary>
+            Merges elements from multiple observable sequences into a single observable sequence,
+            when specified a scheduler will be used for enumeration of and subscription to the sources.
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequences.</typeparam>
+            <param name="observable">First observable sequence.</param>
+            <param name="others">The observable sequence(s) to merge <paramref name="observable"/> with.</param>
+            <param name="scheduler">Scheduler used to introduce concurrency for making subscriptions to the given sequences.</param>
+            <returns>
+            The observable sequence that merges the elements of the given sequences.
+            </returns>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.Forward``1(System.IObservable{``0},System.IObserver{``0}[])">
+            <summary>
+            Takes a source observable and forwards its sequence into target observers and returns the raw sequence back again.
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+            <param name="source">The source sequence.</param>
+            <param name="targetObservers">The target observers to forward the sequence to.</param>
+            <returns>A new <see cref="T:System.IObservable`1"/> providing the full <paramref name="source"/> sequence</returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.Forward``1(System.IObservable{``0},System.Reactive.Concurrency.IScheduler,System.IObserver{``0}[])">
+            <summary>
+            Takes a source observable and forwards its sequence into target observers and returns the raw sequence back again..
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+            <param name="source">The source sequence.</param>
+            <param name="scheduler">The scheduler to schedule observer notifications on.</param>
+            <param name="targetObservers">The target observers.</param>
+            <returns>
+            A new <see cref="T:System.IObservable`1" /> providing the full <paramref name="source" /> sequence
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.Forward``1(System.IObservable{``0},System.Collections.Generic.IEnumerable{System.IObserver{``0}},System.Reactive.Concurrency.IScheduler)">
+            <summary>
+            Takes a source observable and forwards its sequence into target observers and returns the raw sequence back again..
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+            <param name="source">The source sequence.</param>
+            <param name="scheduler">The scheduler to schedule observer notifications on, if any.</param>
+            <param name="targetObservers">The target observers.</param>
+            <returns>
+            A new <see cref="T:System.IObservable`1" /> providing the full <paramref name="source" /> sequence
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.BufferWhile``1(System.IObservable{``0},System.Func{``0,System.Boolean},System.Int32)">
+            <summary>
+            Projects each element of an observable sequence into consecutive non-overlapping buffers which are produced based a specified condition OR when it is full.
+            While the test is [true], the buffer will filled until the the source produces an element at the same time the condition is [false], the current buffer will be released.
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence, and in the lists in the result sequence.</typeparam>
+            <param name="source">Source sequence to produce buffers over.</param>
+            <param name="predicate">A function to test each element for a condition whether current buffer can be released.</param>
+            <param name="count"> Maximum element count of a window.</param>
+            <returns>
+            An observable sequence of buffers.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="count"/> is less than or equal to zero.</exception>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.BufferWhile``1(System.IObservable{``0},System.Func{System.Boolean},System.Int32)">
+            <summary>
+            Projects each element of an observable sequence into consecutive non-overlapping buffers which are produced based a specified condition OR when it is full.
+            While the test is [true], the buffer will filled until the the source produces an element at the same time the condition is [false], the current buffer will be released.
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence, and in the lists in the result sequence.</typeparam>
+            <param name="source">Source sequence to produce buffers over.</param>
+            <param name="predicate">A function to test each element for a condition whether current buffer can be released.</param>
+            <param name="count"> Maximum element count of a window.</param>
+            <returns>
+            An observable sequence of buffers.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="count"/> is less than or equal to zero.</exception>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.BufferWhile``1(System.IObservable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Projects each element of an observable sequence into consecutive non-overlapping buffers which are produced based a specified condition.
+            While the test is [true], the buffer will filled until the the source produces an element at the same time the condition is [false], the current buffer will be released.
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence, and in the lists in the result sequence.</typeparam>
+            <param name="source">Source sequence to produce buffers over.</param>
+            <param name="predicate">A function to test each element for a condition whether current buffer can be released.</param>
+            <returns>
+            An observable sequence of buffers.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.BufferWhile``1(System.IObservable{``0},System.Func{System.Boolean})">
+            <summary>
+            Projects each element of an observable sequence into consecutive non-overlapping buffers which are produced based a specified condition.
+            While the test is [true], the buffer will filled until the the source produces an element at the same time the condition is [false], the current buffer will be released.
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence, and in the lists in the result sequence.</typeparam>
+            <param name="source">Source sequence to produce buffers over.</param>
+            <param name="predicate">A function to test each element for a condition whether current buffer can be released.</param>
+            <returns>
+            An observable sequence of buffers.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.SkipWhileContinuously``1(System.IObservable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Bypasses elements in an observable sequence while a specified condition is [true] and returns the elements whenever the condition is [false].
+            
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+            <param name="source">An observable sequence to return elements from.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>
+            An observable sequence that contains the elements from the input sequence that occur while the test specified by predicate does not pass.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.SkipWhileContinuously``1(System.IObservable{``0},System.Func{System.Boolean})">
+            <summary>
+            Bypasses elements in an observable sequence while a specified condition is [true] and returns the elements whenever the condition is [false].
+            
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+            <param name="source">An observable sequence to return elements from.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>
+            An observable sequence that contains the elements from the input sequence that occur while the test specified by predicate does not pass.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.TakeWhileContinuously``1(System.IObservable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Returns elements from an observable sequence while a specified condition is [true] and discards the elements while the condition is [false].
+            
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+            <param name="source">A sequence to return elements from.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>
+            An observable sequence that contains the elements from the input sequence that occur while the test specified by predicate passes.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
+        </member>
+        <member name="M:JB.Reactive.Linq.ObservableExtensions.TakeWhileContinuously``1(System.IObservable{``0},System.Func{System.Boolean})">
+            <summary>
+            Returns elements from an observable sequence while a specified condition is [true] and discards the elements while the condition is [false].
+            
+            </summary>
+            <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+            <param name="source">A sequence to return elements from.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>
+            An observable sequence that contains the elements from the input sequence that occur while the test specified by predicate passes.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
+        </member>
+        <member name="T:JB.Reactive.Threading.AsyncReaderWriterLock">
+            <summary>
+            A TPL <see cref="T:System.Threading.Tasks.Task"/> and RX.Net compatible (Async)ReaderWriterLock.
+            </summary>
+        </member>
+        <member name="P:JB.Reactive.Threading.AsyncReaderWriterLock.ConcurrentExclusiveSchedulerPair">
+            <summary>
+            Gets the underlying <see cref="P:JB.Reactive.Threading.AsyncReaderWriterLock.ConcurrentExclusiveSchedulerPair"/>.
+            </summary>
+            <value>
+            The concurrent exclusive scheduler pair.
+            </value>
+        </member>
+        <member name="P:JB.Reactive.Threading.AsyncReaderWriterLock.ConcurrentNonExclusiveTaskFactory">
+            <summary>
+            Gets the <see cref="T:System.Threading.Tasks.TaskFactory"/> to schedule concurrent, reader tasks.
+            </summary>
+            <value>
+            The reader scheduler.
+            </value>
+        </member>
+        <member name="P:JB.Reactive.Threading.AsyncReaderWriterLock.ConcurrentNonExclusiveTaskScheduler">
+            <summary>
+            Gets the concurrent, non-exclusive task scheduler.
+            </summary>
+            <value>
+            The concurrent non exclusive task scheduler.
+            </value>
+        </member>
+        <member name="P:JB.Reactive.Threading.AsyncReaderWriterLock.ExclusiveTaskFactory">
+            <summary>
+            Gets the <see cref="T:System.Threading.Tasks.TaskFactory"/> to schedule exclusive, writer tasks.
+            </summary>
+            <value>
+            The writer scheduler.
+            </value>
+        </member>
+        <member name="P:JB.Reactive.Threading.AsyncReaderWriterLock.ExclusiveTaskScheduler">
+            <summary>
+            Gets the exclusive task scheduler.
+            </summary>
+            <value>
+            The concurrent exclusive task scheduler.
+            </value>
+        </member>
+        <member name="P:JB.Reactive.Threading.AsyncReaderWriterLock.IsDisposed">
+            <summary>
+            Gets a value indicating whether this instance has been disposed.
+            </summary>
+            <value>
+            <c>true</c> if this instance has been disposed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Reactive.Threading.AsyncReaderWriterLock.IsDisposing">
+            <summary>
+            Gets a value indicating whether this instance is currently disposing.
+            </summary>
+            <value>
+            <c>true</c> if this instance is currently disposing; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLock.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> class.
+            </summary>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLock.AcquireConcurrentReaderLockAsync(System.Threading.CancellationToken)">
+            <summary>
+            Acquires reader permissions sometimes in the future and returns the corresponding <see cref="T:JB.Reactive.Threading.ReaderWriterLock">ticket</see>.
+            Please note - if you're using async and particularly await inside the lock (using block or prior to calling <see cref="M:JB.Reactive.Threading.ReaderWriterLock.Dispose"/>))
+            it might not work as expected, see http://stackoverflow.com/questions/12068645/how-do-i-create-a-scheduler-which-never-executes-more-than-one-task-at-a-time-us#comment16125533_12069460
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLock.AcquireExclusiveWriterLockAsync(System.Threading.CancellationToken)">
+            <summary>
+            Acquires writer permissions sometimes in the future and returns the corresponding <see cref="T:JB.Reactive.Threading.ReaderWriterLock">ticket</see>.
+            Please note - if you're using async and particularly await inside the lock (using block or prior to calling <see cref="M:JB.Reactive.Threading.ReaderWriterLock.Dispose"/>))
+            it might not work as expected, see http://stackoverflow.com/questions/12068645/how-do-i-create-a-scheduler-which-never-executes-more-than-one-task-at-a-time-us#comment16125533_12069460
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLock.AcquireConcurrentReaderLock">
+            <summary>
+            Returns a (future) reader lock, as an observable.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLock.AcquireExclusiveWriterLock">
+            <summary>
+            Returns a (future) exclusive writer lock, as an observable.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLock.AcquireReadOrWriteLockObservable(System.Threading.Tasks.TaskFactory)">
+            <summary>
+            Acquires the read or write lock on the scheduler, as observable.
+            </summary>
+            <param name="schedulingTaskFactory">The task factory.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLock.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:JB.Reactive.Threading.AsyncReaderWriterLockExtensions">
+            <summary>
+            Extension Methods for <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> instances.
+            </summary>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.AddExclusiveWork``1(JB.Reactive.Threading.AsyncReaderWriterLock,System.Func{System.Threading.Tasks.Task{``0}},System.Threading.SynchronizationContext,System.Threading.CancellationToken)">
+            <summary>
+            Adds exclusive, non-concurrent work to the execution queue of the provided <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="asyncReaderWriterLock">The <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> to schedule work on.</param>
+            <param name="action">The action.</param>
+            <param name="synchronizationContext">The synchronization context to execute the work on. If none is provided, <see cref="P:System.Threading.SynchronizationContext.Current" /> is used.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.AddExclusiveWork(JB.Reactive.Threading.AsyncReaderWriterLock,System.Func{System.Threading.Tasks.Task},System.Threading.SynchronizationContext,System.Threading.CancellationToken)">
+            <summary>
+            Adds exclusive, non-concurrent work to the execution queue of the provided <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock" />.
+            </summary>
+            <param name="asyncReaderWriterLock">The <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> to schedule work on.</param>
+            <param name="action">The action.</param>
+            <param name="synchronizationContext">The synchronization context to execute the work on. If none is provided, <see cref="P:System.Threading.SynchronizationContext.Current" /> is used.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.AddExclusiveWork(JB.Reactive.Threading.AsyncReaderWriterLock,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task},System.Threading.SynchronizationContext,System.Threading.CancellationToken)">
+            <summary>
+            Adds exclusive, non-concurrent work to the execution queue of the provided <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/>.
+            </summary>
+            <param name="asyncReaderWriterLock">The <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> to schedule work on.</param>
+            <param name="action">The action.</param>
+            <param name="synchronizationContext">The synchronization context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.AddExclusiveWork``1(JB.Reactive.Threading.AsyncReaderWriterLock,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}},System.Threading.SynchronizationContext,System.Threading.CancellationToken)">
+            <summary>
+            Adds exclusive, non-concurrent work to the execution queue of the provided <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/>.
+            </summary>
+            <typeparam name="T">The result type.</typeparam>
+            <param name="asyncReaderWriterLock">The <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> to schedule work on.</param>
+            <param name="action">The action.</param>
+            <param name="synchronizationContext">The synchronization context to execute the work on. If none is provided, <see cref="P:System.Threading.SynchronizationContext.Current"/> is used.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.AddExclusiveWork(JB.Reactive.Threading.AsyncReaderWriterLock,System.IObservable{System.Reactive.Unit},System.Reactive.Concurrency.IScheduler)">
+            <summary>
+            Adds exclusive, non-concurrent work to the execution queue of the provided <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/>.
+            </summary>
+            <param name="asyncReaderWriterLock">The <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> to schedule work on.</param>
+            <param name="workerObservable">The worker observable.</param>
+            <param name="scheduler">The scheduler. If none is provided, <see cref="P:System.Reactive.Concurrency.Scheduler.Default"/> is used.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.AddExclusiveWork``1(JB.Reactive.Threading.AsyncReaderWriterLock,System.IObservable{``0},System.Reactive.Concurrency.IScheduler)">
+            <summary>
+            Adds exclusive, non-concurrent work to the execution queue of the provided <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/>.
+            </summary>
+            <typeparam name="T">The result type.</typeparam>
+            <param name="asyncReaderWriterLock">The <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> to schedule work on.</param>
+            <param name="workerObservable">The worker observable.</param>
+            <param name="scheduler">The scheduler. If none is provided, <see cref="P:System.Reactive.Concurrency.Scheduler.Default"/> is used.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.AddConcurrentNonExclusiveWork``1(JB.Reactive.Threading.AsyncReaderWriterLock,System.Func{System.Threading.Tasks.Task{``0}},System.Threading.SynchronizationContext,System.Threading.CancellationToken)">
+            <summary>
+            Adds concurrent, non-exclusive work to the execution queue of the provided <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/>.
+            </summary>
+            <typeparam name="T">The result type.</typeparam>
+            <param name="asyncReaderWriterLock">The <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> to schedule work on.</param>
+            <param name="action">The action.</param>
+            <param name="synchronizationContext">The synchronization context to execute the work on. If none is provided, <see cref="P:System.Threading.SynchronizationContext.Current"/> is used.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.AddConcurrentNonExclusiveWork(JB.Reactive.Threading.AsyncReaderWriterLock,System.Func{System.Threading.Tasks.Task},System.Threading.SynchronizationContext,System.Threading.CancellationToken)">
+            <summary>
+            Adds concurrent, non-exclusive work to the execution queue of the provided <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/>.
+            </summary>
+            <param name="asyncReaderWriterLock">The <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> to schedule work on.</param>
+            <param name="action">The action.</param>
+            <param name="synchronizationContext">The synchronization context to execute the work on. If none is provided, <see cref="P:System.Threading.SynchronizationContext.Current"/> is used.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.AddConcurrentNonExclusiveWork(JB.Reactive.Threading.AsyncReaderWriterLock,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task},System.Threading.SynchronizationContext,System.Threading.CancellationToken)">
+            <summary>
+            Adds concurrent, non-exclusive work to the execution queue of the provided <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/>.
+            </summary>
+            <param name="asyncReaderWriterLock">The <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> to schedule work on.</param>
+            <param name="action">The action.</param>
+            <param name="synchronizationContext">The synchronization context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.AddConcurrentNonExclusiveWork``1(JB.Reactive.Threading.AsyncReaderWriterLock,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}},System.Threading.SynchronizationContext,System.Threading.CancellationToken)">
+            <summary>
+            Adds concurrent, non-exclusive work to the execution queue of the provided <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/>.
+            </summary>
+            <typeparam name="T">The result type.</typeparam>
+            <param name="asyncReaderWriterLock">The <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> to schedule work on.</param>
+            <param name="action">The action.</param>
+            <param name="synchronizationContext">The synchronization context to execute the work on. If none is provided, <see cref="P:System.Threading.SynchronizationContext.Current"/> is used.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.AddConcurrentNonExclusiveWork(JB.Reactive.Threading.AsyncReaderWriterLock,System.IObservable{System.Reactive.Unit},System.Reactive.Concurrency.IScheduler)">
+            <summary>
+            Adds concurrent, non-exclusive work to the execution queue of the provided <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/>.
+            </summary>
+            <param name="asyncReaderWriterLock">The <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> to schedule work on.</param>
+            <param name="workerObservable">The worker observable.</param>
+            <param name="scheduler">The scheduler. If none is provided, <see cref="P:System.Reactive.Concurrency.Scheduler.Default"/> is used.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.AddConcurrentNonExclusiveWork``1(JB.Reactive.Threading.AsyncReaderWriterLock,System.IObservable{``0},System.Reactive.Concurrency.IScheduler)">
+            <summary>
+            Adds concurrent, non-exclusive work to the execution queue of the provided <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/>.
+            </summary>
+            <typeparam name="T">The result type.</typeparam>
+            <param name="asyncReaderWriterLock">The <see cref="T:JB.Reactive.Threading.AsyncReaderWriterLock"/> to schedule work on.</param>
+            <param name="workerObservable">The worker observable.</param>
+            <param name="scheduler">The scheduler. If none is provided, <see cref="P:System.Reactive.Concurrency.Scheduler.Default"/> is used.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.PerformReaderWriterLockedWorkOnScheduler``1(System.IObservable{JB.Reactive.Threading.ReaderWriterLock},System.IObservable{``0},System.Reactive.Concurrency.IScheduler)">
+            <summary>
+            Schedules the actual work on the scheduler.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="readerWriterLockObservable">The reader writer lock observable.</param>
+            <param name="work">The work.</param>
+            <param name="scheduler">The scheduler.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Reactive.Threading.AsyncReaderWriterLockExtensions.PerformReaderWriterLockedWorkOnSynchronizationContext``1(System.IObservable{JB.Reactive.Threading.ReaderWriterLock},System.IObservable{``0},System.Threading.SynchronizationContext)">
+            <summary>
+            Schedules the actual work on the synchronizationcontext.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="readerWriterLockObservable">The reader writer lock observable.</param>
+            <param name="work">The work.</param>
+            <param name="synchronizationContext">The synchronization context.</param>
+            <returns></returns>
+        </member>
+        <member name="P:JB.Reactive.Threading.ReaderWriterLock.Id">
+            <summary>
+            Gets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:JB.Reactive.Threading.ReaderWriterLock.IsExclusive">
+            <summary>
+            Gets a value indicating whether this instance is exclusive.
+            </summary>
+            <value>
+            <c>true</c> if this instance is exclusive; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Reactive.Threading.ReaderWriterLock.IsConcurrent">
+            <summary>
+            Gets or sets a value indicating whether this instance is a non-exclusive, concurrent one.
+            </summary>
+            <value>
+              <c>true</c> if this instance is concurrent; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Reactive.Threading.ReaderWriterLock.InnerDisposable">
+            <summary>
+            Gets or sets the inner disposable.
+            </summary>
+            <value>
+            The inner disposable.
+            </value>
+        </member>
+        <member name="M:JB.Reactive.Threading.ReaderWriterLock.#ctor(System.Int64,System.Boolean,System.IDisposable)">
+            <summary>
+            Prevents a default instance of the <see cref="T:JB.Reactive.Threading.ReaderWriterLock" /> class from being created.
+            </summary>
+            <param name="id">The identifier.</param>
+            <param name="isExclusive">if set to <c>true</c> [is exclusive].</param>
+            <param name="innerDisposable">The inner disposable.</param>
+        </member>
+        <member name="M:JB.Reactive.Threading.ReaderWriterLock.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+    </members>
+</doc>

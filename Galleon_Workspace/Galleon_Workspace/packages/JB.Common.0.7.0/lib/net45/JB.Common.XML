@@ -1,0 +1,502 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JB.Common</name>
+    </assembly>
+    <members>
+        <member name="T:JB.ExtensionMethods.ObjectExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Object"/> instances
+            </summary>
+        </member>
+        <member name="M:JB.ExtensionMethods.ObjectExtensions.IsObjectOfType``1(System.Object)">
+            <summary>
+            Determines whether the provided object is one of the given type.
+            </summary>
+            <typeparam name="TObject">The type of the object.</typeparam>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.ExtensionMethods.ObjectExtensions.ImplementsInterface``1(System.Object)">
+            <summary>
+            Checks whether the given <paramref name="value"/>'s <see cref="T:System.Type"/> implements the provided interface.
+            </summary>
+            <typeparam name="TInterface">the interface type.</typeparam>
+            <returns>[true] if <paramref name="value"/>'s type implements the <typeparamref name="TInterface"/>, [false] if otherwise.</returns>
+            <returns></returns>
+        </member>
+        <member name="T:JB.ExtensionMethods.ServiceProviderExtensions">
+            <summary>
+            Extension Methods for <see cref="T:System.IServiceProvider"/> instances.
+            </summary>
+        </member>
+        <member name="M:JB.ExtensionMethods.ServiceProviderExtensions.GetService``1(System.IServiceProvider)">
+            <summary>
+                Gets the service of the specific type.
+            </summary>
+            <typeparam name="TService">Type of the service</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:JB.ExtensionMethods.ServiceProviderExtensions.GetService``2(System.IServiceProvider)">
+            <summary>
+                Gets the service of the specific type for a given, known implementation.
+            </summary>
+            <typeparam name="TService">The type of the service interface.</typeparam>
+            <typeparam name="TKnownServiceImplementation">The known type of the service implementation.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:JB.ExtensionMethods.TypeExtensions">
+            <summary>
+            Extension methods particularly for and around <see cref="T:System.Type"/> instances
+            </summary>
+        </member>
+        <member name="M:JB.ExtensionMethods.TypeExtensions.ImplementsInterface``1(System.Type)">
+            <summary>
+            Checks whether the given type implements the provided interface.
+            </summary>
+            <typeparam name="TInterface">the interface type.</typeparam>
+            <returns>[true] if <paramref name="type"/> implements the <typeparamref name="TInterface"/>, [false] if otherwise.</returns>
+            <returns></returns>
+        </member>
+        <member name="M:JB.ExtensionMethods.TypeExtensions.IsSubclassOf``1(System.Type)">
+            <summary>
+            Checks whether the given type is a subclass of a super type.
+            </summary>
+            <typeparam name="TSuperType">The super type / base class type</typeparam>
+            <param name="subType">The type.</param>
+            <returns>[true] if <paramref name="subType"/> is a sub class of <typeparamref name="TSuperType"/>, [false] if otherwise.</returns>
+        </member>
+        <member name="T:JB.Pool`1">
+            <summary>
+            A managed pool for shared, re-usable <typeparam name="TValue">instances</typeparam>.
+            </summary>
+            <typeparam name="TValue">The type of the value.</typeparam>
+        </member>
+        <member name="P:JB.Pool`1.InstanceBuilder">
+            <summary>
+            Gets the instance builder.
+            </summary>
+            <value>
+            The instance builder.
+            </value>
+        </member>
+        <member name="P:JB.Pool`1.PooledInstances">
+            <summary>
+            Gets the pooled instances.
+            </summary>
+            <value>
+            The pooled instances.
+            </value>
+        </member>
+        <member name="P:JB.Pool`1.IsDisposed">
+            <summary>
+            Gets a value indicating whether this instance has been disposed.
+            </summary>
+            <value>
+            <c>true</c> if this instance has been disposed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Pool`1.AvailableInstancesCount">
+            <summary>
+            Gets the count of available, ready-to-be-acquired instances in the pool.
+            </summary>
+            <value>
+            The available instances count.
+            </value>
+        </member>
+        <member name="P:JB.Pool`1.IsDisposing">
+            <summary>
+            Gets or sets a value indicating whether this instance is being disposing.
+            </summary>
+            <value>
+            <c>true</c> if this instance is disposing; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:JB.Pool`1.#ctor(System.Func{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Pool`1" /> class.
+            </summary>
+            <param name="instanceBuilder">The instance builder.</param>
+        </member>
+        <member name="M:JB.Pool`1.#ctor(System.Func{`0},`0[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Pool`1" /> class.
+            </summary>
+            <param name="instanceBuilder">The instance builder.</param>
+            <param name="initialInstances">The initial instances.</param>
+        </member>
+        <member name="M:JB.Pool`1.#ctor(System.Func{`0},System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Pool`1"/> class.
+            </summary>
+            <param name="instanceBuilder">The instance builder.</param>
+            <param name="initialPoolSize">Initial size of the pool.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="M:JB.Pool`1.#ctor(System.Func{`0},System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Pool`1"/> class.
+            </summary>
+            <param name="instanceBuilder">The instance builder.</param>
+            <param name="initialInstances">The initial instances.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:JB.Pool`1.IncreasePoolSizeAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Increases the total size of the pool by the amount specified.
+            </summary>
+            <param name="increaseBy">The amount of values to increase the pool by.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Pool`1.DecreaseAvailablePoolSizeAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Decreases the size of the pool by the amount of instances specified.
+            This only has an effect if there are any instances currently available to be
+            acquired, this has no effect on already and currently acquired instances.
+            </summary>
+            <param name="decreaseBy">The amount of values to decrease the pool by.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Cannot decrease the amount of (available) pooled items by less than 0
+            or
+            Cannot decrease the amount of (available) pooled items by more than what's available.
+            </exception>
+        </member>
+        <member name="M:JB.Pool`1.AcquirePooledValueAsync(JB.PooledValueAcquisitionMode,System.Threading.CancellationToken)">
+            <summary>
+            Acquires the next available pooled value.
+            </summary>
+            <param name="pooledValueAcquisitionMode">The pooled value acquisition mode.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Pool`1.ReleasePooledValue(JB.Pooled{`0},System.Threading.CancellationToken)">
+            <summary>
+            Releases a <paramref name="pooledValue"/> back into the pool.
+            </summary>
+            <param name="pooledValue">The pooled value.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Pool`1.DetachPooledValue(JB.Pooled{`0},System.Threading.CancellationToken)">
+            <summary>
+            Detaches a <paramref name="pooledValue"/> from the pool.
+            </summary>
+            <param name="pooledValue">The pooled value.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Pool`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:JB.Pooled`1">
+            <summary>
+            A Pooled <typeparam name="TValue">instance</typeparam> managed by a <see cref="T:JB.Pool`1"/>
+            </summary>
+            <typeparam name="TValue">The type of the value.</typeparam>
+        </member>
+        <member name="M:JB.Pooled`1.#ctor(`0,JB.Pool{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Pooled`1"/> class.
+            </summary>
+            <param name="pooledValue">The pooled value.</param>
+            <param name="owningPool">The owning pool.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="P:JB.Pooled`1.IsDisposed">
+            <summary>
+            Gets a value indicating whether this instance has been disposed.
+            </summary>
+            <value>
+            <c>true</c> if this instance has been disposed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Pooled`1.IsDisposing">
+            <summary>
+            Gets or sets a value indicating whether this instance is being disposing.
+            </summary>
+            <value>
+            <c>true</c> if this instance is disposing; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:JB.Pooled`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="P:JB.Pooled`1.Value">
+            <summary>
+            Gets the pooled value.
+            </summary>
+            <value>
+            The pooled value.
+            </value>
+        </member>
+        <member name="P:JB.Pooled`1.OwningPool">
+            <summary>
+            Gets the owning pool.
+            </summary>
+            <value>
+            The owning pool.
+            </value>
+        </member>
+        <member name="M:JB.Pooled`1.DetachFromPool(System.Threading.CancellationToken)">
+            <summary>
+            Detaches the <see cref="P:JB.Pooled`1.Value"/> from the pool and hands it over to the caller.
+            Once a value has been detached from its pool, this <see cref="T:JB.Pooled`1"/> allows
+            no further calls to <see cref="M:JB.Pooled`1.ReleaseBackToPool(System.Threading.CancellationToken)"/> and <see cref="P:JB.Pooled`1.HasBeenDetachedFromPool"/>,
+            indicating this via <see cref="P:JB.Pooled`1.HasBeenDetachedFromPool"/>.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Pooled`1.ReleaseBackToPool(System.Threading.CancellationToken)">
+            <summary>
+            Releases the <see cref="P:JB.Pooled`1.Value"/> back to the <see cref="P:JB.Pooled`1.OwningPool"/> pool.
+            Further calls to <see cref="P:JB.Pooled`1.Value"/>, <see cref="M:JB.Pooled`1.ReleaseBackToPool(System.Threading.CancellationToken)"/> and
+            <see cref="M:JB.Pooled`1.DetachFromPool(System.Threading.CancellationToken)"/> are prevented, but locally kept and copied direct
+            references to the <see cref="P:JB.Pooled`1.Value"/> should no longer be used, also.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="P:JB.Pooled`1.HasBeenReleasedBackToPool">
+            <summary>
+            Gets a value indicating whether the <see cref="P:JB.Pooled`1.Value"/> has been released back to pool
+            and cannot / should no longer be used.
+            </summary>
+            <value>
+            <c>true</c> if this instance has been released back to pool; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Pooled`1.HasBeenDetachedFromPool">
+            <summary>
+            Gets a value indicating whether the <see cref="P:JB.Pooled`1.Value"/> has been detached from pool.
+            And is no longer owned by the <see cref="P:JB.Pooled`1.OwningPool"/>, nor can it be
+            <see cref="M:JB.Pooled`1.ReleaseBackToPool(System.Threading.CancellationToken)">released back</see>to it.
+            </summary>
+            <value>
+            <c>true</c> if this instance has been detached from pool; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:JB.PooledValueAcquisitionMode">
+            <summary>
+            Defines how <see cref="M:JB.Pool`1.AcquirePooledValueAsync(JB.PooledValueAcquisitionMode,System.Threading.CancellationToken)"/> behaves when no instances are currently available.
+            </summary>
+        </member>
+        <member name="F:JB.PooledValueAcquisitionMode.AvailableInstanceOrDefaultValue">
+            <summary>
+            Return an available instance if available, and if not, return the <see cref="T:JB.Pool`1">default value</see>.
+            </summary>
+        </member>
+        <member name="F:JB.PooledValueAcquisitionMode.AvailableInstanceOrWaitForNextOne">
+            <summary>
+            Wait for the next available instance.
+            </summary>
+        </member>
+        <member name="F:JB.PooledValueAcquisitionMode.AvailableInstanceOrCreateNewOne">
+            <summary>
+            Create a new instance if none is available and thereby increase the overall pool size.
+            </summary>
+        </member>
+        <member name="T:JB.Threading.SynchronizationContextExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Threading.SynchronizationContext"/> instances.
+            </summary>
+        </member>
+        <member name="M:JB.Threading.SynchronizationContextExtensions.Send(System.Threading.SynchronizationContext,System.Action)">
+            <summary>
+            Sends the specified action to the <paramref name="synchronizationContext"/>.
+            </summary>
+            <param name="synchronizationContext">The synchronization context.</param>
+            <param name="action">The action.</param>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:JB.Threading.SynchronizationContextExtensions.Send``1(System.Threading.SynchronizationContext,System.Func{``0})">
+            <summary>
+            Sends the specified function to the <paramref name="synchronizationContext"/> and returns its result.
+            </summary>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="synchronizationContext">The synchronization context.</param>
+            <param name="func">The function.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:JB.Threading.SynchronizationContextExtensions.Post(System.Threading.SynchronizationContext,System.Action)">
+            <summary>
+            Posts the specified action to the <paramref name="synchronizationContext"/>.
+            </summary>
+            <param name="synchronizationContext">The synchronization context.</param>
+            <param name="action">The action.</param>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:JB.Threading.SynchronizationContextExtensions.PostAsync(System.Threading.SynchronizationContext,System.Action,System.Threading.CancellationToken)">
+            <summary>
+            Posts the specified action to the <paramref name="synchronizationContext"/> asynchronously.
+            </summary>
+            <param name="synchronizationContext">The synchronization context.</param>
+            <param name="action">The action.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:JB.Threading.SynchronizationContextExtensions.PostAsync``1(System.Threading.SynchronizationContext,System.Func{``0},System.Threading.CancellationToken)">
+            <summary>
+            Posts the specified function to the <paramref name="synchronizationContext"/> asynchronously and returns its result.
+            </summary>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="synchronizationContext">The synchronization context.</param>
+            <param name="func">The function.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="T:JB.Threading.Tasks.TaskCompletionSource">
+            <summary>
+            Represents the producer side of a <see cref="T:System.Threading.Tasks.Task"/> unbound to a delegate, providing access to the consumer side through the <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> property.
+            </summary>
+        </member>
+        <member name="F:JB.Threading.Tasks.TaskCompletionSource._taskCompletionSource">
+            <summary>
+            The inner wrapper TaskCompletionSource.
+            </summary>
+        </member>
+        <member name="M:JB.Threading.Tasks.TaskCompletionSource.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Threading.Tasks.TaskCompletionSource"/> class.
+            </summary>
+        </member>
+        <member name="M:JB.Threading.Tasks.TaskCompletionSource.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Threading.Tasks.TaskCompletionSource"/> class with the specified state.
+            </summary>
+            <param name="state">The state to use as the underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/>'s <see cref="P:System.IAsyncResult.AsyncState"/>.</param>
+        </member>
+        <member name="M:JB.Threading.Tasks.TaskCompletionSource.#ctor(System.Threading.Tasks.TaskCreationOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Threading.Tasks.TaskCompletionSource"/> class with the specified options.
+            </summary>
+            <param name="creationOptions">The options to use when creating the underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/>.</param>
+        </member>
+        <member name="M:JB.Threading.Tasks.TaskCompletionSource.#ctor(System.Object,System.Threading.Tasks.TaskCreationOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Threading.Tasks.TaskCompletionSource"/> class with the specified state and options.
+            </summary>
+            <param name="state">The state to use as the underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/>'s <see cref="P:System.IAsyncResult.AsyncState"/>.</param>
+            <param name="creationOptions">The options to use when creating the underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/>.</param>
+        </member>
+        <member name="P:JB.Threading.Tasks.TaskCompletionSource.Task">
+            <summary>
+            Gets the <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> created by this <see cref="T:JB.Threading.Tasks.TaskCompletionSource"/>.
+            </summary>
+        </member>
+        <member name="M:JB.Threading.Tasks.TaskCompletionSource.SetCanceled">
+            <summary>
+            Transitions the underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> into the <see cref="F:System.Threading.Tasks.TaskStatus.Canceled"/> state.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">The underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> has already been completed.</exception>
+        </member>
+        <member name="M:JB.Threading.Tasks.TaskCompletionSource.TrySetCanceled">
+            <summary>
+            Attempts to transition the underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> into the <see cref="F:System.Threading.Tasks.TaskStatus.Canceled"/> state.
+            </summary>
+            <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:JB.Threading.Tasks.TaskCompletionSource.SetException(System.Exception)">
+            <summary>
+            Transitions the underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> into the <see cref="F:System.Threading.Tasks.TaskStatus.Faulted"/> state.
+            </summary>
+            <param name="exception">The exception to bind to this <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/>. May not be <c>null</c>.</param>
+            <exception cref="T:System.InvalidOperationException">The underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> has already been completed.</exception>
+        </member>
+        <member name="M:JB.Threading.Tasks.TaskCompletionSource.SetException(System.Collections.Generic.IEnumerable{System.Exception})">
+            <summary>
+            Transitions the underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> into the <see cref="F:System.Threading.Tasks.TaskStatus.Faulted"/> state.
+            </summary>
+            <param name="exceptions">The collection of exceptions to bind to this <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/>. May not be <c>null</c> or contain <c>null</c> elements.</param>
+            <exception cref="T:System.InvalidOperationException">The underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> has already been completed.</exception>
+        </member>
+        <member name="M:JB.Threading.Tasks.TaskCompletionSource.TrySetException(System.Exception)">
+            <summary>
+            Attempts to transition the underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> into the <see cref="F:System.Threading.Tasks.TaskStatus.Faulted"/> state.
+            </summary>
+            <param name="exception">The exception to bind to this <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/>. May not be <c>null</c>.</param>
+            <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:JB.Threading.Tasks.TaskCompletionSource.TrySetException(System.Collections.Generic.IEnumerable{System.Exception})">
+            <summary>
+            Attempts to transition the underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> into the <see cref="F:System.Threading.Tasks.TaskStatus.Faulted"/> state.
+            </summary>
+            <param name="exceptions">The collection of exceptions to bind to this <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/>. May not be <c>null</c> or contain <c>null</c> elements.</param>
+            <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:JB.Threading.Tasks.TaskCompletionSource.SetResult">
+            <summary>
+            Transitions the underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> into the <see cref="F:System.Threading.Tasks.TaskStatus.RanToCompletion"/> state.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">The underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> has already been completed.</exception>
+        </member>
+        <member name="M:JB.Threading.Tasks.TaskCompletionSource.TrySetResult">
+            <summary>
+            Attempts to transition the underlying <see cref="P:JB.Threading.Tasks.TaskCompletionSource.Task"/> into the <see cref="F:System.Threading.Tasks.TaskStatus.RanToCompletion"/> state.
+            </summary>
+            <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="T:JB.WeakEventHandler`2">
+            <summary>
+            A Weak Event Handler that handles garbage collected handlers gracefully.
+            </summary>
+            <example>
+            Instead of registering the <see cref="T:System.EventHandler`1"/> to your event directly, wrap it in a <see cref="T:JB.WeakEventHandler`2"/>. That's all.
+            </example>
+            <typeparam name="TEventArgs">The type of the event arguments.</typeparam>
+            <typeparam name="TEventTarget">The type of the handler.</typeparam>
+        </member>
+        <member name="M:JB.WeakEventHandler`2.#ctor(System.EventHandler{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.WeakEventHandler`2"/> class.
+            </summary>
+            <param name="callback">The callback.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="M:JB.WeakEventHandler`2.#ctor(System.Delegate)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.WeakEventHandler`2"/> class.
+            </summary>
+            <param name="callback">The callback.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="M:JB.WeakEventHandler`2.SetupReferenceAndInvoker(System.Delegate)">
+            <summary>
+            Setups the (weak) target reference and (cached, lazy) invoker.
+            </summary>
+            <param name="callback">The callback.</param>
+        </member>
+        <member name="M:JB.WeakEventHandler`2.Handler(System.Object,`0)">
+            <summary>
+            The actual Handler to register to your event.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="eventArgs">The <see cref="T:System.EventArgs" /> instance containing the event data.</param>
+        </member>
+        <member name="M:JB.WeakEventHandler`2.op_Implicit(JB.WeakEventHandler{`0,`1})~System.EventHandler{`0}">
+            <summary>
+            Performs an implicit conversion from <see cref="T:JB.WeakEventHandler`2"/> to <see cref="T:System.EventHandler`1"/>.
+            </summary>
+            <param name="eventHandler">The event handler.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+    </members>
+</doc>

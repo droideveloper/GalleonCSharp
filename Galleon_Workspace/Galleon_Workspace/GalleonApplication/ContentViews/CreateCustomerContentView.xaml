@@ -1,0 +1,455 @@
+﻿<UserControl x:Class="GalleonApplication.ContentViews.CreateCustomerContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:property="clr-namespace:GalleonApplication.Properties"
+             xmlns:vm="clr-namespace:GalleonApplication.ViewModels"
+             xmlns:cv="clr-namespace:GalleonApplication.ContentViews"
+             xmlns:vd="clr-namespace:GalleonApplication.Domains.Validators"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:dm="clr-namespace:GalleonApplication.Domains"
+             xmlns:entity="clr-namespace:GalleonApplication.Extra"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="768"
+             d:DataContext="{d:DesignInstance vm:CreateCustomerViewModel, d:IsDesignTimeCreatable=False}"
+             DataContext="{Binding CreateCustomerViewModel, Source={StaticResource ViewModelLocator}}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- note you only need bring in these extra resource dictionaries when using non-default styles, so only bring them into your controls where the default style is not what you want -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>            
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                <Setter Property="Margin" Value="0 8 0 8" />
+            </Style> 
+            <Style TargetType="{x:Type md:PackIcon}" BasedOn="{StaticResource {x:Type md:PackIcon}}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="4 0 4 0" />
+            </Style>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0 8 0 8" />
+            </Style>
+            <Style x:Key="MaterialListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                <Setter Property="Padding" Value="0 0 0 2" />
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+   
+    <Grid Background="LightGray">        
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="265"/>
+            <ColumnDefinition  Width="320"/>
+            <ColumnDefinition  Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Column="0" Grid.Row="0">
+            
+            <StackPanel Orientation="Vertical">                
+                <md:Card UniformCornerRadius="0" 
+                         Padding="8">
+                    <StackPanel>
+                        <TextBox               
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                Margin="0 8 0 8">
+                            <md:HintAssist.Hint>
+                                <StackPanel Orientation="Horizontal" 
+                                        Margin="-2 0 0 0">
+                                    <md:PackIcon Kind="Account" />
+                                    <TextBlock Text="{x:Static property:Resources.FirstNameHint}" />
+                                </StackPanel>
+                            </md:HintAssist.Hint>
+                            <TextBox.Text>
+                                <Binding Path="FirstName" 
+                                         Converter="{StaticResource ResourceKey=TitleCaseFormat}"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <vd:FirstNameValidator ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                        <TextBox                
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                Margin="0 8 0 8">
+                            <md:HintAssist.Hint>
+                                <StackPanel Orientation="Horizontal" 
+                                        Margin="-2 0 0 0">
+                                    <md:PackIcon Kind="Account" />
+                                    <TextBlock Text="{x:Static property:Resources.MiddleNameHint}" />
+                                </StackPanel>
+                            </md:HintAssist.Hint>
+                            <TextBox.Text>
+                                <Binding Path="MiddleName" 
+                                         Converter="{StaticResource ResourceKey=TitleCaseFormat}"
+                                         UpdateSourceTrigger="PropertyChanged" />
+                            </TextBox.Text>
+                        </TextBox>
+
+                        <TextBox              
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                Margin="0 8 0 8">
+                            <md:HintAssist.Hint>
+                                <StackPanel Orientation="Horizontal" 
+                                        Margin="-2 0 0 0">
+                                    <md:PackIcon Kind="Account" />
+                                    <TextBlock Text="{x:Static property:Resources.LastNameHint}" />
+                                </StackPanel>
+                            </md:HintAssist.Hint>
+                            <TextBox.Text>
+                                <Binding Path="LastName" 
+                                         Converter="{StaticResource ResourceKey=TitleCaseFormat}"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <vd:LastNameValidator ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                        <TextBox             
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                Margin="0 8 0 8">
+                            <md:HintAssist.Hint>
+                                <StackPanel Orientation="Horizontal" 
+                                        Margin="-2 0 0 0">
+                                    <md:PackIcon Kind="Key" />
+                                    <TextBlock Text="{x:Static property:Resources.IdentityHint}" />
+                                </StackPanel>
+                            </md:HintAssist.Hint>
+                            <TextBox.Text>
+                                <Binding Path="Identity" 
+                                        UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <vd:IdentityValidator ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                                     Grid.Column="0"
+                                     VerticalAlignment="Center"
+                                     Visibility="{Binding ShowCategoriesProgress, Converter={StaticResource ResourceKey=VisibilityColapsedConverter}}"
+                                     IsIndeterminate="True" />
+                    
+                            <ComboBox 
+                                    Grid.Column="1"
+                                    Margin="0 8 0 8"
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                    ItemsSource="{Binding Categories}" 
+                                    IsEnabled="{Binding ShowCategoriesProgress, Converter={StaticResource ResourceKey=EnabledConverter}}"
+                                    SelectedValue="{Binding Category, Mode=TwoWay}"
+                                    DisplayMemberPath="CategoryName">
+                                <md:HintAssist.Hint>
+                                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                                        <md:PackIcon Kind="Layers" />
+                                        <TextBlock Text="{x:Static property:Resources.CategoryHint}" />
+                                    </StackPanel>
+                                </md:HintAssist.Hint>
+                                <ComboBox.SelectedItem>
+                                    <Binding Path="Category" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <vd:NotNullValidator ValidatesOnTargetUpdated="True" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </ComboBox.SelectedItem>
+                            </ComboBox>
+                        </Grid>
+                
+                        <StackPanel Orientation="Horizontal"                              
+                                    HorizontalAlignment="Right">
+
+                            <Button
+                                Margin="4 4 4 0"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                Command="{Binding ClearCustomerCommand}"
+                                Content="{x:Static property:Resources.ClearCustomerText}"
+                                ToolTip="Resource name: MaterialDesignRaisedAccentButton" />
+
+                            <Button
+                                Margin="4 4 4 0"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                Command="{Binding SaveCustomerCommand}"
+                                Content="{x:Static property:Resources.SaveCustomerText}"
+                                ToolTip="Resource name: MaterialDesignRaisedAccentButton" />
+
+
+                        </StackPanel>
+                    </StackPanel>
+                </md:Card>
+
+            </StackPanel>
+        </DockPanel>
+
+        <DockPanel Grid.Column="1" Grid.Row="0">
+
+            <Grid Margin="8 0 8 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>               
+                
+                <md:Card UniformCornerRadius="0" 
+                         Padding="5"
+                         Grid.Row="1">
+                    
+                    <StackPanel Orientation="Vertical">
+                        
+                        <ListBox ItemsSource="{Binding Contacts}"
+                                 Name="ContactsListBox"
+                                 ScrollViewer.CanContentScroll="False"
+                                 HorizontalContentAlignment="Stretch"
+                                 ItemContainerStyle="{StaticResource MaterialListBoxItem}"
+                                 Background="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                    
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <md:TransitioningContent OpeningEffectsOffset="{md:IndexedItemOffsetMultiplier 0:0:0.1}"
+                                                 Opacity="0"
+                                                 RunHint="Loaded">
+
+                                        <md:TransitioningContent.OpeningEffects>
+                                            <md:TransitionEffect Kind="FadeIn" />
+                                        </md:TransitioningContent.OpeningEffects>
+
+                                        <md:ColorZone   Name="ListItemContact"
+                                                    md:ShadowAssist.ShadowDepth="Depth2"
+                                                    Mode="Standard">
+                                            <Grid Margin="4">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+
+                                                <DockPanel Margin="2" Grid.Row="0">
+                                                    <TextBlock Text="{x:Static property:Resources.ContactNameTitle}" Name="ContactNameTitle" FontSize="13"/>
+                                                    <TextBlock Text="{Binding ContactName}" HorizontalAlignment="Right" Name="ContactNameContent" FontSize="13"/>
+                                                </DockPanel>
+
+                                                <DockPanel Margin="2" Grid.Row="1">
+                                                    <TextBlock Text="{x:Static property:Resources.PhoneTitle}" Name="ContactPhoneTitle" FontSize="13"/>
+                                                    <TextBlock Text="{Binding Path=Phone, Converter={StaticResource ResourceKey=StringFormat}, Mode=OneWay}" FontSize="13"                                                  
+                                                           HorizontalAlignment="Right" Name="ContactPhoneContent" />
+                                                </DockPanel>
+
+                                                <DockPanel Margin="2" Grid.Row="2">
+                                                    <TextBlock Text="{x:Static property:Resources.AddressTitle}" Name="ContactAddressTitle" FontSize="13" />
+                                                    <TextBlock Text="{Binding Address}" HorizontalAlignment="Right" Name="ContactAddressContent" FontSize="13"/>
+                                                </DockPanel>
+
+                                                <DockPanel Margin="2" Grid.Row="3">
+                                                    <StackPanel Orientation="Horizontal" 
+                                                            HorizontalAlignment="Right">
+                                                        <TextBlock Text="{Binding City.CityName}" 
+                                                               FontSize="13"
+                                                               Name="ContactCityNameContent"
+                                                               Margin="0 0 2 0" />
+                                                        <TextBlock Text=", " 
+                                                               FontSize="13"
+                                                               Name="ContactCommaContent"
+                                                               Margin="0 0 2 0"/>
+                                                        <TextBlock Text="{Binding Country.CountryName}"
+                                                               Name="ContactCountryNameContent"
+                                                               FontSize="13"
+                                                               HorizontalAlignment="Right"/>
+                                                    </StackPanel>
+                                                </DockPanel>
+
+                                            </Grid>
+                                        </md:ColorZone>
+                                    </md:TransitioningContent>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="True">
+                                            <Setter TargetName="ListItemContact" Property="Mode" Value="PrimaryDark" />
+                                            <Setter TargetName="ContactNameTitle" Property="Foreground" Value="#FFFFFF" />
+                                            <Setter TargetName="ContactNameContent" Property="Foreground" Value="#FFFFFF" />
+                                            <Setter TargetName="ContactPhoneTitle" Property="Foreground" Value="#FFFFFF" />
+                                            <Setter TargetName="ContactPhoneContent" Property="Foreground" Value="#FFFFFF" />
+                                            <Setter TargetName="ContactAddressTitle" Property="Foreground" Value="#FFFFFF" />
+                                            <Setter TargetName="ContactAddressContent" Property="Foreground" Value="#FFFFFF" />
+                                            <Setter TargetName="ContactCityNameContent" Property="Foreground" Value="#FFFFFF" />
+                                            <Setter TargetName="ContactCommaContent" Property="Foreground" Value="#FFFFFF" />
+                                            <Setter TargetName="ContactCountryNameContent" Property="Foreground" Value="#FFFFFF" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="False">
+                                            <Setter TargetName="ListItemContact" Property="Mode" Value="Standard" />
+                                            <Setter TargetName="ContactNameTitle" Property="Foreground" Value="#333333" />
+                                            <Setter TargetName="ContactNameContent" Property="Foreground" Value="#333333" />
+                                            <Setter TargetName="ContactPhoneTitle" Property="Foreground" Value="#333333" />
+                                            <Setter TargetName="ContactPhoneContent" Property="Foreground" Value="#333333" />
+                                            <Setter TargetName="ContactAddressTitle" Property="Foreground" Value="#333333" />
+                                            <Setter TargetName="ContactAddressContent" Property="Foreground" Value="#333333" />
+                                            <Setter TargetName="ContactCityNameContent" Property="Foreground" Value="#333333" />
+                                            <Setter TargetName="ContactCommaContent" Property="Foreground" Value="#333333" />
+                                            <Setter TargetName="ContactCountryNameContent" Property="Foreground" Value="#333333" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <StackPanel Orientation="Horizontal" 
+                                    VerticalAlignment="Bottom" 
+                                    HorizontalAlignment="Right">
+                            <Button
+                                Margin="5 5 0 0"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                Command="{Binding AddContactCommand}"
+                                Content="{x:Static property:Resources.AddContactText}"
+                                ToolTip="Resource name: MaterialDesignRaisedAccentButton" />
+                            
+                            <Button
+                                Margin="5 5 0 0"
+                                IsEnabled="{Binding ElementName=ContactsListBox, Path=SelectedIndex, Converter={StaticResource SelectionEnabledConverter}}"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                Command="{Binding EditContactCommand}"
+                                CommandParameter="{Binding ElementName=ContactsListBox, Path=SelectedIndex}"
+                                Content="{x:Static property:Resources.EditContactText}"
+                                ToolTip="Resource name MaterialDesignRasidAccentButton" />
+                            
+                            <Button
+                                Margin="5 5 0 0"
+                                IsEnabled="{Binding ElementName=ContactsListBox, Path=SelectedIndex, Converter={StaticResource SelectionEnabledConverter}}"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                Command="{Binding RemoveContactCommand}"
+                                CommandParameter="{Binding ElementName=ContactsListBox, Path=SelectedIndex}"
+                                Content="{x:Static property:Resources.RemoveContactText}"
+                                ToolTip="Resource name: MaterialDesignRaisedAccentButton" />    
+                            
+                        </StackPanel>
+                    </StackPanel>
+                </md:Card>
+            </Grid>
+        </DockPanel>
+        
+        <DockPanel Grid.Column="2"
+                   Background="{DynamicResource MaterialDesignPaper}"
+                   x:Name="FileUpload"
+                   Grid.Row="0">
+
+            <md:Card UniformCornerRadius="0"
+                     Height="{Binding Path=ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type DockPanel}}}">
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Vertical" 
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <md:PackIcon Kind="CloudUpload" 
+                                 Width="48"
+                                 HorizontalAlignment="Center"
+                                 Height="48" />
+                        <Label>
+                            <TextBlock Text="{x:Static property:Resources.UploadHereText}" 
+                               FontSize="17"/>
+                        </Label>
+                    </StackPanel>
+
+                    <Grid Grid.Row="1"
+                          Background="#CCCCCC"
+                          md:ShadowAssist.ShadowDepth="Depth2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <ListBox ItemsSource="{Binding CustomerFiles}"
+                                 Name="FilesListBox"
+                                 Grid.Row="0"
+                                 ScrollViewer.CanContentScroll="False"
+                                 Margin="5"
+                                 VerticalAlignment="Top"
+                                 HorizontalContentAlignment="Stretch"
+                                 ItemContainerStyle="{StaticResource MaterialListBoxItem}">
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <md:TransitioningContent OpeningEffectsOffset="{md:IndexedItemOffsetMultiplier 0:0:0.1}"
+                                                 Opacity="0"
+                                                 RunHint="Loaded">
+
+                                        <md:TransitioningContent.OpeningEffects>
+                                            <md:TransitionEffect Kind="FadeIn" />
+                                        </md:TransitioningContent.OpeningEffects>
+
+                                        <md:ColorZone   Name="ListItemFile"
+                                                        md:ShadowAssist.ShadowDepth="Depth2"
+                                                        Mode="Standard">
+                                            <Label>
+                                                <TextBlock Name="FileName" Text="{Binding Name}" />
+                                            </Label>
+                                        </md:ColorZone>
+                                    </md:TransitioningContent>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="True">
+                                            <Setter TargetName="ListItemFile" Property="Mode" Value="PrimaryDark" />
+                                            <Setter TargetName="FileName" Property="Foreground" Value="#FFFFFF" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="False">
+                                            <Setter TargetName="ListItemFile" Property="Mode" Value="Standard" />
+                                            <Setter TargetName="FileName" Property="Foreground" Value="#333333" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <StackPanel VerticalAlignment="Bottom"
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Right"
+                                    Orientation="Horizontal">
+                            <Button
+                                    Margin="5 5 0 0"
+                                    IsEnabled="{Binding ElementName=FilesListBox, Path=SelectedIndex, Converter={StaticResource SelectionEnabledConverter}}"
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                                    Command="{Binding RemoveFileCommand}"
+                                    CommandParameter="{Binding ElementName=FilesListBox, Path=SelectedIndex}"
+                                    Content="{x:Static property:Resources.RemoveContactText}"
+                                    ToolTip="Resource name: MaterialDesignRaisedAccentButton" />
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </Grid>
+            </md:Card>
+        </DockPanel>
+        
+    </Grid>
+</UserControl>

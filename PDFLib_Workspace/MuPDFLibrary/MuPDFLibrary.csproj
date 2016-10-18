@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{371BE036-457F-4E24-8112-B2FAB29D768A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MuPDFLibrary</RootNamespace>
+    <AssemblyName>MuPDFLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="..\Common.targets" />
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractDisposable.cs" />
+    <Compile Include="AsyncVirtualizingCollection.cs" />
+    <Compile Include="ContinuousPDFPanel.xaml.cs">
+      <DependentUpon>ContinuousPDFPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomVirtualizingPanel.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="InteropNet\ILibraryLoaderLogic.cs" />
+    <Compile Include="InteropNet\InteropRuntimeImplementer.cs" />
+    <Compile Include="InteropNet\LibraryLoader.cs" />
+    <Compile Include="InteropNet\LibraryLoaderTrace.cs" />
+    <Compile Include="InteropNet\RuntimeDllImportAttribute.cs" />
+    <Compile Include="InteropNet\SystemManager.cs" />
+    <Compile Include="InteropNet\UnixLibraryLoaderLogic.cs" />
+    <Compile Include="InteropNet\WindowsLibraryLoaderLogic.cs" />
+    <Compile Include="Interop\DeviceProcessInfo.cs" />
+    <Compile Include="Interop\IMuPDFNativeApi.cs" />
+    <Compile Include="IPDFPanel.cs" />
+    <Compile Include="ItemsProvider.cs" />
+    <Compile Include="MuPDF.cs" />
+    <Compile Include="MuPDFPanel.xaml.cs">
+      <DependentUpon>MuPDFPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDFFileStream.cs" />
+    <Compile Include="PDFImage.cs" />
+    <Compile Include="PDFImageProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SinglePagePDFPanel.xaml.cs">
+      <DependentUpon>SinglePagePDFPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemResolutionHelper.cs" />
+    <Compile Include="VirtualizingCollection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\install.ps1">
+      <Link>install.ps1</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\lib\x64\libmupdf.dll">
+      <Link>x64\libmupdf.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\lib\x86\libmupdf.dll">
+      <Link>x86\libmupdf.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ContinuousPDFPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MuPDFPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SinglePagePDFPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

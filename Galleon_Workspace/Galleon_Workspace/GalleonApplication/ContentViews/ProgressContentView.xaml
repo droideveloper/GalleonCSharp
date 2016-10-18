@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="GalleonApplication.ContentViews.ProgressContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:property="clr-namespace:GalleonApplication.Properties"
+             xmlns:vm="clr-namespace:GalleonApplication.ViewModels"
+             xmlns:cv="clr-namespace:GalleonApplication.ContentViews"
+             xmlns:vd="clr-namespace:GalleonApplication.Domains.Validators"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:dm="clr-namespace:GalleonApplication.Domains"
+             xmlns:entity="clr-namespace:GalleonApplication.Extra"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="480">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- note you only need bring in these extra resource dictionaries when using non-default styles, so only bring them into your controls where the default style is not what you want -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type md:PackIcon}" BasedOn="{StaticResource {x:Type md:PackIcon}}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="4 0 4 0" />
+            </Style>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0 8 0 8" />
+            </Style>
+            <SolidColorBrush x:Key="DarkTextBrush" Color="#333333" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid MinWidth="480"
+          Background="LightGray"
+          VerticalAlignment="Center"
+          HorizontalAlignment="Center">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Background="{DynamicResource MaterialDesignPaper}"
+                   Grid.Row="0" 
+                   Grid.Column="0">
+        
+            <TextBlock Text="{x:Static property:Resources.ProgressDialogLoadingText}" 
+                       HorizontalAlignment="Left" 
+                       Foreground="{StaticResource DarkTextBrush}"
+                       FontSize="18" 
+                       Margin="8 4 0 4" />
+        </DockPanel>
+        
+        <DockPanel Background="{DynamicResource MaterialDesignPaper}"
+                   Grid.Row="1"
+                   Grid.Column="0">
+            
+            <ProgressBar Orientation="Horizontal" 
+                         IsIndeterminate="True"                      
+                         Margin="8" />
+
+        </DockPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    HorizontalAlignment="Right">
+
+            <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                    IsCancel="True" 
+                    Content="{x:Static property:Resources.ActionCancelText}"
+                    Command="{x:Static md:DialogHost.CloseDialogCommand}" />
+            
+        </StackPanel>
+
+    </Grid>
+</UserControl>

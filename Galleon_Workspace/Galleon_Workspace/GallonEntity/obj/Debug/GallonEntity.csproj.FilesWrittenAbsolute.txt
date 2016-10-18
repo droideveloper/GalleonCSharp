@@ -1,0 +1,10 @@
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEntity/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEntity/bin/Debug/GallonEntity.dll.config
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEntity/bin/Debug/GallonEntity.dll.mdb
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEntity/bin/Debug/GallonEntity.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEntity/obj/Debug/GallonEntity.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEntity/obj/Debug/GallonEntity.dll.mdb
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEntity/bin/Debug/EntityFramework.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEntity/bin/Debug/EntityFramework.SqlServer.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEntity/bin/Debug/MySql.Data.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEntity/bin/Debug/MySql.Data.Entity.EF6.dll

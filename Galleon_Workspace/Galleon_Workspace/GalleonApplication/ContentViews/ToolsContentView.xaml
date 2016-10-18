@@ -1,0 +1,194 @@
+﻿<UserControl x:Class="GalleonApplication.ContentViews.ToolsContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:property="clr-namespace:GalleonApplication.Properties"
+             xmlns:vm="clr-namespace:GalleonApplication.ViewModels"
+             xmlns:cv="clr-namespace:GalleonApplication.ContentViews"
+             xmlns:vd="clr-namespace:GalleonApplication.Domains.Validators"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:dm="clr-namespace:GalleonApplication.Domains"
+             xmlns:entity="clr-namespace:GalleonApplication.Extra"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:pdf="clr-namespace:MuPDFLibrary;assembly=MuPDFLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="768"
+             d:DataContext="{d:DesignInstance vm:ToolsViewModel, d:IsDesignTimeCreatable=False}"
+             DataContext="{Binding ToolsViewModel, Source={StaticResource ViewModelLocator}}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- note you only need bring in these extra resource dictionaries when using non-default styles, so only bring them into your controls where the default style is not what you want -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type md:PackIcon}" BasedOn="{StaticResource {x:Type md:PackIcon}}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="4 0 4 0" />
+            </Style>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0 8 0 8" />
+            </Style>
+            <Style x:Key="MaterialListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                <Setter Property="Padding" Value="0 0 0 2" />
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="0 0 8 0"
+          Background="LightGray">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition MaxHeight="50" />
+        </Grid.RowDefinitions>
+        <!-- this part is only exists when we need to use it inside of the data sequence with collabration of the drag and drop porcess resulsts -->
+        <DockPanel Grid.Column="0" 
+                   Grid.Row="0">            
+            <md:Card UniformCornerRadius="0" 
+                     Height="{Binding Path=ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type DockPanel}}}"
+                     Padding="5">                
+                
+                <pdf:MuPDFPanel Background="LightGray"
+                                ViewType="SINGLE_PAGE"
+                                PageDisplay="SINGLE"
+                                PageMargin="0,2,4,2"
+                                PageRotation="NONE"
+                                AllowDrop="False"
+                                x:Name="PdfViewer"
+                                x:FieldModifier="private" />               
+            </md:Card>
+        </DockPanel>
+        <!-- List box part -->
+        <DockPanel Grid.Column="1" 
+                   Background="{DynamicResource MaterialDesignPaper}"
+                   x:Name="FileUpload"
+                   Margin="5 0 0 0"
+                   Grid.Row="0">
+            
+            <md:Card UniformCornerRadius="0"
+                     Height="{Binding Path=ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type DockPanel}}}">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Vertical" 
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <md:PackIcon Kind="CloudUpload" 
+                                 Width="48"
+                                 HorizontalAlignment="Center"
+                                 Height="48" />
+                        <Label>
+                            <TextBlock Text="{x:Static property:Resources.UploadHereText}" 
+                               FontSize="17"/>
+                        </Label>
+                    </StackPanel>
+
+                    <Grid Grid.Row="1"
+                          Background="LightGray"
+                          md:ShadowAssist.ShadowDepth="Depth2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <ListBox ItemsSource="{Binding ToolsFiles}"
+                                 Name="FilesListBox"
+                                 Grid.Row="0"
+                                 ScrollViewer.CanContentScroll="False"
+                                 VerticalAlignment="Top"
+                                 HorizontalContentAlignment="Stretch"
+                                 SelectedIndex="{Binding SelectedPosition}"
+                                 ItemContainerStyle="{StaticResource MaterialListBoxItem}">
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <md:TransitioningContent OpeningEffectsOffset="{md:IndexedItemOffsetMultiplier 0:0:0.1}"
+                                                 Opacity="0"
+                                                 RunHint="Loaded">
+
+                                        <md:TransitioningContent.OpeningEffects>
+                                            <md:TransitionEffect Kind="FadeIn" />
+                                        </md:TransitioningContent.OpeningEffects>
+
+                                        <md:ColorZone Name="ListItemFile"
+                                                      md:ShadowAssist.ShadowDepth="Depth2"
+                                                      Mode="Standard">
+                                            <Label>
+                                                <TextBlock Name="FileName" Text="{Binding Name}" />
+                                            </Label>
+                                        </md:ColorZone>
+                                    </md:TransitioningContent>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="True">
+                                            <Setter TargetName="ListItemFile" Property="Mode" Value="PrimaryDark" />
+                                            <Setter TargetName="FileName" Property="Foreground" Value="#FFFFFF" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="False">
+                                            <Setter TargetName="ListItemFile" Property="Mode" Value="Standard" />
+                                            <Setter TargetName="FileName" Property="Foreground" Value="#333333" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Grid>
+            </md:Card>
+
+        </DockPanel>
+        <!-- Action buttons will be hold here -->
+        <DockPanel Grid.ColumnSpan="5" Grid.Row="1">
+            
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Left">
+                
+                <Button Style="{StaticResource MaterialDesignFlatButton}"
+                        Margin="0 0 8 0"
+                        Content="{x:Static property:Resources.ShowInDirectoryButtonText}"
+                        Command="{Binding ShowInDirectoryCommand}"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal"  
+                        HorizontalAlignment="Right">
+                <!-- needs to be binded of listbox's selected index -->
+                <Button Style="{StaticResource MaterialDesignFlatButton}"
+                        Margin="0 0 8 0"
+                        IsEnabled="{Binding ElementName=FilesListBox, Path=SelectedIndex, Converter={StaticResource SelectionEnabledConverter}}"
+                        Content="{x:Static property:Resources.RemoveButtonText}"
+                        CommandParameter="{Binding ElementName=FilesListBox, Path=SelectedIndex}"
+                        Command="{Binding RemoveAtCommand}"/>
+                
+                <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                        Margin="0 0 8 0"
+                        IsEnabled="{Binding ElementName=FilesListBox, Path=SelectedIndex, Converter={StaticResource SelectionEnabledConverter}}"
+                        Content="{x:Static property:Resources.ClearButtonText}"
+                        Command="{Binding ClearCommand}" />
+                
+                <Button Style="{StaticResource MaterialDesignFlatButton}"
+                        Margin="0 0 8 0"
+                        IsEnabled="{Binding ElementName=FilesListBox, Path=SelectedIndex, Converter={StaticResource SelectionEnabledConverter}}"
+                        Content="{x:Static property:Resources.ProcessButtonText}"
+                        Command="{Binding ProcessImagesCommand}" />
+            </StackPanel>            
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,2588 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JB.Common.Collections.Reactive</name>
+    </assembly>
+    <members>
+        <member name="T:JB.Collections.Reactive.ExtensionMethods.EnhancedBindingListExtensions">
+            <summary>
+                Provides Extension Method(s) for <see cref="T:JB.Collections.EnhancedBindingList`1" /> instances.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ExtensionMethods.EnhancedBindingListExtensions.ForwardListChangesTo``1(JB.Collections.EnhancedBindingList{``0},System.Boolean,System.Boolean,JB.Collections.Reactive.ObservableList{``0}[])">
+            <summary>
+            Forwards the <paramref name="sourceBindingList" /> changes to the <paramref name="targetObservableLists" />.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sourceBindingList">The source binding list.</param>
+            <param name="targetObservableLists">The target observable lists.</param>
+            <param name="includeItemChanges">if set to <c>true</c> individual items' changes will be propagated to the <paramref name="targetObservableLists" />
+            via replacing the item completely.</param>
+            <param name="includeMoves">if set to <c>true</c> move operations will be replicated to the <paramref name="targetObservableLists"/>.</param>
+            <exception cref="T:System.ArgumentNullException">sourceBindingList
+            or
+            targetObservableLists</exception>
+            <exception cref="T:System.InvalidOperationException">Source and Target Lists must contain exactly the same element(s) at
+            the exact same index position(s)</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ExtensionMethods.EnhancedBindingListExtensions.ForwardListChangesTo``1(JB.Collections.EnhancedBindingList{``0},JB.Collections.Reactive.ObservableList{``0},System.Boolean,System.Boolean)">
+            <summary>
+            Forwards the <paramref name="sourceBindingList" /> changes to the <paramref name="targetObservableList" />.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sourceBindingList">The source binding list.</param>
+            <param name="targetObservableList">The target observable list.</param>
+            <param name="includeItemChanges">if set to <c>true</c> individual items' changes will be propagated to the
+            <paramref name="targetObservableList" /> via replacing the item completely.</param>
+            <param name="includeMoves">if set to <c>true</c> move operations will be replicated to the <paramref name="targetObservableList"/>.</param>
+            <exception cref="T:System.ArgumentNullException">sourceBindingList
+            or
+            targetObservableList</exception>
+            <exception cref="T:System.InvalidOperationException">Source and Target Lists must contain exactly the same element(s) at
+            the exact same index position(s) when using <paramref name="includeMoves"/>.</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ExtensionMethods.EnhancedBindingListExtensions.OnNextListChanged``1(System.Reactive.EventPattern{System.ComponentModel.ListChangedEventArgs},JB.Collections.Reactive.ObservableList{``0},System.Boolean,System.Boolean)">
+            <summary>
+            Handler for List Changed Events
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="eventPattern">The event pattern.</param>
+            <param name="targetObservableList">The target observable list.</param>
+            <param name="includeItemChanges">if set to <c>true</c> includes item changes.</param>
+            <param name="includeMoves">if set to <c>true</c> includes move operations.</param>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">eventPattern
+            or
+            eventPattern</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ExtensionMethods.ListChangedEventArgsExtensions.ToObservableCollectionChanges``1(System.ComponentModel.ListChangedEventArgs,JB.Collections.IEnhancedBindingList{``0})">
+            <summary>
+            Converts the given <paramref name="listChangedEventArgs"/> and converts it to its <see cref="T:JB.Collections.Reactive.IObservableCollectionChange`1"/> counterparts.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="listChangedEventArgs">The <see cref="T:System.ComponentModel.ListChangedEventArgs"/> instance containing the event data.</param>
+            <param name="sender">The sender.</param>
+            <returns>A list of <see cref="T:JB.Collections.Reactive.IObservableCollectionChange`1"/> - List because Moves can only be represented by two changes: Remove and Adds</returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ExtensionMethods.ListChangedEventArgsExtensions.ToObservableListChange``1(System.ComponentModel.ListChangedEventArgs,JB.Collections.IEnhancedBindingList{``0})">
+            <summary>
+            Converts the given <paramref name="listChangedEventArgs"/> and converts it to its <see cref="T:JB.Collections.Reactive.IObservableListChange`1"/> counterpart.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="listChangedEventArgs">The <see cref="T:System.ComponentModel.ListChangedEventArgs"/> instance containing the event data.</param>
+            <param name="sender">The sender.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="T:JB.Collections.Reactive.ExtensionMethods.ObservableCollectionChangeExtensions">
+            <summary>
+            Extension methods for <see cref="T:JB.Collections.Reactive.IObservableCollectionChange`1"/> instances.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ExtensionMethods.ObservableCollectionChangeExtensions.ToNotifyCollectionChangedEventArgs``1(JB.Collections.Reactive.IObservableCollectionChange{``0})">
+            <summary>
+            Converts the given <paramref name="observableCollectionChange"/> to its <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs"/> counter part.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="observableCollectionChange">The <see cref="T:JB.Collections.Reactive.IObservableCollectionChange`1"/> instance containing the event data.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:JB.Collections.Reactive.ExtensionMethods.ListChangedTypeExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.ComponentModel.ListChangedType"/>.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ExtensionMethods.ListChangedTypeExtensions.ToObservableCollectionChangeType(System.ComponentModel.ListChangedType)">
+            <summary>
+            Converts the <see cref="T:System.ComponentModel.ListChangedType"/> to its <see cref="T:JB.Collections.Reactive.ObservableCollectionChangeType"/> counterpart.
+            </summary>
+            <param name="listChangedType">Type of the list changed.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ExtensionMethods.ListChangedTypeExtensions.ToObservableListChangeType(System.ComponentModel.ListChangedType)">
+            <summary>
+            Converts the <see cref="T:System.ComponentModel.ListChangedType"/> to its <see cref="T:JB.Collections.Reactive.ObservableListChangeType"/> counterpart.
+            </summary>
+            <param name="listChangedType">Type of the list changed.</param>
+            <returns></returns>
+        </member>
+        <member name="T:JB.Collections.Reactive.ExtensionMethods.ObservableDictionaryChangeExtensions">
+            <summary>
+            Extension methods for <see cref="T:JB.Collections.Reactive.IObservableDictionaryChange`2"/> instances.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ExtensionMethods.ObservableDictionaryChangeExtensions.ToObservableCollectionChange``2(JB.Collections.Reactive.IObservableDictionaryChange{``0,``1})">
+            <summary>
+            Converts the given <paramref name="observableDictionaryChange"/> to its <see cref="T:JB.Collections.Reactive.IObservableCollectionChange`1"/> counterpart.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="observableDictionaryChange">The observable dictionary change.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">$Only {ObservableDictionaryChangeType.ItemAdded}, {ObservableDictionaryChangeType.ItemChanged}, {ObservableDictionaryChangeType.ItemRemoved} and {ObservableDictionaryChangeType.Reset} are supported.</exception>
+        </member>
+        <member name="T:JB.Collections.Reactive.ExtensionMethods.ObservableListChangeExtensions">
+            <summary>
+            Extension methods for <see cref="T:JB.Collections.Reactive.IObservableListChange`1"/> instances.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ExtensionMethods.ObservableListChangeExtensions.ToListChangedEventArgs``1(JB.Collections.Reactive.IObservableListChange{``0})">
+            <summary>
+            Converts the given <paramref name="observableListChange" /> to its <see cref="T:System.ComponentModel.ListChangedEventArgs" /> counter part.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="observableListChange">The <see cref="T:JB.Collections.Reactive.IObservableListChange`1" /> instance containing the event data.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ExtensionMethods.ObservableListChangeExtensions.ToNotifyCollectionChangedEventArgs``1(JB.Collections.Reactive.IObservableListChange{``0})">
+            <summary>
+            Converts the given <paramref name="observableListChange" /> to its <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> counter part.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="observableListChange">The <see cref="T:JB.Collections.Reactive.IObservableListChange`1" /> instance containing the event data.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="T:JB.Collections.Reactive.ExtensionMethods.ObservableListExtensions">
+            <summary>
+                Provides Extension Method(s) for <see cref="T:JB.Collections.Reactive.ObservableList`1" /> instances.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ExtensionMethods.ObservableListExtensions.ForwardListChangesTo``1(JB.Collections.Reactive.ObservableList{``0},System.Boolean,System.Boolean,System.Reactive.Concurrency.IScheduler,JB.Collections.EnhancedBindingList{``0}[])">
+            <summary>
+            Forwards the <paramref name="sourceObservableList" /> changes to the <paramref name="targetBindingLists" />.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sourceObservableList">The source observable list.</param>
+            <param name="includeItemChanges">if set to <c>true</c> individual items' changes will be propagated to the
+            <paramref name="targetBindingLists" /> via replacing the item completely.</param>
+            <param name="includeMoves">if set to <c>true</c> move operations will be replicated to the <paramref name="targetBindingLists" />.</param>
+            <param name="scheduler">The scheduler.</param>
+            <param name="targetBindingLists">The target binding lists.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">sourceObservableList
+            or
+            targetBindingList</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+            <exception cref="T:System.InvalidOperationException">Source and Target Lists must contain exactly the same element(s) at
+            the exact same index position(s)</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ExtensionMethods.ObservableListExtensions.ForwardListChangesTo``1(JB.Collections.Reactive.ObservableList{``0},JB.Collections.EnhancedBindingList{``0},System.Boolean,System.Boolean,System.Reactive.Concurrency.IScheduler)">
+            <summary>
+            Forwards the <paramref name="sourceObservableList" /> changes to the <paramref name="targetBindingList" />.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sourceObservableList">The source observable list.</param>
+            <param name="targetBindingList">The target binding list.</param>
+            <param name="includeItemChanges">if set to <c>true</c> individual items' changes will be propagated to the
+            <paramref name="targetBindingList" /> via replacing the item completely.</param>
+            <param name="includeMoves">if set to <c>true</c> move operations will be replicated to the <paramref name="targetBindingList" />.</param>
+            <param name="scheduler">The scheduler.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">sourceObservableList
+            or
+            targetBindingList</exception>
+            <exception cref="T:System.InvalidOperationException">Source and Target Lists must contain exactly the same element(s) at
+            the exact same index position(s)</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.INotifyObservableChanges.SuppressChangeNotifications(System.Boolean)">
+            <summary>
+            (Temporarily) suppresses change notifications until the returned <see cref="T:System.IDisposable" />
+            has been Disposed and a Reset will be signaled, if wanted and applicable.
+            </summary>
+            <param name="signalResetWhenFinished">if set to <c>true</c> signals a reset when finished.</param>
+            <returns></returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableChanges.IsTrackingChanges">
+            <summary>
+            Gets a value indicating whether this instance is currently suppressing observable collection changed notifications.
+            </summary>
+            <value>
+            <c>true</c> if this instance is suppressing observable collection changed notifications; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableCollectionChanged`1.CollectionChanges">
+            <summary>
+            Gets the collection changes as an observable stream.
+            </summary>
+            <value>
+            The collection changes.
+            </value>
+        </member>
+        <member name="E:JB.Collections.Reactive.INotifyObservableCollectionChanged`1.ObservableCollectionChanged">
+            <summary>
+            Occurs when the corresponding <see cref="T:JB.Collections.Reactive.IObservableCollection`1"/> changed.
+            </summary>
+        </member>
+        <member name="T:JB.Collections.Reactive.INotifyObservableCountChanged">
+            <summary>
+            Classes implementing this interface provide an <see cref="P:JB.Collections.Reactive.INotifyObservableCountChanged.CountChanges">observable stream</see> of changes to the instances .Count value.
+            </summary>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableCountChanged.IsTrackingCountChanges">
+            <summary>
+            Gets a value indicating whether this instance signals changes to its items' count.
+            </summary>
+            <value>
+            <c>true</c> if this instance is tracking counts; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableCountChanged.CountChanges">
+            <summary>
+            Gets the count change notifications as an observable stream.
+            </summary>
+            <value>
+            The count changes.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.INotifyObservableCountChanged.SuppressCountChangedNotifications(System.Boolean)">
+            <summary>
+            (Temporarily) suppresses item count change notification until the returned <see cref="T:System.IDisposable" />
+            has been Disposed.
+            </summary>
+            <param name="signalCurrentCountWhenFinished">if set to <c>true</c> signals a the current count when disposed.</param>
+            <returns></returns>
+        </member>
+        <member name="T:JB.Collections.Reactive.INotifyObservableCollectionItemChanged`1">
+            <summary>
+            Classes implementing this interface provide an <see cref="P:JB.Collections.Reactive.INotifyObservableCollectionItemChanged`1.CollectionItemChanges">observable stream</see> of item changes IF
+            <typeparam name="TItem"/> implements the <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> interface.
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
+        <member name="M:JB.Collections.Reactive.INotifyObservableCollectionItemChanged`1.SuppressItemChangedNotifications(System.Boolean)">
+            <summary>
+            (Temporarily) suppresses change notifications for <see cref="F:JB.Collections.Reactive.ObservableCollectionChangeType.ItemChanged"/> events until the returned <see cref="T:System.IDisposable" />
+            has been Disposed and a Reset will be signaled, if applicable.
+            </summary>
+            <param name="signalResetWhenFinished">if set to <c>true</c> signals a reset when finished.</param>
+            <returns></returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableCollectionItemChanged`1.IsTrackingItemChanges">
+            <summary>
+            Gets a value indicating whether this instance has per item change tracking enabled and therefore listens to
+            <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> events, if that interface is implemented, too.
+            </summary>
+            <value>
+            <c>true</c> if this instance has item change tracking enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableCollectionItemChanged`1.ThresholdAmountWhenItemChangesAreNotifiedAsReset">
+            <summary>
+            Gets the minimum amount of items that have been changed to be notified / considered a
+            <see cref="F:JB.Collections.Reactive.ObservableCollectionChangeType.Reset"/> rather than individual <see cref="T:JB.Collections.Reactive.ObservableCollectionChangeType"/> notifications.
+            </summary>
+            <value>
+            The minimum items changed to be considered reset.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableCollectionItemChanged`1.CollectionItemChanges">
+            <summary>
+            Gets the observable streams of item changes, however these will only have their
+            <see cref="P:JB.Collections.Reactive.IObservableCollectionChange`1.ChangeType"/> set to <see cref="F:JB.Collections.Reactive.ObservableCollectionChangeType.ItemChanged"/>.
+            </summary>
+            <value>
+            The item changes.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableDictionaryChanged`2.DictionaryChanges">
+            <summary>
+            Gets the dictionary changes as an observable stream.
+            </summary>
+            <value>
+            The dictionary changes.
+            </value>
+        </member>
+        <member name="E:JB.Collections.Reactive.INotifyObservableDictionaryChanged`2.ObservableDictionaryChanged">
+            <summary>
+            Occurs when the corresponding <see cref="T:JB.Collections.Reactive.IObservableDictionary`2"/> changed.
+            </summary>
+        </member>
+        <member name="T:JB.Collections.Reactive.INotifyObservableDictionaryItemChanged`2">
+            <summary>
+            Classes implementing this interface provide an <see cref="P:JB.Collections.Reactive.INotifyObservableDictionaryItemChanged`2.DictionaryItemChanges">observable stream</see> of item changes IF
+            <typeparam name="TValue" /> implements the <see cref="T:System.ComponentModel.INotifyPropertyChanged" /> interface.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+        </member>
+        <member name="M:JB.Collections.Reactive.INotifyObservableDictionaryItemChanged`2.SuppressItemChangedNotifications(System.Boolean)">
+            <summary>
+            (Temporarily) suppresses change notifications for <see cref="F:JB.Collections.Reactive.ObservableDictionaryChangeType.ItemChanged"/> events until the returned <see cref="T:System.IDisposable" />
+            has been Disposed and a Reset will be signaled, if applicable.
+            </summary>
+            <param name="signalResetWhenFinished">if set to <c>true</c> signals a reset when finished.</param>
+            <returns></returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableDictionaryItemChanged`2.IsTrackingItemChanges">
+            <summary>
+            Gets a value indicating whether this instance has per item change tracking enabled and therefore listens to
+            <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> events, if that interface is implemented, too.
+            </summary>
+            <value>
+            <c>true</c> if this instance has item change tracking enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableDictionaryItemChanged`2.ThresholdAmountWhenItemChangesAreNotifiedAsReset">
+            <summary>
+            Gets the minimum amount of items that have been changed to be notified / considered a
+            <see cref="F:JB.Collections.Reactive.ObservableCollectionChangeType.Reset"/> rather than individual <see cref="T:JB.Collections.Reactive.ObservableCollectionChangeType"/> notifications.
+            </summary>
+            <value>
+            The minimum items changed to be considered reset.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableDictionaryItemChanged`2.DictionaryItemChanges">
+            <summary>
+            Gets the observable streams of item changes, however these will only have their
+            <see cref="P:JB.Collections.Reactive.IObservableDictionaryChange`2.ChangeType" /> set to <see cref="F:JB.Collections.Reactive.ObservableDictionaryChangeType.ItemChanged" />.
+            </summary>
+            <value>
+            The item changes.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableExceptionsThrown.ThrownExceptions">
+            <summary>
+            Provides an observable sequence of <see cref="T:System.Exception">exceptions</see> thrown.
+            </summary>
+            <value>
+            The thrown exceptions.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableListChanged`1.ListChanges">
+            <summary>
+            Gets the list changes as an observable stream.
+            </summary>
+            <value>
+            The list changes.
+            </value>
+        </member>
+        <member name="E:JB.Collections.Reactive.INotifyObservableListChanged`1.ObservableListChanged">
+            <summary>
+            Occurs when the corresponding <see cref="T:JB.Collections.Reactive.IObservableList`1"/> changed.
+            </summary>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableResets.IsTrackingResets">
+            <summary>
+            Gets a value indicating whether this instance is tracking and notifying about
+            list / collection resets, typically for data binding.
+            </summary>
+            <value>
+            <c>true</c> if this instance is tracking resets; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.INotifyObservableResets.Resets">
+            <summary>
+            Gets the reset notifications as an observable stream.  Whenever signaled,
+            observers should reset any knowledge / state etc about the list.
+            </summary>
+            <value>
+            The resets.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.INotifyObservableResets.SuppressResetNotifications(System.Boolean)">
+            <summary>
+            (Temporarily) suppresses change notifications for resets until the <see cref="T:System.IDisposable" /> handed over to the caller
+            has been Disposed and then a Reset will be signaled, if wanted and applicable.
+            </summary>
+            <param name="signalResetWhenFinished">if set to <c>true</c> signals a reset when finished.</param>
+            <returns></returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.IObservableBindingList`1.RaisesListChangedEvents">
+            <summary>
+            Gets a value indicating whether this instance is currently notifying event- and observable subscribers about <see cref="E:System.ComponentModel.IBindingList.ListChanged"/> events.
+            </summary>
+            <value>
+            <c>true</c> if this instance is notifying observable and event subscribers; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.IObservableBindingList`1.ResetBindings">
+            <summary>
+            Raises <see cref="P:JB.Collections.Reactive.INotifyObservableCollectionChanged`1.CollectionChanges"/>, <see cref="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged"/>
+            and <see cref="E:System.ComponentModel.IBindingList.ListChanged"/> event(s) as well as notifies subscribers via about <see cref="P:JB.Collections.Reactive.INotifyObservableResets.Resets"/>
+            signalling an entire List / Collection Reset.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.IObservableBindingList`1.ResetItem(System.Int32)">
+            <summary>
+            Raises <see cref="P:JB.Collections.Reactive.INotifyObservableCollectionChanged`1.CollectionChanges"/>, <see cref="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged"/>
+            and <see cref="E:System.ComponentModel.IBindingList.ListChanged"/> event(s) as well as notifies the <see cref="P:JB.Collections.Reactive.INotifyObservableCollectionChanged`1.CollectionChanges"/>
+            subscribers signalling a single item change event.
+            </summary>
+            <param name="index">A zero-based index position of the item to be reset.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.IObservableCollection`1.Reset">
+            <summary>
+            Signals subscribers that they should reset their and local state about this instance by
+            signaling a <see cref="F:JB.Collections.Reactive.ObservableCollectionChangeType.Reset"/> message and event.
+            </summary>
+        </member>
+        <member name="P:JB.Collections.Reactive.IObservableCollectionChange`1.ChangeType">
+            <summary>
+            Gets the type of the change.
+            </summary>
+            <value>
+            The type of the change.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.IObservableCollectionChange`1.Item">
+            <summary>
+            Gets the item that was added, changed or removed.
+            </summary>
+            <value>
+            The affected item, if any.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.IObservableDictionaryChange`2.ChangeType">
+            <summary>
+            Gets the type of the change.
+            </summary>
+            <value>
+            The type of the change.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.IObservableDictionaryChange`2.Key">
+            <summary>
+            Gets the key of the (changed) item.
+            </summary>
+            <value>
+            The key of the (changed) item.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.IObservableDictionaryChange`2.Value">
+            <summary>
+            Gets the value that was added or if it was a <see cref="F:JB.Collections.Reactive.ObservableDictionaryChangeType.ItemChanged"/>, this is the new value.
+            </summary>
+            <value>
+            The affected value.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.IObservableDictionaryChange`2.OldValue">
+            <summary>
+            Gets the old value, if any. If it was a <see cref="F:JB.Collections.Reactive.ObservableDictionaryChangeType.ItemChanged"/>, this is the old value,
+            for <see cref="F:JB.Collections.Reactive.ObservableDictionaryChangeType.ItemRemoved"/>, this will contain the value removed for the <see cref="P:JB.Collections.Reactive.IObservableDictionaryChange`2.Key"/>.
+            </summary>
+            <value>
+            The old value, if any
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.IObservableListChange`1.ChangeType">
+            <summary>
+            Gets the type of the change.
+            </summary>
+            <value>
+            The type of the change.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.IObservableListChange`1.Item">
+            <summary>
+            Gets the item that was added, changed or removed.
+            </summary>
+            <value>
+            The affected item, if any.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.IObservableListChange`1.Index">
+            <summary>
+            Gets the new, post-change (starting) index for the <see cref="P:JB.Collections.Reactive.IObservableListChange`1.Item"/>.
+            </summary>
+            <value>
+            The post-change starting index, -1 for removals, otherwise 0 or greater.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.IObservableListChange`1.OldIndex">
+            <summary>
+            Gets the previous, pre-change (starting) index for the <see cref="P:JB.Collections.Reactive.IObservableListChange`1.Item"/>.
+            </summary>
+            <value>
+            The pre-change (starting) index, -1 for additions, otherwise 0 or greater.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.IObservableReadOnlyDictionary`2.IsEmpty">
+            <summary>
+            Gets a value indicating whether this instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.CountChangesObserver">
+            <summary>
+            Gets the count changes observer.
+            </summary>
+            <value>
+            The count changes observer.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.ThrownExceptionsObserver">
+            <summary>
+            Gets the thrown exceptions observer.
+            </summary>
+            <value>
+            The thrown exceptions observer.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.CollectionChangesObserver">
+            <summary>
+            Gets the collection changes observer.
+            </summary>
+            <value>
+            The collection changes observer.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.InnerList">
+            <summary>
+                Gets the inner list.
+            </summary>
+            <value>
+                The inner list.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.Scheduler">
+            <summary>
+                Gets the used scheduler.
+            </summary>
+            <value>
+                The scheduler.
+            </value>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:JB.Collections.Reactive.ObservableCollection`1.#ctor(System.Collections.Generic.IList{`0},System.Object,System.Reactive.Concurrency.IScheduler)" -->
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.CollectionItemChanges">
+            <summary>
+            Gets the observable streams of item changes.
+            </summary>
+            <value>
+            The item changes.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.SuppressChangeNotifications(System.Boolean)">
+            <summary>
+                (Temporarily) suppresses change notifications until the returned <see cref="T:System.IDisposable" />
+                has been Disposed and a Reset will be signaled.
+            </summary>
+            <param name="signalResetWhenFinished">if set to <c>true</c> signals a reset when finished.</param>
+            <returns></returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.IsTrackingChanges">
+            <summary>
+                Gets or sets a value indicating whether this instance is tracking and notifying about all collection changes.
+            </summary>
+            <value>
+                <c>true</c> if this instance is tracking and notifying about collection changes; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.IsTrackingResets">
+            <summary>
+                Gets a value indicating whether this instance is tracking resets.
+            </summary>
+            <value>
+                <c>true</c> if this instance is tracking resets; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.SuppressResetNotifications(System.Boolean)">
+            <summary>
+                (Temporarily) suppresses change notifications for <see cref="F:JB.Collections.Reactive.ObservableCollectionChangeType.Reset" /> events until
+                the returned <see cref="T:System.IDisposable" />
+                has been Disposed and a Reset will be signaled.
+            </summary>
+            <param name="signalResetWhenFinished">if set to <c>true</c> signals a reset when finished.</param>
+            <returns></returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.CollectionChanges">
+            <summary>
+                Gets the collection change notifications as an observable stream.
+            </summary>
+            <value>
+                The collection changes.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.Resets">
+            <summary>
+                Gets the reset notifications as an observable stream.  Whenever signaled,
+                observers should reset any knowledge / state etc about the list.
+            </summary>
+            <value>
+                The resets.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.ThrownExceptions">
+            <summary>
+            Provides an observable sequence of exceptions thrown.
+            </summary>
+            <value>
+            The thrown exceptions.
+            </value>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableCollection`1._observableCollectionChanged">
+            <summary>
+                The actual <see cref="E:JB.Collections.Reactive.ObservableCollection`1.ObservableCollectionChanged" /> event.
+            </summary>
+        </member>
+        <member name="E:JB.Collections.Reactive.ObservableCollection`1.ObservableCollectionChanged">
+            <summary>
+                Occurs when the corresponding <see cref="T:JB.Collections.Reactive.IObservableCollection`1" /> changed.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.RaiseObservableCollectionChanged(JB.Collections.Reactive.ObservableCollectionChangedEventArgs{`0})">
+            <summary>
+                Raises the <see cref="E:ObservableCollectionChanged" /> event.
+            </summary>
+            <param name="observableCollectionChangedEventArgs">
+                The <see cref="T:JB.Collections.Reactive.ObservableCollectionChangedEventArgs`1" /> instance
+                containing the event data.
+            </param>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.IsTrackingCountChanges">
+            <summary>
+                Gets a value indicating whether this instance is tracking <see cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count" /> changes.
+            </summary>
+            <value>
+                <c>true</c> if this instance is tracking resets; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.CountChanges">
+            <summary>
+                Gets the count change notifications as an observable stream.
+            </summary>
+            <value>
+                The count changes.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.SuppressCountChangedNotifications(System.Boolean)">
+            <summary>
+                (Temporarily) suppresses item count change notification until the returned <see cref="T:System.IDisposable" />
+                has been Disposed.
+            </summary>
+            <param name="signalCurrentCountWhenFinished">
+                if set to <c>true</c> signals a the <see cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count" />
+                when finished.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.SuppressItemChangedNotifications(System.Boolean)">
+            <summary>
+                (Temporarily) suppresses change notifications for (single) item changes until the returned
+                <see cref="T:System.IDisposable" />
+                has been Disposed and a Reset will be signaled.
+            </summary>
+            <param name="signalResetWhenFinished">if set to <c>true</c> signals a reset when finished.</param>
+            <returns></returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.IsTrackingItemChanges">
+            <summary>
+                Gets a value indicating whether this instance has per item change tracking enabled and therefore listens to
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> events, if the interface is implemented.
+            </summary>
+            <value>
+                <c>true</c> if this instance has item change tracking enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.ThresholdAmountWhenItemChangesAreNotifiedAsReset">
+            <summary>
+            Gets the minimum amount of items that have been changed to be notified / considered a
+            <see cref="F:JB.Collections.Reactive.ObservableCollectionChangeType.Reset" /> rather than individual <see cref="T:JB.Collections.Reactive.ObservableCollectionChangeType" /> notifications.
+            </summary>
+            <value>
+            The minimum items changed to be considered reset.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.GetEnumerator">
+            <summary>
+                Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+                An enumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+                Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+                An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableCollection`1._propertyChanged">
+            <summary>
+                The actual <see cref="E:JB.Collections.Reactive.ObservableCollection`1.PropertyChanged" /> event.
+            </summary>
+        </member>
+        <member name="E:JB.Collections.Reactive.ObservableCollection`1.PropertyChanged">
+            <summary>
+                Occurs when a property changed.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.RaisePropertyChanged(System.String)">
+            <summary>
+                Raises the property changed event.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.SetupObservablesAndObserversAndSubjects">
+            <summary>
+            Prepares and sets up the observables and subjects used, particularly
+            <see cref="F:JB.Collections.Reactive.ObservableCollection`1.CollectionChangesSubject"/>, <see cref="F:JB.Collections.Reactive.ObservableCollection`1.CountChangesSubject"/> and <see cref="F:JB.Collections.Reactive.ObservableCollection`1.ThrownExceptionsSubject"/>
+            but also internally used RX subscriptions for <see cref="E:System.ComponentModel.IBindingList.ListChanged"/> and somewhat hack-ish
+            'Count' and 'Items[]' <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> events on <see cref="P:JB.Collections.Reactive.ObservableCollection`1.CountChanges"/> and <see cref="P:JB.Collections.Reactive.ObservableCollection`1.CollectionChanges"/>
+            occurrences (for WPF / Binding)
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.IsItemsChangedAmountGreaterThanResetThreshold(System.Int32,System.Int32)">
+            <summary>
+                Determines whether the amount of changed items is greater than the reset threshold and / or the minimum amount of
+                items to be considered as a reset.
+            </summary>
+            <param name="affectedItemsCount">The items changed / affected.</param>
+            <param name="maximumAmountOfItemsChangedToBeConsideredResetThreshold">
+                The maximum amount of changed items count to
+                consider a change or a range of changes a reset.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.NotifySubscribersAboutCollectionChanges(JB.Collections.Reactive.IObservableCollectionChange{`0})">
+            <summary>
+                Notifies all <see cref="P:JB.Collections.Reactive.ObservableCollection`1.CollectionChanges" /> and <see cref="P:JB.Collections.Reactive.ObservableCollection`1.Resets" /> subscribers and
+                raises the (observable)collection changed events.
+            </summary>
+            <param name="observableCollectionChange">The observable collection change.</param>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.IsDisposed">
+            <summary>
+                Gets or sets a value indicating whether this instance has been disposed.
+            </summary>
+            <value>
+                <c>true</c> if this instance is disposed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.IsDisposing">
+            <summary>
+                Gets or sets a value indicating whether this instance is disposing.
+            </summary>
+            <value>
+                <c>true</c> if this instance is disposing; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.Dispose">
+            <summary>
+                Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.Dispose(System.Boolean)">
+            <summary>
+                Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposeManagedResources">
+                <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.CheckForAndThrowIfDisposed">
+            <summary>
+                Checks whether this instance is currently or already has been disposed.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableCollection`1._collectionChanged">
+            <summary>
+                The actual <see cref="E:JB.Collections.Reactive.ObservableCollection`1.CollectionChanged" /> event.
+            </summary>
+        </member>
+        <member name="E:JB.Collections.Reactive.ObservableCollection`1.CollectionChanged">
+            <summary>
+                Occurs when the collection changed.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.RaiseCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+                Raises the <see cref="E:CollectionChanged" /> event.
+            </summary>
+            <param name="notifyCollectionChangedEventArgs">
+                The
+                <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> instance containing the event data.
+            </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.CopyTo(System.Array,System.Int32)">
+            <summary>
+                Copies the elements of the <see cref="T:System.Collections.ICollection" /> to an <see cref="T:System.Array" />,
+                starting at a particular <see cref="T:System.Array" /> index.
+            </summary>
+            <param name="array">
+                The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied
+                from <see cref="T:System.Collections.ICollection" />. The <see cref="T:System.Array" /> must have zero-based
+                indexing.
+            </param>
+            <param name="index">The zero-based index in <paramref name="array" /> at which copying begins. </param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="array" /> is null. </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> is less than zero. </exception>
+            <exception cref="T:System.ArgumentException">
+                <paramref name="array" /> is multidimensional.-or- The number of elements
+                in the source <see cref="T:System.Collections.ICollection" /> is greater than the available space from
+                <paramref name="index" /> to the end of the destination <paramref name="array" />.-or-The type of the source
+                <see cref="T:System.Collections.ICollection" /> cannot be cast automatically to the type of the destination
+                <paramref name="array" />.
+            </exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.SyncRoot">
+            <summary>
+            Gets an object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
+            </summary>
+            <returns>
+            An object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.IsSynchronized">
+            <summary>
+                Gets a value indicating whether access to the <see cref="T:System.Collections.ICollection" /> is synchronized
+                (thread safe).
+            </summary>
+            <returns>
+                true if access to the <see cref="T:System.Collections.ICollection" /> is synchronized (thread safe); otherwise,
+                false.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.Count">
+            <summary>
+                Gets the number of elements contained in this instance.
+            </summary>
+            <returns>
+                The number of elements contained in this instance.
+            </returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.Add(`0)">
+            <summary>
+                Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1" />.
+            </summary>
+            <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
+            <exception cref="T:System.NotSupportedException">
+                The <see cref="T:System.Collections.Generic.ICollection`1" /> is
+                read-only.
+            </exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.Clear">
+            <summary>
+                Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1" />.
+            </summary>
+            <exception cref="T:System.NotSupportedException">
+                The <see cref="T:System.Collections.Generic.ICollection`1" /> is
+                read-only.
+            </exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.Contains(`0)">
+            <summary>
+                Determines whether the <see cref="T:System.Collections.Generic.ICollection`1" /> contains a specific value.
+            </summary>
+            <returns>
+                true if <paramref name="item" /> is found in the <see cref="T:System.Collections.Generic.ICollection`1" />;
+                otherwise, false.
+            </returns>
+            <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.CopyTo(`0[],System.Int32)">
+            <summary>
+                Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1" /> to an
+                <see cref="T:System.Array" />, starting at a particular <see cref="T:System.Array" /> index.
+            </summary>
+            <param name="array">
+                The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied
+                from <see cref="T:System.Collections.Generic.ICollection`1" />. The <see cref="T:System.Array" /> must have
+                zero-based indexing.
+            </param>
+            <param name="arrayIndex">The zero-based index in <paramref name="array" /> at which copying begins.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="array" /> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="arrayIndex" /> is less than 0.</exception>
+            <exception cref="T:System.ArgumentException">
+                The number of elements in the source
+                <see cref="T:System.Collections.Generic.ICollection`1" /> is greater than the available space from
+                <paramref name="arrayIndex" /> to the end of the destination <paramref name="array" />.
+            </exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.Remove(`0)">
+            <summary>
+                Removes the first occurrence of a specific object from the
+                <see cref="T:System.Collections.Generic.ICollection`1" />.
+            </summary>
+            <returns>
+                true if <paramref name="item" /> was successfully removed from the
+                <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, false. This method also returns false if
+                <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.
+            </returns>
+            <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
+            <exception cref="T:System.NotSupportedException">
+                The <see cref="T:System.Collections.Generic.ICollection`1" /> is
+                read-only.
+            </exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollection`1.IsReadOnly">
+            <summary>
+                Gets a value indicating whether the instance is read-only.
+            </summary>
+            <returns>
+                true if the instance is read-only; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+                Adds a range of items.
+            </summary>
+            <param name="items">The items.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.RemoveRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+                Removes the specified items.
+            </summary>
+            <param name="items">The items.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollection`1.Reset">
+            <summary>
+            Resets this instance and signals subscribers / binding consumers accordingly.
+            </summary>
+        </member>
+        <member name="T:JB.Collections.Reactive.ObservableDictionary`2">
+            <summary>
+            Represents a thread-safe collection of key/value pairs that can be accessed by multiple threads concurrently
+            that notifies subscribers about changes to its containing list of key/value pairs.
+            </summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableDictionary`2._keyTypeParameterIsValueType">
+            <summary>
+            The <typeparam name="TKey">key type</typeparam> is a value type. or not.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableDictionary`2._valueTypeParameterIsValueType">
+            <summary>
+            The <typeparam name="TValue">value type</typeparam> is a.. err.. value type. or not.
+            </summary>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.KeyTypeParameterIsValueType">
+            <summary>
+            Gets a value indicating whether <typeparamref name="TKey"/> is a value type.
+            </summary>
+            <value>
+              <c>true</c> if <typeparamref name="TKey"/> is a value type; otherwise, <c>false</c> if it is a reference type.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.ValueTypeParameterIsValueType">
+            <summary>
+            Gets a value indicating whether <typeparamref name="TValue"/> is a value type.
+            </summary>
+            <value>
+              <c>true</c> if <typeparamref name="TValue"/> is a value type; otherwise, <c>false</c> if it is a reference type.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.CountChangesObserver">
+            <summary>
+            Gets the count changes observer.
+            </summary>
+            <value>
+            The count changes observer.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.ThrownExceptionsObserver">
+            <summary>
+            Gets the thrown exceptions observer.
+            </summary>
+            <value>
+            The thrown exceptions observer.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.DictionaryChangesObserver">
+            <summary>
+            Gets the dictionary changes observer.
+            </summary>
+            <value>
+            The dictionary changes observer.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.InnerDictionary">
+            <summary>
+            Gets the actual dictionary used - the rest in here is just fancy wrapping paper.
+            </summary>
+            <value>
+            The inner dictionary.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.Scheduler">
+            <summary>
+                Gets the used scheduler.
+            </summary>
+            <value>
+                The scheduler.
+            </value>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:JB.Collections.Reactive.ObservableDictionary`2.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}},System.Collections.Generic.IEqualityComparer{`0},System.Reactive.Concurrency.IScheduler)" -->
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.AddOrUpdate(`0,`1)">
+            <summary>
+            Adds a key/value pair if the key does not already exist, or performs an update by replacing the existing, old value with the new one.
+            </summary>
+            <param name="key">The key to be added or whose value should be updated</param>
+            <param name="value">The value to be added or used to update if the key is already present.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="key"/>is null.</exception>
+            <exception cref="T:System.OverflowException">The dictionary already contains the maximum number of elements (<see cref="F:System.Int32.MaxValue"/>).</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.Add(`0,`1,System.Boolean)">
+            <summary>
+            Adds an element with the provided key and value to the <see cref="T:System.Collections.Generic.IDictionary`2" /> and if successful it optionally signals observers
+            about the change.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+            <param name="notifyObserversAboutChange">if set to <c>true</c> observers will be notified about the change.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.Remove(`0,System.Boolean)">
+            <summary>
+            Removes the element with the specified key from the <see cref="T:System.Collections.Generic.IDictionary`2" /> and if successful it optionally signals observers
+            about the change.
+            </summary>
+            <param name="key">The key of the element to remove.</param>
+            <param name="notifyObserversAboutChange">if set to <c>true</c> observers will be notified about the change.</param>
+            <returns>
+            true if the element is successfully removed; otherwise, false.  This method also returns false if <paramref name="key" /> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2" />.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+              <paramref name="key" /> is null.</exception>
+            <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.IDictionary`2" /> is read-only.</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.TryAdd(`0,`1)">
+            <summary>
+            Attempts to add the specified key and value to the <see cref="T:JB.Collections.Reactive.ObservableDictionary`2"/>.
+            </summary>
+            
+            <returns>
+            true if the key/value pair was added to the <see cref="T:JB.Collections.Reactive.ObservableDictionary`2"/> successfully; false if the key already exists.
+            </returns>
+            <param name="key">The key of the element to add.</param><param name="value">The value of the element to add. The value can be  null for reference types.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is  null.</exception>
+            <exception cref="T:System.OverflowException">The dictionary already contains the maximum number of elements (<see cref="F:System.Int32.MaxValue"/>).</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.TryRemove(`0,`1@)">
+            <summary>
+            Attempts to remove and return the value that has the specified key from the <see cref="T:JB.Collections.Reactive.ObservableDictionary`2"/>.
+            </summary>
+            <returns>
+            true if the object was removed successfully; otherwise, false.
+            </returns>
+            <param name="key">The key of the element to remove and return.</param>
+            <param name="value">This contains the object removed from the <see cref="T:JB.Collections.Reactive.ObservableDictionary`2"/>, or the default value of the TValue type if <paramref name="key"/> does not exist.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.TryRemove(`0)">
+            <summary>
+            Attempts to remove the value that has the specified key from the <see cref="T:JB.Collections.Reactive.ObservableDictionary`2"/>.
+            </summary>
+            <returns>
+            true if the object was removed successfully; otherwise, false.
+            </returns>
+            <param name="key">The key of the element to remove and return.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.TryUpdate(`0,`1)">
+            <summary>
+            Attempts to update the value that has the specified key from the <see cref="T:JB.Collections.Reactive.ObservableDictionary`2"/>.
+            </summary>
+            <returns>
+            true if the object was updated successfully; otherwise, false.
+            </returns>
+            <param name="key">The key of the element to remove and return.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.AreTheSameValue(`1,`1)">
+            <summary>
+            Determines whether <paramref name="value1"/> and <paramref name="value2"/> are the same value.
+            If <typeparamref name="TValue"/> is a value type, <see cref="M:System.Object.Equals(System.Object,System.Object)"/> will be used,
+            for reference types <see cref="M:System.Object.ReferenceEquals(System.Object,System.Object)"/> will be used.
+            </summary>
+            <param name="value1">The first value.</param>
+            <param name="value2">The second value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.OnValuePropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Handles <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> events for <typeparamref name="TValue"/> instances
+            - if that type implements <see cref="T:System.ComponentModel.INotifyPropertyChanged"/>.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.GetKeysForValue(`1)">
+            <summary>
+            Gets the keys for the given value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.AddValueToPropertyChangedHandling(`1)">
+            <summary>
+            Adds up <see cref="M:JB.Collections.Reactive.ObservableDictionary`2.OnValuePropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)"/> as event handler for <paramref name="value"/>'s <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.RemoveValueFromPropertyChangedHandling(`1)">
+            <summary>
+            Removes <see cref="M:JB.Collections.Reactive.ObservableDictionary`2.OnValuePropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)"/> as event handler for <paramref name="value"/>'s <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.NotifySubscribersAboutDictionaryChanges(JB.Collections.Reactive.IObservableDictionaryChange{`0,`1})">
+            <summary>
+            Notifies subscribers about the given <paramref name="observableDictionaryChange"/>.
+            </summary>
+            <param name="observableDictionaryChange">The observable dictionary change.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.IsItemsChangedAmountGreaterThanResetThreshold(System.Int32,System.Int32)">
+            <summary>
+                Determines whether the amount of changed items is greater than the reset threshold and / or the minimum amount of
+                items to be considered as a reset.
+            </summary>
+            <param name="affectedItemsCount">The items changed / affected.</param>
+            <param name="maximumAmountOfItemsChangedToBeConsideredResetThreshold">
+                The maximum amount of changed items count to
+                consider a change or a range of changes a reset.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.SetupObservablesAndObserversAndSubjects">
+            <summary>
+            Prepares and sets up the observables and subjects used, particularly
+            <see cref="F:JB.Collections.Reactive.ObservableDictionary`2._dictionaryChangesSubject"/>, <see cref="F:JB.Collections.Reactive.ObservableDictionary`2._countChangesSubject"/> and <see cref="F:JB.Collections.Reactive.ObservableDictionary`2._thrownExceptionsSubject"/> and also notifications for
+            'Count' and 'Items[]' <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> events on <see cref="P:JB.Collections.Reactive.ObservableDictionary`2.CountChanges"/> and <see cref="P:JB.Collections.Reactive.ObservableDictionary`2.CollectionChanges"/>
+            occurrences (for WPF / Binding)
+            </summary>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.IsDisposed">
+            <summary>
+                Gets or sets a value indicating whether this instance has been disposed.
+            </summary>
+            <value>
+                <c>true</c> if this instance is disposed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.IsDisposing">
+            <summary>
+                Gets or sets a value indicating whether this instance is disposing.
+            </summary>
+            <value>
+                <c>true</c> if this instance is disposing; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.Dispose">
+            <summary>
+                Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.Dispose(System.Boolean)">
+            <summary>
+                Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposeManagedResources">
+                <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.CheckForAndThrowIfDisposed">
+            <summary>
+                Checks whether this instance is currently or already has been disposed.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableDictionary`2._propertyChanged">
+            <summary>
+                The actual <see cref="E:JB.Collections.Reactive.ObservableDictionary`2.PropertyChanged" /> event.
+            </summary>
+        </member>
+        <member name="E:JB.Collections.Reactive.ObservableDictionary`2.PropertyChanged">
+            <summary>
+                Occurs when a property changed.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.RaisePropertyChanged(System.String)">
+            <summary>
+                Raises the property changed event.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.ThrownExceptions">
+            <summary>
+            Provides an observable sequence of exceptions thrown.
+            </summary>
+            <value>
+            The thrown exceptions.
+            </value>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableDictionary`2._isTrackingResetsLocker">
+            <summary>
+            Gets a value indicating whether this instance is tracking and notifying about
+            list / collection resets, typically for data binding.
+            </summary>
+            <value>
+            <c>true</c> if this instance is tracking resets; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.IsTrackingResets">
+            <summary>
+                Gets a value indicating whether this instance is tracking resets.
+            </summary>
+            <value>
+                <c>true</c> if this instance is tracking resets; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.Resets">
+            <summary>
+            Gets the reset notifications as an observable stream.  Whenever signaled,
+            observers should reset any knowledge / state etc about the list.
+            </summary>
+            <value>
+            The resets.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.SuppressResetNotifications(System.Boolean)">
+            <summary>
+            (Temporarily) suppresses change notifications for resets until the <see cref="T:System.IDisposable" /> handed over to the caller
+            has been Disposed and then a Reset will be signaled, if wanted and applicable.
+            </summary>
+            <param name="signalResetWhenFinished">if set to <c>true</c> signals a reset when finished.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.Reset">
+            <summary>
+            Signals subscribers that they should reset their and local state about this instance by
+            signaling a <see cref="F:JB.Collections.Reactive.ObservableCollectionChangeType.Reset"/> message and event.
+            </summary>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.IsTrackingCountChanges">
+            <summary>
+                Gets a value indicating whether this instance is tracking <see cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count" /> changes.
+            </summary>
+            <value>
+                <c>true</c> if this instance is tracking resets; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.CountChanges">
+            <summary>
+            Gets the count change notifications as an observable stream.
+            </summary>
+            <value>
+            The count changes.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.SuppressCountChangedNotifications(System.Boolean)">
+            <summary>
+            (Temporarily) suppresses item count change notification until the returned <see cref="T:System.IDisposable" />
+            has been Disposed.
+            </summary>
+            <param name="signalCurrentCountWhenFinished">if set to <c>true</c> signals a the current count when disposed.</param>
+            <returns></returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.SuppressItemChangedNotifications(System.Boolean)">
+            <summary>
+            (Temporarily) suppresses change notifications for <see cref="F:JB.Collections.Reactive.ObservableCollectionChangeType.ItemChanged"/> events until the returned <see cref="T:System.IDisposable" />
+            has been Disposed and a Reset will be signaled, if applicable.
+            </summary>
+            <param name="signalResetWhenFinished">if set to <c>true</c> signals a reset when finished.</param>
+            <returns></returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.IsTrackingItemChanges">
+            <summary>
+            Gets a value indicating whether this instance has per item change tracking enabled and therefore listens to
+            <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> events, if that interface is implemented, too.
+            </summary>
+            <value>
+            <c>true</c> if this instance has item change tracking enabled; otherwise, <c>false</c>.
+            </value>
+            <exception cref="T:System.InvalidOperationException">An Item Change Notification Suppression is currently already ongoing, multiple concurrent suppressions are not supported.</exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.ThresholdAmountWhenItemChangesAreNotifiedAsReset">
+            <summary>
+            Gets the minimum amount of items that have been changed to be notified / considered a
+            <see cref="F:JB.Collections.Reactive.ObservableCollectionChangeType.Reset" /> rather than individual <see cref="T:JB.Collections.Reactive.ObservableCollectionChangeType" /> notifications.
+            </summary>
+            <value>
+            The minimum items changed to be considered reset.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.DictionaryChanges">
+            <summary>
+            Gets the dictionary changes as an observable stream.
+            </summary>
+            <value>
+            The dictionary changes.
+            </value>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableDictionary`2._observableDictionaryChanged">
+            <summary>
+            The actual event for <see cref="E:JB.Collections.Reactive.ObservableDictionary`2.ObservableDictionaryChanged"/>.
+            </summary>
+        </member>
+        <member name="E:JB.Collections.Reactive.ObservableDictionary`2.ObservableDictionaryChanged">
+            <summary>
+            Occurs when the corresponding <see cref="T:JB.Collections.Reactive.IObservableCollection`1" /> changed.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.RaiseObservableDictionaryChanged(JB.Collections.Reactive.ObservableDictionaryChangedEventArgs{`0,`1})">
+            <summary>
+                Raises the <see cref="E:ObservableDictionaryChanged" /> event.
+            </summary>
+            <param name="observableDictionaryChangedEventArgs">
+                The <see cref="T:JB.Collections.Reactive.ObservableDictionaryChangedEventArgs`2" /> instance
+                containing the event data.
+            </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.SuppressChangeNotifications(System.Boolean)">
+            <summary>
+            (Temporarily) suppresses change notifications until the returned <see cref="T:System.IDisposable" />
+            has been Disposed and a Reset will be signaled, if wanted and applicable.
+            </summary>
+            <param name="signalResetWhenFinished">if set to <c>true</c> signals a reset when finished.</param>
+            <returns></returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.IsTrackingChanges">
+            <summary>
+            Gets a value indicating whether this instance is currently suppressing observable change notifications of any kind.
+            </summary>
+            <value>
+            <c>true</c> if this instance is suppressing observable change notifications; otherwise, <c>false</c>.
+            </value>
+            <exception cref="T:System.InvalidOperationException">A Change Notification Suppression is currently already ongoing, multiple concurrent suppressions are not supported.</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.ICollection"/> to an <see cref="T:System.Array"/>, starting at a particular <see cref="T:System.Array"/> index.
+            </summary>
+            <param name="array">The one-dimensional <see cref="T:System.Array"/> that is the destination of the elements copied from <see cref="T:System.Collections.ICollection"/>. The <see cref="T:System.Array"/> must have zero-based indexing. </param><param name="index">The zero-based index in <paramref name="array"/> at which copying begins. </param><exception cref="T:System.ArgumentNullException"><paramref name="array"/> is null. </exception><exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index"/> is less than zero. </exception><exception cref="T:System.ArgumentException"><paramref name="array"/> is multidimensional.-or- The number of elements in the source <see cref="T:System.Collections.ICollection"/> is greater than the available space from <paramref name="index"/> to the end of the destination <paramref name="array"/>.-or-The type of the source <see cref="T:System.Collections.ICollection"/> cannot be cast automatically to the type of the destination <paramref name="array"/>.</exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Gets an object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
+            </summary>
+            <returns>
+            An object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Gets a value indicating whether access to the <see cref="T:System.Collections.ICollection"/> is synchronized (thread safe).
+            </summary>
+            <returns>
+            true if access to the <see cref="T:System.Collections.ICollection"/> is synchronized (thread safe); otherwise, false.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.Values">
+            <summary>
+            Gets an <see cref="T:System.Collections.Generic.ICollection`1"/> containing the values in the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.Generic.ICollection`1"/> containing the values in the object that implements <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.Keys">
+            <summary>
+            Gets an <see cref="T:System.Collections.Generic.ICollection`1"/> containing the keys of the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.Generic.ICollection`1"/> containing the keys of the object that implements <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.Count">
+            <summary>
+            Gets the number of elements in the collection.
+            </summary>
+            <returns>
+            The number of elements in the collection. 
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.IsReadOnly">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
+            </summary>
+            <returns>
+            true if the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#IDictionary#Contains(System.Object)">
+            <summary>
+            Determines whether the <see cref="T:System.Collections.IDictionary"/> object contains an element with the specified key.
+            </summary>
+            <returns>
+            true if the <see cref="T:System.Collections.IDictionary"/> contains an element with the key; otherwise, false.
+            </returns>
+            <param name="key">The key to locate in the <see cref="T:System.Collections.IDictionary"/> object.</param><exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null. </exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#IDictionary#Add(System.Object,System.Object)">
+            <summary>
+            Adds an element with the provided key and value to the <see cref="T:System.Collections.IDictionary"/> object.
+            </summary>
+            <param name="key">The <see cref="T:System.Object"/> to use as the key of the element to add. </param><param name="value">The <see cref="T:System.Object"/> to use as the value of the element to add. </param><exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null. </exception><exception cref="T:System.ArgumentException">An element with the same key already exists in the <see cref="T:System.Collections.IDictionary"/> object. </exception><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.IDictionary"/> is read-only.-or- The <see cref="T:System.Collections.IDictionary"/> has a fixed size. </exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#IDictionary#IsFixedSize">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Collections.IDictionary"/> object has a fixed size.
+            </summary>
+            <returns>
+            true if the <see cref="T:System.Collections.IDictionary"/> object has a fixed size; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#IDictionary#IsReadOnly">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Collections.IDictionary"/> object is read-only.
+            </summary>
+            
+            <returns>
+            true if the <see cref="T:System.Collections.IDictionary"/> object is read-only; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#IDictionary#Values">
+            <summary>
+            Gets an <see cref="T:System.Collections.ICollection"/> object containing the values in the <see cref="T:System.Collections.IDictionary"/> object.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.ICollection"/> object containing the values in the <see cref="T:System.Collections.IDictionary"/> object.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#IDictionary#Keys">
+            <summary>
+            Gets an <see cref="T:System.Collections.ICollection"/> object containing the keys of the <see cref="T:System.Collections.IDictionary"/> object.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.ICollection"/> object containing the keys of the <see cref="T:System.Collections.IDictionary"/> object.
+            </returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#IDictionary#GetEnumerator">
+            <summary>
+            Returns an <see cref="T:System.Collections.IDictionaryEnumerator"/> object for the <see cref="T:System.Collections.IDictionary"/> object.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IDictionaryEnumerator"/> object for the <see cref="T:System.Collections.IDictionary"/> object.
+            </returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#IDictionary#Remove(System.Object)">
+            <summary>
+            Removes the element with the specified key from the <see cref="T:System.Collections.IDictionary"/> object.
+            </summary>
+            <param name="key">The key of the element to remove. </param><exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null. </exception><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.IDictionary"/> object is read-only.-or- The <see cref="T:System.Collections.IDictionary"/> has a fixed size. </exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#IDictionary#Item(System.Object)">
+            <summary>
+            Gets or sets the element with the specified key.
+            </summary>
+            <returns>
+            The element with the specified key, or null if the key does not exist.
+            </returns>
+            <param name="key">The key of the element to get or set. </param><exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null. </exception><exception cref="T:System.NotSupportedException">The property is set and the <see cref="T:System.Collections.IDictionary"/> object is read-only.-or- The property is set, <paramref name="key"/> does not exist in the collection, and the <see cref="T:System.Collections.IDictionary"/> has a fixed size. </exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            An enumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableDictionary`2._collectionChanged">
+            <summary>
+                The actual <see cref="E:JB.Collections.Reactive.ObservableDictionary`2.CollectionChanged" /> event.
+            </summary>
+        </member>
+        <member name="E:JB.Collections.Reactive.ObservableDictionary`2.CollectionChanged">
+            <summary>
+                Occurs when the collection changed.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.RaiseCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+                Raises the <see cref="E:CollectionChanged" /> event.
+            </summary>
+            <param name="notifyCollectionChangedEventArgs">
+                The
+                <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> instance containing the event data.
+            </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.ContainsKey(`0)">
+            <summary>
+            Determines whether the read-only dictionary contains an element that has the specified key.
+            </summary>
+            <returns>
+            true if the read-only dictionary contains an element that has the specified key; otherwise, false.
+            </returns>
+            <param name="key">The key to locate.</param><exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.Add(`0,`1)">
+            <summary>
+            Adds an element with the provided key and value to the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </summary>
+            <param name="key">The object to use as the key of the element to add.</param><param name="value">The object to use as the value of the element to add.</param><exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception><exception cref="T:System.ArgumentException">An element with the same key already exists in the <see cref="T:System.Collections.Generic.IDictionary`2"/>.</exception><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.IDictionary`2"/> is read-only.</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.Remove(`0)">
+            <summary>
+            Removes the element with the specified key from the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </summary>
+            <returns>
+            true if the element is successfully removed; otherwise, false.  This method also returns false if <paramref name="key"/> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </returns>
+            <param name="key">The key of the element to remove.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
+            <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.IDictionary`2"/> is read-only.</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.Clear">
+            <summary>
+            Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1"/> / <see cref="T:System.Collections.IDictionary"/>.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.TryGetValue(`0,`1@)">
+            <summary>
+            Gets the value that is associated with the specified key.
+            </summary>
+            <returns>
+            true if the object that implements the <see cref="T:System.Collections.Generic.IReadOnlyDictionary`2"/> interface contains an element that has the specified key; otherwise, false.
+            </returns>
+            <param name="key">The key to locate.</param><param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value"/> parameter. This parameter is passed uninitialized.</param><exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.Item(`0)">
+            <summary>
+            Gets the element that has the specified key in the read-only dictionary.
+            </summary>
+            <returns>
+            The element that has the specified key in the read-only dictionary.
+            </returns>
+            <param name="key">The key to locate.</param><exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception><exception cref="T:System.Collections.Generic.KeyNotFoundException">The property is retrieved and <paramref name="key"/> is not found. </exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#Generic#IReadOnlyDictionary{TKey,TValue}#Keys">
+            <summary>
+            Gets an enumerable collection that contains the keys in the read-only dictionary. 
+            </summary>
+            <returns>
+            An enumerable collection that contains the keys in the read-only dictionary.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#Generic#IReadOnlyDictionary{TKey,TValue}#Values">
+            <summary>
+            Gets an enumerable collection that contains the values in the read-only dictionary.
+            </summary>
+            <returns>
+            An enumerable collection that contains the values in the read-only dictionary.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.DictionaryItemChanges">
+            <summary>
+            Gets the observable streams of item changes, however these will only have their
+            <see cref="P:JB.Collections.Reactive.IObservableDictionaryChange`2.ChangeType" /> set to <see cref="F:JB.Collections.Reactive.ObservableDictionaryChangeType.ItemChanged" />.
+            </summary>
+            <value>
+            The item changes.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.CollectionItemChanges">
+            <summary>
+            Gets the observable streams of item changes, however these will only have their
+            <see cref="P:JB.Collections.Reactive.IObservableCollectionChange`1.ChangeType"/> set to <see cref="F:JB.Collections.Reactive.ObservableCollectionChangeType.ItemChanged"/>.
+            </summary>
+            <value>
+            The item changes.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.CollectionChanges">
+            <summary>
+            Gets the collection changes as an observable stream.
+            </summary>
+            <value>
+            The collection changes.
+            </value>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableDictionary`2._observableCollectionChanged">
+            <summary>
+                The actual <see cref="E:JB.Collections.Reactive.ObservableDictionary`2.ObservableCollectionChanged" /> event.
+            </summary>
+        </member>
+        <member name="E:JB.Collections.Reactive.ObservableDictionary`2.ObservableCollectionChanged">
+            <summary>
+                Occurs when the corresponding <see cref="T:JB.Collections.Reactive.IObservableCollection`1" /> changed.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.RaiseObservableCollectionChanged(JB.Collections.Reactive.ObservableCollectionChangedEventArgs{System.Collections.Generic.KeyValuePair{`0,`1}})">
+            <summary>
+                Raises the <see cref="E:ObservableCollectionChanged" /> event.
+            </summary>
+            <param name="observableCollectionChangedEventArgs">
+                The <see cref="T:JB.Collections.Reactive.ObservableCollectionChangedEventArgs`1" /> instance
+                containing the event data.
+            </param>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionary`2.IsEmpty">
+            <summary>
+            Gets a value indicating whether this instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey,TValue}}#Add(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>
+            Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey,TValue}}#Contains(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>
+            Determines whether the <see cref="T:System.Collections.Generic.ICollection`1"/> contains a specific value.
+            </summary>
+            <returns>
+            true if <paramref name="item"/> is found in the <see cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false.
+            </returns>
+            <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey,TValue}}#CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1"/> to an <see cref="T:System.Array"/>, starting at a particular <see cref="T:System.Array"/> index.
+            </summary>
+            <param name="array">The one-dimensional <see cref="T:System.Array"/> that is the destination of the elements copied from <see cref="T:System.Collections.Generic.ICollection`1"/>. The <see cref="T:System.Array"/> must have zero-based indexing.</param><param name="arrayIndex">The zero-based index in <paramref name="array"/> at which copying begins.</param><exception cref="T:System.ArgumentNullException"><paramref name="array"/> is null.</exception><exception cref="T:System.ArgumentOutOfRangeException"><paramref name="arrayIndex"/> is less than 0.</exception><exception cref="T:System.ArgumentException">The number of elements in the source <see cref="T:System.Collections.Generic.ICollection`1"/> is greater than the available space from <paramref name="arrayIndex"/> to the end of the destination <paramref name="array"/>.</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey,TValue}}#Remove(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>
+            Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <returns>
+            true if <paramref name="item"/> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false. This method also returns false if <paramref name="item"/> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </returns>
+            <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.AddRange(System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{`0,`1}})">
+            <summary>
+            Adds a range of items.
+            </summary>
+            <param name="items">The items to add.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.RemoveRange(System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{`0,`1}})">
+            <summary>
+            Removes the specified items.
+            </summary>
+            <param name="items">The items to remove.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.JB#Collections#IBulkModifiableCollection{System#Collections#Generic#KeyValuePair{TKey,TValue}}#AddRange(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}})">
+            <summary>
+            Adds a range of items.
+            </summary>
+            <param name="items">The items.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionary`2.JB#Collections#IBulkModifiableCollection{System#Collections#Generic#KeyValuePair{TKey,TValue}}#RemoveRange(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}})">
+            <summary>
+            Removes the specified items.
+            </summary>
+            <param name="items">The items.</param>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionaryChangedEventArgs`2.Change">
+            <summary>
+            Gets the observable dictionary change data.
+            </summary>
+            <value>
+            The observable dictionary change data.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionaryChangedEventArgs`2.ChangeType">
+            <summary>
+            Gets the type of the change.
+            </summary>
+            <value>
+            The type of the change.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionaryChangedEventArgs`2.Key">
+            <summary>
+            Gets the key of the (changed) item.
+            </summary>
+            <value>
+            The key of the (changed) item.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionaryChangedEventArgs`2.Value">
+            <summary>
+            Gets the value that was added, changed or removed.
+            </summary>
+            <value>
+            The affected value, if any.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionaryChangedEventArgs`2.#ctor(JB.Collections.Reactive.IObservableDictionaryChange{`0,`1})">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Collections.Reactive.ObservableDictionaryChangedEventArgs`2"/> class.
+            </summary>
+            <param name="observableDictionaryChange">The observable dictionary change.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableListChange`1.TypeIsValueType">
+            <summary>
+            The type is a value type.. or not.. let's find out, lazily.
+            </summary>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableListChange`1.ChangeType">
+            <summary>
+            Gets the type of the change.
+            </summary>
+            <value>
+            The type of the change.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableListChange`1.Item">
+            <summary>
+            Gets the item that was added, changed or removed.
+            </summary>
+            <value>
+            The affected item, if any.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableListChange`1.Index">
+            <summary>
+            Gets the new, post-change (starting) index for the <see cref="P:JB.Collections.Reactive.IObservableListChange`1.Item"/>.
+            </summary>
+            <value>
+            The post-change starting index, -1 for removals, otherwise 0 or greater.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableListChange`1.OldIndex">
+            <summary>
+            Gets the previous, pre-change (starting) index for the <see cref="P:JB.Collections.Reactive.IObservableListChange`1.Item"/>.
+            </summary>
+            <value>
+            The pre-change (starting) index, -1 for additions, otherwise 0 or greater.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableListChange`1.#ctor(JB.Collections.Reactive.ObservableListChangeType,`0,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Collections.Reactive.ObservableListChange`1" /> class.
+            </summary>
+            <param name="changeType">Type of the change.</param>
+            <param name="item">The item.</param>
+            <param name="index">New starting index, after the add, change or move, -1 of not applicable.</param>
+            <param name="oldIndex">Old starting index, before the add, change or move, -1 of not applicable.</param>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableListChange`1.Reset">
+            <summary>
+            Gets a <see cref="T:JB.Collections.Reactive.IObservableListChange`1"/> representing a <see cref="F:JB.Collections.Reactive.ObservableListChangeType.Reset"/>.
+            </summary>
+            <value>
+            The reset change type.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableListChangedEventArgs`1.Change">
+            <summary>
+            Gets the observable list change data.
+            </summary>
+            <value>
+            The observable list change data.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableListChangedEventArgs`1.ChangeType">
+            <summary>
+            Gets the type of the change.
+            </summary>
+            <value>
+            The type of the change.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableListChangedEventArgs`1.Item">
+            <summary>
+            Gets the item that was added, changed or removed.
+            </summary>
+            <value>
+            The affected item, if any.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableListChangedEventArgs`1.Index">
+            <summary>
+            Gets the new, post-change (starting) index for the <see cref="P:JB.Collections.Reactive.ObservableListChangedEventArgs`1.Item"/>.
+            </summary>
+            <value>
+            The post-change starting index, -1 for removals, otherwise 0 or greater.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableListChangedEventArgs`1.OldIndex">
+            <summary>
+            Gets the previous, pre-change (starting) index for the <see cref="P:JB.Collections.Reactive.ObservableListChangedEventArgs`1.Item"/>.
+            </summary>
+            <value>
+            The pre-change (starting) index, -1 for additions, otherwise 0 or greater.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableListChangedEventArgs`1.#ctor(JB.Collections.Reactive.IObservableListChange{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Collections.Reactive.ObservableListChangedEventArgs`1"/> class.
+            </summary>
+            <param name="observableListChange">The observable list change.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableListChangeType.ItemAdded">
+            <summary>
+            One Item has been added.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableListChangeType.ItemChanged">
+            <summary>
+            One Item has changed.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableListChangeType.ItemMoved">
+            <summary>
+            One Item has been moved.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableListChangeType.ItemRemoved">
+            <summary>
+            One Item has been removed.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableListChangeType.Reset">
+            <summary>
+            Indicates a major change and consumers should reset any existing knowledge and state about the affected collection and refetch its current state.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.#ctor(System.Collections.Generic.IList{`0},System.Object,System.Reactive.Concurrency.IScheduler)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Collections.Reactive.ObservableBindingList`1" /> class.
+            </summary>
+            <param name="list">The initial list, if any.</param>
+            <param name="syncRoot">The object used to synchronize access to the thread-safe collection.</param>
+            <param name="scheduler">The scheduler to raise events on.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.ObservableListChangedAsListChangedForwarder(System.Object,JB.Collections.Reactive.ObservableListChangedEventArgs{`0})">
+            <summary>
+            Handles the ObservableCollectionChanged event of the underlying <see cref="T:JB.Collections.Reactive.ObservableList`1"/>.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="observableListChangedEventArgs">The <see cref="T:JB.Collections.Reactive.ObservableListChangedEventArgs`1"/> instance containing the event data.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.Dispose(System.Boolean)">
+            <summary>
+                Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposeManagedResources">
+                <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.AddNew">
+            <summary>
+                Adds a new item to the list.
+            </summary>
+            <returns>
+                The item added to the list.
+            </returns>
+            <exception cref="T:System.NotSupportedException"><see cref="P:System.ComponentModel.IBindingList.AllowNew" /> is false. </exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.AddIndex(System.ComponentModel.PropertyDescriptor)">
+            <summary>
+                Adds the <see cref="T:System.ComponentModel.PropertyDescriptor" /> to the indexes used for searching.
+            </summary>
+            <param name="property">
+                The <see cref="T:System.ComponentModel.PropertyDescriptor" /> to add to the indexes used for
+                searching.
+            </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.ApplySort(System.ComponentModel.PropertyDescriptor,System.ComponentModel.ListSortDirection)">
+            <summary>
+                Sorts the list based on a <see cref="T:System.ComponentModel.PropertyDescriptor" /> and a
+                <see cref="T:System.ComponentModel.ListSortDirection" />.
+            </summary>
+            <param name="property">The <see cref="T:System.ComponentModel.PropertyDescriptor" /> to sort by. </param>
+            <param name="direction">One of the <see cref="T:System.ComponentModel.ListSortDirection" /> values. </param>
+            <exception cref="T:System.NotSupportedException">
+                <see cref="P:System.ComponentModel.IBindingList.SupportsSorting" /> is
+                false.
+            </exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.Find(System.ComponentModel.PropertyDescriptor,System.Object)">
+            <summary>
+                Returns the index of the row that has the given <see cref="T:System.ComponentModel.PropertyDescriptor" />.
+            </summary>
+            <returns>
+                The index of the row that has the given <see cref="T:System.ComponentModel.PropertyDescriptor" />.
+            </returns>
+            <param name="property">The <see cref="T:System.ComponentModel.PropertyDescriptor" /> to search on. </param>
+            <param name="key">The value of the <paramref name="property" /> parameter to search for. </param>
+            <exception cref="T:System.NotSupportedException">
+                <see cref="P:System.ComponentModel.IBindingList.SupportsSearching" />
+                is false.
+            </exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.RemoveIndex(System.ComponentModel.PropertyDescriptor)">
+            <summary>
+                Removes the <see cref="T:System.ComponentModel.PropertyDescriptor" /> from the indexes used for searching.
+            </summary>
+            <param name="property">
+                The <see cref="T:System.ComponentModel.PropertyDescriptor" /> to remove from the indexes used
+                for searching.
+            </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.RemoveSort">
+            <summary>
+                Removes any sort applied using
+                <see
+                    cref="M:System.ComponentModel.IBindingList.ApplySort(System.ComponentModel.PropertyDescriptor,System.ComponentModel.ListSortDirection)" />
+                .
+            </summary>
+            <exception cref="T:System.NotSupportedException">
+                <see cref="P:System.ComponentModel.IBindingList.SupportsSorting" /> is
+                false.
+            </exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableBindingList`1.AllowNew">
+            <summary>
+                Gets whether you can add items to the list using <see cref="M:System.ComponentModel.IBindingList.AddNew" />.
+            </summary>
+            <returns>
+                true if you can add items to the list using <see cref="M:System.ComponentModel.IBindingList.AddNew" />; otherwise,
+                false.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableBindingList`1.AllowEdit">
+            <summary>
+                Gets whether you can update items in the list.
+            </summary>
+            <returns>
+                true if you can update the items in the list; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableBindingList`1.AllowRemove">
+            <summary>
+                Gets whether you can remove items from the list, using
+                <see cref="M:System.Collections.IList.Remove(System.Object)" /> or
+                <see cref="M:System.Collections.IList.RemoveAt(System.Int32)" />.
+            </summary>
+            <returns>
+                true if you can remove items from the list; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableBindingList`1.SupportsChangeNotification">
+            <summary>
+                Gets whether a <see cref="E:System.ComponentModel.IBindingList.ListChanged" /> event is raised when the list
+                changes or an item in the list changes.
+            </summary>
+            <returns>
+                true if a <see cref="E:System.ComponentModel.IBindingList.ListChanged" /> event is raised when the list changes or
+                when an item changes; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableBindingList`1.SupportsSearching">
+            <summary>
+                Gets whether the list supports searching using the
+                <see cref="M:System.ComponentModel.IBindingList.Find(System.ComponentModel.PropertyDescriptor,System.Object)" />
+                method.
+            </summary>
+            <returns>
+                true if the list supports searching using the
+                <see cref="M:System.ComponentModel.IBindingList.Find(System.ComponentModel.PropertyDescriptor,System.Object)" />
+                method; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableBindingList`1.SupportsSorting">
+            <summary>
+                Gets whether the list supports sorting.
+            </summary>
+            <returns>
+                true if the list supports sorting; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableBindingList`1.IsSorted">
+            <summary>
+                Gets whether the items in the list are sorted.
+            </summary>
+            <returns>
+                true if
+                <see
+                    cref="M:System.ComponentModel.IBindingList.ApplySort(System.ComponentModel.PropertyDescriptor,System.ComponentModel.ListSortDirection)" />
+                has been called and <see cref="M:System.ComponentModel.IBindingList.RemoveSort" /> has not been called; otherwise,
+                false.
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+                <see cref="P:System.ComponentModel.IBindingList.SupportsSorting" /> is
+                false.
+            </exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableBindingList`1.SortProperty">
+            <summary>
+                Gets the <see cref="T:System.ComponentModel.PropertyDescriptor" /> that is being used for sorting.
+            </summary>
+            <returns>
+                The <see cref="T:System.ComponentModel.PropertyDescriptor" /> that is being used for sorting.
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+                <see cref="P:System.ComponentModel.IBindingList.SupportsSorting" /> is
+                false.
+            </exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableBindingList`1.SortDirection">
+            <summary>
+                Gets the direction of the sort.
+            </summary>
+            <returns>
+                One of the <see cref="T:System.ComponentModel.ListSortDirection" /> values.
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+                <see cref="P:System.ComponentModel.IBindingList.SupportsSorting" /> is
+                false.
+            </exception>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableBindingList`1._listChanged">
+            <summary>
+                The actual <see cref="E:JB.Collections.Reactive.ObservableBindingList`1.ListChanged" /> event.
+            </summary>
+        </member>
+        <member name="E:JB.Collections.Reactive.ObservableBindingList`1.ListChanged">
+            <summary>
+                Occurs when the list changes or an item in the list changes.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.RaiseListChanged(System.ComponentModel.ListChangedEventArgs)">
+            <summary>
+                Raises the <see cref="E:ListChanged" /> event.
+            </summary>
+            <param name="listChangedEventArgs">
+                The <see cref="T:System.ComponentModel.ListChangedEventArgs" /> instance containing
+                the event data.
+            </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.CancelNew(System.Int32)">
+            <summary>
+                Discards a pending new item from the collection.
+            </summary>
+            <param name="itemIndex">The index of the item that was previously added to the collection. </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.EndNew(System.Int32)">
+            <summary>
+                Commits a pending new item to the collection.
+            </summary>
+            <param name="itemIndex">The index of the item that was previously added to the collection. </param>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableBindingList`1.RaisesItemChangedEvents">
+            <summary>
+                Gets a value indicating whether the this instance forwards the inner Items'
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> events as corresponding ItemChanged events.
+                Obviously only works if the
+                <typeparam name="T">type</typeparam>
+                does implement the <see cref="T:System.ComponentModel.INotifyPropertyChanged" /> interface.
+            </summary>
+            <returns>
+                [true] if the items property changed events are forwarded as ItemChanged ones, [false] if not.
+            </returns>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableBindingList`1.RaisesListChangedEvents">
+            <summary>
+                Gets a value indicating whether this instance is currently notifying event and observable subscribers about
+                collection changed events.
+            </summary>
+            <value>
+                <c>true</c> if this instance is notifying observable and event subscribers; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.ResetBindings">
+            <summary>
+                Raises <see cref="E:JB.Collections.Reactive.INotifyObservableCollectionChanged`1.ObservableCollectionChanged" />,
+                <see cref="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged" />
+                and <see cref="E:System.ComponentModel.IBindingList.ListChanged" /> event(s) as well as notifies the
+                <see cref="P:JB.Collections.Reactive.INotifyObservableCollectionChanged`1.CollectionChanges" />
+                and <see cref="P:JB.Collections.Reactive.INotifyObservableResets.Resets" /> subscribers signalling an entire List / Collection
+                Reset.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableBindingList`1.ResetItem(System.Int32)">
+            <summary>
+                Raises <see cref="E:JB.Collections.Reactive.INotifyObservableCollectionChanged`1.ObservableCollectionChanged" />,
+                <see cref="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged" />
+                and <see cref="E:System.ComponentModel.IBindingList.ListChanged" /> event(s) as well as notifies the
+                <see cref="P:JB.Collections.Reactive.INotifyObservableCollectionChanged`1.CollectionChanges" />
+                subscribers signalling a single item change event.
+            </summary>
+            <param name="index">A zero-based index position of the item to be reset.</param>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableCollectionChange`1.TypeIsValueType">
+            <summary>
+            The type is a value type.. or not.. let's find out, lazily.
+            </summary>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollectionChange`1.ChangeType">
+            <summary>
+            Gets the type of the change.
+            </summary>
+            <value>
+            The type of the change.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollectionChange`1.Item">
+            <summary>
+            Gets the items that were changed or removed.
+            </summary>
+            <value>
+            The affected items.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollectionChange`1.#ctor(JB.Collections.Reactive.ObservableCollectionChangeType,`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Collections.Reactive.ObservableCollectionChange`1" /> class.
+            </summary>
+            <param name="changeType">Type of the change.</param>
+            <param name="item">The item.</param>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollectionChange`1.Reset">
+            <summary>
+            Gets a <see cref="T:JB.Collections.Reactive.IObservableCollectionChange`1"/> representing a <see cref="F:JB.Collections.Reactive.ObservableCollectionChangeType.Reset"/>.
+            </summary>
+            <value>
+            The reset change type.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollectionChangedEventArgs`1.Change">
+            <summary>
+            Gets the observable collection change data.
+            </summary>
+            <value>
+            The observable collection change data.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollectionChangedEventArgs`1.ChangeType">
+            <summary>
+            Gets the type of the change.
+            </summary>
+            <value>
+            The type of the change.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableCollectionChangedEventArgs`1.Item">
+            <summary>
+            Gets the item that was added, changed or removed.
+            </summary>
+            <value>
+            The affected item, if any.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableCollectionChangedEventArgs`1.#ctor(JB.Collections.Reactive.IObservableCollectionChange{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Collections.Reactive.ObservableCollectionChangedEventArgs`1"/> class.
+            </summary>
+            <param name="observableCollectionChange">The observable collection change.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableCollectionChangeType.ItemAdded">
+            <summary>
+            One Item has been added.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableCollectionChangeType.ItemChanged">
+            <summary>
+            One Item has changed.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableCollectionChangeType.ItemRemoved">
+            <summary>
+            One Item has been removed.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableCollectionChangeType.Reset">
+            <summary>
+            Indicates a major change and consumers should reset any existing knowledge and state about the affected collection and refetch its current state.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableDictionaryChange`2.KeyIsValueType">
+            <summary>
+            The <typeparam name="TKey">key type</typeparam> is a value type. or not.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableDictionaryChange`2.ValueIsValueType">
+            <summary>
+            The <typeparam name="TValue">value type</typeparam> is a.. err.. value type. or not.
+            </summary>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionaryChange`2.ChangeType">
+            <summary>
+            Gets the type of the change.
+            </summary>
+            <value>
+            The type of the change.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionaryChange`2.Key">
+            <summary>
+            Gets the key of the (changed) item.
+            </summary>
+            <value>
+            The key of the (changed) item.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionaryChange`2.Value">
+            <summary>
+            Gets the value that was added or if it was a <see cref="F:JB.Collections.Reactive.ObservableDictionaryChangeType.ItemChanged" />, this is the new value.
+            </summary>
+            <value>
+            The affected value.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionaryChange`2.OldValue">
+            <summary>
+            Gets the old value, if any. If it was a <see cref="F:JB.Collections.Reactive.ObservableDictionaryChangeType.ItemChanged" />, this is the old value,
+            for <see cref="F:JB.Collections.Reactive.ObservableDictionaryChangeType.ItemRemoved" />, this will contain the value removed for the <see cref="P:JB.Collections.Reactive.IObservableDictionaryChange`2.Key" />.
+            </summary>
+            <value>
+            The old value, if any
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableDictionaryChange`2.#ctor(JB.Collections.Reactive.ObservableDictionaryChangeType,`0,`1,`1)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JB.Collections.Reactive.ObservableDictionaryChange`2" /> class.
+            </summary>
+            <param name="changeType">Type of the change.</param>
+            <param name="key">The key of the changed value.</param>
+            <param name="value">The added, removed or changed, new value.</param>
+            <param name="oldValue">The changed, old value.</param>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableDictionaryChange`2.Reset">
+            <summary>
+            Gets a <see cref="T:JB.Collections.Reactive.IObservableDictionaryChange`2"/> representing a <see cref="F:JB.Collections.Reactive.ObservableDictionaryChangeType.Reset"/>.
+            </summary>
+            <value>
+            An <see cref="T:JB.Collections.Reactive.IObservableDictionaryChange`2">instance</see> representing a <see cref="F:JB.Collections.Reactive.ObservableDictionaryChangeType.Reset"/>.
+            </value>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableDictionaryChangeType.ItemAdded">
+            <summary>
+            One Item has been added.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableDictionaryChangeType.ItemChanged">
+            <summary>
+            One Item has changed.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableDictionaryChangeType.ItemRemoved">
+            <summary>
+            One Item has been removed.
+            </summary>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableDictionaryChangeType.Reset">
+            <summary>
+            Indicates a major change and consumers should reset any existing knowledge and state about the affected collection and refetch its current state.
+            </summary>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableList`1.ListChangesObserver">
+            <summary>
+            Gets the list changes observer.
+            </summary>
+            <value>
+            The list changes observer.
+            </value>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:JB.Collections.Reactive.ObservableList`1.#ctor(System.Collections.Generic.IList{`0},System.Object,System.Reactive.Concurrency.IScheduler)" -->
+        <member name="M:JB.Collections.Reactive.ObservableList`1.SetupObservablesAndObserversAndSubjects">
+            <summary>
+            Prepares and sets up the observables and subjects used, particularly
+            <see cref="P:JB.Collections.Reactive.ObservableList`1.ListChanges"/>, <see cref="P:JB.Collections.Reactive.INotifyObservableCountChanged.CountChanges"/> and <see cref="P:JB.Collections.Reactive.INotifyObservableExceptionsThrown.ThrownExceptions"/>.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.NotifySubscribersAboutListChanges(JB.Collections.Reactive.IObservableListChange{`0})">
+            <summary>
+                Notifies all <see cref="P:JB.Collections.Reactive.ObservableList`1.ListChanges" /> and <see cref="P:JB.Collections.Reactive.INotifyObservableResets.Resets" /> subscribers and
+                raises the (observable)collection changed events.
+            </summary>
+            <param name="observableListChange">The observable list change.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.System#Collections#IList#Add(System.Object)">
+            <summary>
+                Adds an item to the <see cref="T:System.Collections.IList" />.
+            </summary>
+            <returns>
+                The position into which the new element was inserted, or -1 to indicate that the item was not inserted into the
+                collection.
+            </returns>
+            <param name="value">The object to add to the <see cref="T:System.Collections.IList" />. </param>
+            <exception cref="T:System.NotSupportedException">
+                The <see cref="T:System.Collections.IList" /> is read-only.-or- The
+                <see cref="T:System.Collections.IList" /> has a fixed size.
+            </exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.System#Collections#IList#Contains(System.Object)">
+            <summary>
+                Determines whether the <see cref="T:System.Collections.IList" /> contains a specific value.
+            </summary>
+            <returns>
+                true if the <see cref="T:System.Object" /> is found in the <see cref="T:System.Collections.IList" />; otherwise,
+                false.
+            </returns>
+            <param name="value">The object to locate in the <see cref="T:System.Collections.IList" />. </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.System#Collections#IList#IndexOf(System.Object)">
+            <summary>
+                Determines the index of a specific item in the <see cref="T:System.Collections.IList" />.
+            </summary>
+            <returns>
+                The index of <paramref name="value" /> if found in the list; otherwise, -1.
+            </returns>
+            <param name="value">The object to locate in the <see cref="T:System.Collections.IList" />. </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.System#Collections#IList#Insert(System.Int32,System.Object)">
+            <summary>
+                Inserts an item to the <see cref="T:System.Collections.IList" /> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which <paramref name="value" /> should be inserted. </param>
+            <param name="value">The object to insert into the <see cref="T:System.Collections.IList" />. </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="index" /> is not a valid index in the
+                <see cref="T:System.Collections.IList" />.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+                The <see cref="T:System.Collections.IList" /> is read-only.-or- The
+                <see cref="T:System.Collections.IList" /> has a fixed size.
+            </exception>
+            <exception cref="T:System.NullReferenceException">
+                <paramref name="value" /> is null reference in the
+                <see cref="T:System.Collections.IList" />.
+            </exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.System#Collections#IList#Remove(System.Object)">
+            <summary>
+                Removes the first occurrence of a specific object from the <see cref="T:System.Collections.IList" />.
+            </summary>
+            <param name="value">The object to remove from the <see cref="T:System.Collections.IList" />. </param>
+            <exception cref="T:System.NotSupportedException">
+                The <see cref="T:System.Collections.IList" /> is read-only.-or- The
+                <see cref="T:System.Collections.IList" /> has a fixed size.
+            </exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableList`1.System#Collections#IList#Item(System.Int32)">
+            <summary>
+                Gets or sets the element at the specified index.
+            </summary>
+            <returns>
+                The element at the specified index.
+            </returns>
+            <param name="index">The zero-based index of the element to get or set. </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="index" /> is not a valid index in the
+                <see cref="T:System.Collections.IList" />.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+                The property is set and the <see cref="T:System.Collections.IList" />
+                is read-only.
+            </exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableList`1.IsFixedSize">
+            <summary>
+                Gets a value indicating whether the <see cref="T:System.Collections.IList" /> has a fixed size.
+            </summary>
+            <returns>
+                true if the <see cref="T:System.Collections.IList" /> has a fixed size; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.IndexOf(`0)">
+            <summary>
+                Determines the index of a specific item in the <see cref="T:System.Collections.Generic.IList`1" />.
+            </summary>
+            <returns>
+                The index of <paramref name="item" /> if found in the list; otherwise, -1.
+            </returns>
+            <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.IList`1" />.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.Insert(System.Int32,`0)">
+            <summary>
+                Inserts an item to the <see cref="T:System.Collections.Generic.IList`1" /> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which <paramref name="item" /> should be inserted.</param>
+            <param name="item">The object to insert into the <see cref="T:System.Collections.Generic.IList`1" />.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="index" /> is not a valid index in the
+                <see cref="T:System.Collections.Generic.IList`1" />.
+            </exception>
+            <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.IList`1" /> is read-only.</exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.RemoveAt(System.Int32)">
+            <summary>
+                Removes the <see cref="T:System.Collections.Generic.IList`1" /> item at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the item to remove.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="index" /> is not a valid index in the
+                <see cref="T:System.Collections.Generic.IList`1" />.
+            </exception>
+            <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.IList`1" /> is read-only.</exception>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableList`1.Item(System.Int32)">
+            <summary>
+                Gets or sets the element at the specified index.
+            </summary>
+            <returns>
+                The element at the specified index.
+            </returns>
+            <param name="index">The zero-based index of the element to get or set.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <paramref name="index" /> is not a valid index in the
+                <see cref="T:System.Collections.Generic.IList`1" />.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+                The property is set and the
+                <see cref="T:System.Collections.Generic.IList`1" /> is read-only.
+            </exception>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.Move(`0,System.Int32,System.Boolean)">
+            <summary>
+                Moves the specified item to the new index position.
+            </summary>
+            <param name="item">The item.</param>
+            <param name="newIndex">The new index.</param>
+            <param name="correctNewIndexOnIndexShift">
+                if set to <c>true</c> the <paramref name="newIndex" /> will be adjusted,
+                if required, depending on whether an index shift took place during the move due to the original position of the
+                item.
+                Basically if you move an item from a lower index position to a higher one, the index positions of all items with
+                higher index positions than the <paramref name="item" /> ones
+                will be shifted upwards (logically by -1).
+                Depending on whether the caller intends to move the item strictly or logically to the <paramref name="newIndex" />
+                position, correction might be useful.
+            </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.Move(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+                Moves the item(s) at the specified index to a new position in the list.
+            </summary>
+            <param name="itemIndex">The (starting) index of the item(s) to move.</param>
+            <param name="newIndex">The new index.</param>
+            <param name="correctNewIndexOnIndexShift">
+                if set to <c>true</c> the <paramref name="newIndex" /> will be adjusted,
+                if required, depending on whether an index shift took place during the move due to the original position of the
+                item.
+                Basically if you move an item from a lower index position to a higher one, the index positions of all items with
+                higher index positions than <paramref name="itemIndex" />
+                will be shifted upwards (logically by -1).
+                Depending on whether the caller intends to move the item strictly or logically to the <paramref name="newIndex" />
+                position, correction might be useful.
+            </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.Dispose">
+            <summary>
+                Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.Dispose(System.Boolean)">
+            <summary>
+                Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposeManagedResources">
+                <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="P:JB.Collections.Reactive.ObservableList`1.ListChanges">
+            <summary>
+            Gets the list changes as an observable stream.
+            This, contrary to <see cref="P:JB.Collections.Reactive.INotifyObservableCollectionChanged`1.CollectionChanges"/>
+            also notifies about move operations inside the underlying list of items and provides index positions
+            per change event.
+            </summary>
+            <value>
+            The list changes.
+            </value>
+        </member>
+        <member name="F:JB.Collections.Reactive.ObservableList`1._observableListChanged">
+            <summary>
+                The actual <see cref="E:JB.Collections.Reactive.ObservableList`1.ObservableListChanged" /> event.
+            </summary>
+        </member>
+        <member name="E:JB.Collections.Reactive.ObservableList`1.ObservableListChanged">
+            <summary>
+            Occurs when the corresponding <see cref="T:JB.Collections.Reactive.IObservableList`1" /> changed.
+            This, contrary to <see cref="E:JB.Collections.Reactive.INotifyObservableCollectionChanged`1.ObservableCollectionChanged"/>
+            also notifies about move operations inside the underlying list of items and provides index positions
+            per change event.
+            </summary>
+        </member>
+        <member name="M:JB.Collections.Reactive.ObservableList`1.RaiseObservableListChanged(JB.Collections.Reactive.ObservableListChangedEventArgs{`0})">
+            <summary>
+                Raises the <see cref="E:ObservableListChanged" /> event.
+            </summary>
+            <param name="observableListChangedEventArgs">
+                The <see cref="T:JB.Collections.Reactive.ObservableListChangedEventArgs`1" /> instance
+                containing the event data.
+            </param>
+        </member>
+        <member name="T:JB.Collections.Reactive.SchedulerCoordinatedBindingList`1">
+            <summary>
+                An <see cref="T:System.ComponentModel.IBindingList" /> implementation that's raising its <see cref="E:System.ComponentModel.BindingList`1.AddingNew"/> and <see cref="E:System.ComponentModel.BindingList`1.ListChanged"/> events
+            	on the provided or <see cref="P:System.Reactive.Concurrency.Scheduler.Default">constructor created</see> <see cref="T:System.Reactive.Concurrency.IScheduler" />.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+        </member>
+        <member name="P:JB.Collections.Reactive.SchedulerCoordinatedBindingList`1.Scheduler">
+            <summary>
+            Gets the scheduler.
+            </summary>
+            <value>
+            The scheduler.
+            </value>
+        </member>
+        <member name="M:JB.Collections.Reactive.SchedulerCoordinatedBindingList`1.#ctor(System.Collections.Generic.IList{`0},System.Reactive.Concurrency.IScheduler)">
+            <summary>
+                Initializes a new instance of the <see cref="T:JB.Collections.Reactive.SchedulerCoordinatedBindingList`1" /> class.
+            </summary>
+            <param name="list">
+                An <see cref="T:System.Collections.Generic.IList`1" /> of items to be contained in the
+                <see cref="T:System.ComponentModel.BindingList`1" />.
+            </param>
+            <param name="scheduler">The scheduler.</param>
+        </member>
+        <member name="M:JB.Collections.Reactive.SchedulerCoordinatedBindingList`1.OnAddingNew(System.ComponentModel.AddingNewEventArgs)">
+            <summary>
+                Raises the <see cref="E:System.ComponentModel.BindingList`1.AddingNew" /> event.
+            </summary>
+            <param name="addingNewEventArgs">An <see cref="T:System.ComponentModel.AddingNewEventArgs" /> that contains the event data. </param>
+        </member>
+        <member name="M:JB.Collections.Reactive.SchedulerCoordinatedBindingList`1.OnListChanged(System.ComponentModel.ListChangedEventArgs)">
+            <summary>
+                Raises the <see cref="E:System.ComponentModel.BindingList`1.ListChanged" /> event.
+            </summary>
+            <param name="listChangedEventArgs">A <see cref="T:System.ComponentModel.ListChangedEventArgs" /> that contains the event data. </param>
+        </member>
+        <member name="T:JB.Collections.Reactive.SchedulerSynchronizedBindingList`1">
+            <summary>
+                An <see cref="T:System.ComponentModel.IBindingList" /> implementation that's synchronized via an underlying lock-based
+                <see cref="T:System.Collections.Generic.IList`1" />
+                implementation, but also ensuring all events are raised on the same initially created or provided
+                <see cref="T:System.Reactive.Concurrency.IScheduler" />.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+        </member>
+        <member name="M:JB.Collections.Reactive.SchedulerSynchronizedBindingList`1.#ctor(System.Collections.Generic.IList{`0},System.Object,System.Reactive.Concurrency.IScheduler)">
+            <summary>
+                Initializes a new instance of the <see cref="T:JB.Collections.Reactive.SchedulerSynchronizedBindingList`1" /> class.
+            </summary>
+            <param name="list">
+                An <see cref="T:System.Collections.Generic.IList`1" /> of items to be contained in the
+                <see cref="T:System.ComponentModel.BindingList`1" />.
+            </param>
+            <param name="scheduler">The scheduler.</param>
+            <param name="syncRoot">The object used to synchronize access the thread-safe collection.</param>
+        </member>
+        <member name="P:JB.Collections.Reactive.SchedulerSynchronizedBindingList`1.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Gets or sets a value indicating whether this instance is synchronized.
+            </summary>
+            <value>
+              <c>true</c> if this instance is synchronized; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:JB.Collections.Reactive.SchedulerSynchronizedBindingList`1.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Gets an object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
+            </summary>
+            
+            <returns>
+            An object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
+            </returns>
+        </member>
+    </members>
+</doc>

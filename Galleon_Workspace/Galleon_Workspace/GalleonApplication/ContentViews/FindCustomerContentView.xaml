@@ -1,0 +1,359 @@
+﻿<UserControl x:Class="GalleonApplication.ContentViews.FindCustomerContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:property="clr-namespace:GalleonApplication.Properties"
+             xmlns:vm="clr-namespace:GalleonApplication.ViewModels"
+             xmlns:cv="clr-namespace:GalleonApplication.ContentViews"
+             xmlns:vd="clr-namespace:GalleonApplication.Domains.Validators"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:dm="clr-namespace:GalleonApplication.Domains"
+             xmlns:entity="clr-namespace:GalleonApplication.Extra"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="640"
+             d:DataContext="{d:DesignInstance vm:FindCustomerViewModel, d:IsDesignTimeCreatable=False}"
+             DataContext="{Binding FindCustomerViewModel, Source={StaticResource ViewModelLocator}}">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- note you only need bring in these extra resource dictionaries when using non-default styles, so only bring them into your controls where the default style is not what you want -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                <Setter Property="Margin" Value="0 8 0 8" />
+            </Style>
+            <Style TargetType="{x:Type md:PackIcon}" BasedOn="{StaticResource {x:Type md:PackIcon}}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="4 0 4 0" />
+            </Style>
+
+            <Style x:Key="MediumPack" TargetType="{x:Type md:PackIcon}" BasedOn="{StaticResource {x:Type md:PackIcon}}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="MinWidth" Value="24" />
+                <Setter Property="MinHeight" Value="24" />
+                <Setter Property="Margin" Value="4 0 4 0" />
+            </Style>
+
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0 8 0 8" />
+            </Style>            
+            
+            <Style x:Key="MaterialListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                <Setter Property="Padding" Value="0 0 0 2" />
+            </Style>
+
+            <Style x:Key="MaterialDesignAccentProgressBarStyle" TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource MaterialDesignLinearProgressBar}">
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentBrush}"/>
+                <Setter Property="Background" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
+            </Style>
+            
+            <SolidColorBrush x:Key="SelectedCustomerForeground" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="NotSelectedCustomerForeground" Color="#333333" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid Background="LightGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <DockPanel Grid.Column="0">
+            
+            <ListBox x:Name="CustomerListBox" 
+                     ItemsSource="{Binding Customers}"
+                     Style="{DynamicResource MaterialDesignListBox}"
+                     ItemContainerStyle="{StaticResource MaterialListBoxItem}"
+                     HorizontalContentAlignment="Stretch"
+                     ScrollViewer.CanContentScroll="False"
+                     SelectedIndex="{Binding Position}">
+                
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="entity:CustomerEntity">
+                        <md:TransitioningContent OpeningEffectsOffset="{md:IndexedItemOffsetMultiplier 0:0:0.1}"
+                                                 Opacity="0"
+                                                 RunHint="Loaded">
+                            
+                            <md:TransitioningContent.OpeningEffects>
+                                <md:TransitionEffect Kind="FadeIn" />
+                            </md:TransitioningContent.OpeningEffects>
+                            
+                            <md:ColorZone x:Name="ContentCell" 
+                                          Padding="8"
+                                          md:ShadowAssist.ShadowDepth="Depth1">
+                                <DockPanel>
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="FirstName" Text="{Binding FirstName}" Margin="5 0 0 0"  FontSize="13" />
+                                            <TextBlock x:Name="MiddleName" Text="{Binding MiddleName}" Margin="5 0 0 0" FontSize="13" />
+                                            <TextBlock x:Name="LastName" Text="{Binding LastName}" Margin="5 0 0 0" FontSize="13" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                                            <TextBlock x:Name="Identity" Text="{Binding Identity}" Margin="5 0 0 0" FontSize="11" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <md:PackIcon Kind="ArrowRight" 
+                                                 x:Name="Arrow"
+                                                 HorizontalAlignment="Right" 
+                                                 VerticalAlignment="Center"/>
+                                </DockPanel>
+                            </md:ColorZone>
+                        </md:TransitioningContent>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="True">
+                                <Setter TargetName="FirstName" Property="Foreground" Value="{StaticResource SelectedCustomerForeground}" />
+                                <Setter TargetName="MiddleName" Property="Foreground" Value="{StaticResource SelectedCustomerForeground}" />
+                                <Setter TargetName="LastName" Property="Foreground" Value="{StaticResource SelectedCustomerForeground}" />
+                                <Setter TargetName="Identity" Property="Foreground" Value="{StaticResource SelectedCustomerForeground}" />
+                                <Setter TargetName="Arrow" Property="Foreground" Value="{StaticResource SelectedCustomerForeground}" />
+                                
+                                <Setter TargetName="ContentCell" Property="Mode" Value="PrimaryDark" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="False">
+                                <Setter TargetName="FirstName" Property="Foreground" Value="{StaticResource NotSelectedCustomerForeground}" />
+                                <Setter TargetName="MiddleName" Property="Foreground" Value="{StaticResource NotSelectedCustomerForeground}" />
+                                <Setter TargetName="LastName" Property="Foreground" Value="{StaticResource NotSelectedCustomerForeground}" />
+                                <Setter TargetName="Identity" Property="Foreground" Value="{StaticResource NotSelectedCustomerForeground}" />
+                                <Setter TargetName="Arrow" Property="Foreground" Value="{StaticResource NotSelectedCustomerForeground}" />
+
+                                <Setter TargetName="ContentCell" Property="Mode" Value="Standard" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>                       
+        </DockPanel>
+     
+        <DockPanel Grid.Column="1">
+            <ListBox x:Name="CustomerContactsListBox"
+                     Margin="5 0 0 0"
+                     ItemsSource="{Binding ElementName=CustomerListBox, Path=SelectedItem.Contacts}"
+                     Style="{DynamicResource MaterialDesignListBox}"
+                     ItemContainerStyle="{StaticResource MaterialListBoxItem}"                    
+                     HorizontalContentAlignment="Stretch"
+                     ScrollViewer.CanContentScroll="False">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="entity:ContactEntity">
+                        <md:TransitioningContent OpeningEffectsOffset="{md:IndexedItemOffsetMultiplier 0:0:0.1}"
+                                                 Opacity="0"
+                                                 RunHint="Loaded">
+                            
+                            <md:TransitioningContent.OpeningEffects>
+                                <md:TransitionEffect Kind="FadeIn" />
+                            </md:TransitioningContent.OpeningEffects>
+                            
+                            <md:ColorZone   x:Name="ContactCellView"
+                                            Mode="Standard" 
+                                            md:ShadowAssist.ShadowDepth="Depth1">
+                                
+                                <Grid Margin="4 2 4 2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <DockPanel Grid.Row="0" 
+                                               Margin="2">
+                                        <TextBlock Text="{x:Static property:Resources.ContactNameTitle}" 
+                                                   Foreground="{StaticResource NotSelectedCustomerForeground}" 
+                                                   x:Name="ContactNameTitleLabel"
+                                                   FontSize="12"/>
+                                        <TextBlock Text="{Binding ContactName}" 
+                                                   Foreground="{StaticResource NotSelectedCustomerForeground}" 
+                                                   x:Name="ContactNameTitleValue"
+                                                   HorizontalAlignment="Right" 
+                                                   FontSize="11" />
+                                    </DockPanel>
+
+                                    <DockPanel Grid.Row="1" Margin="2">
+                                        <TextBlock Text="{x:Static property:Resources.PhoneTitle}" 
+                                                   Foreground="{StaticResource NotSelectedCustomerForeground}" 
+                                                   x:Name="PhoneTitleLabel"
+                                                   FontSize="12"/>
+                                        <TextBlock Text="{Binding Phone}" 
+                                                   x:Name="PhoneTitleValue"
+                                                   Foreground="{StaticResource NotSelectedCustomerForeground}" 
+                                                   HorizontalAlignment="Right" 
+                                                   FontSize="11"/>
+                                    </DockPanel>
+
+                                    <DockPanel Grid.Row="2" Margin="2">
+                                        <TextBlock Text="{x:Static property:Resources.AddressTitle}" 
+                                                   x:Name="AddressTitleLabel"
+                                                   Foreground="{StaticResource NotSelectedCustomerForeground}" 
+                                                   FontSize="12"/>
+                                        <TextBlock Text="{Binding Address}" 
+                                                   x:Name="AddressTitleValue"
+                                                   Foreground="{StaticResource NotSelectedCustomerForeground}" 
+                                                   HorizontalAlignment="Right" FontSize="11"/>
+                                    </DockPanel>
+
+                                </Grid>
+                            </md:ColorZone>
+                        </md:TransitioningContent>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="True">
+                                <Setter TargetName="ContactCellView" Property="Mode" Value="PrimaryDark" />
+
+                                <Setter TargetName="ContactNameTitleLabel" Property="Foreground" Value="{StaticResource SelectedCustomerForeground}" />
+                                <Setter TargetName="ContactNameTitleValue" Property="Foreground" Value="{StaticResource SelectedCustomerForeground}" />
+
+                                <Setter TargetName="PhoneTitleLabel" Property="Foreground" Value="{StaticResource SelectedCustomerForeground}" />
+                                <Setter TargetName="PhoneTitleValue" Property="Foreground" Value="{StaticResource SelectedCustomerForeground}" />
+
+                                <Setter TargetName="AddressTitleLabel" Property="Foreground" Value="{StaticResource SelectedCustomerForeground}" />
+                                <Setter TargetName="AddressTitleValue" Property="Foreground" Value="{StaticResource SelectedCustomerForeground}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="False">
+                                <Setter TargetName="ContactCellView" Property="Mode" Value="Standard" />
+                                
+                                <Setter TargetName="ContactNameTitleLabel" Property="Foreground" Value="{StaticResource NotSelectedCustomerForeground}" />
+                                <Setter TargetName="ContactNameTitleValue" Property="Foreground" Value="{StaticResource NotSelectedCustomerForeground}" />
+
+                                <Setter TargetName="PhoneTitleLabel" Property="Foreground" Value="{StaticResource NotSelectedCustomerForeground}" />
+                                <Setter TargetName="PhoneTitleValue" Property="Foreground" Value="{StaticResource NotSelectedCustomerForeground}" />
+
+                                <Setter TargetName="AddressTitleLabel" Property="Foreground" Value="{StaticResource NotSelectedCustomerForeground}" />
+                                <Setter TargetName="AddressTitleValue" Property="Foreground" Value="{StaticResource NotSelectedCustomerForeground}" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>            
+        </DockPanel>
+        <!-- make this one drag and drop option -->
+        <DockPanel Grid.Column="2">
+                   
+            <StackPanel Orientation="Vertical" 
+                        VerticalAlignment="Bottom">
+                
+                <ListBox x:Name="CustomerFilesListBox"
+                         Margin="5 0 0 0"
+                         ItemsSource="{Binding CustomerFiles}"
+                         Style="{DynamicResource MaterialDesignListBox}"
+                         ItemContainerStyle="{StaticResource MaterialListBoxItem}"      
+                         HorizontalContentAlignment="Stretch"
+                         ScrollViewer.CanContentScroll="False">
+                    
+                    <ListBox.ItemTemplate>
+                        <!-- change the entity -->
+                        <DataTemplate DataType="entity:DocumentEntity">
+                            <md:TransitioningContent OpeningEffectsOffset="{md:IndexedItemOffsetMultiplier 0:0:0.1}"
+                                                 Opacity="0"
+                                                 RunHint="Loaded">
+
+                                <md:TransitioningContent.OpeningEffects>
+                                    <md:TransitionEffect Kind="FadeIn" />
+                                </md:TransitioningContent.OpeningEffects>
+
+                                <md:ColorZone Mode="Standard" 
+                                              x:Name="FileViewContainer"
+                                              md:ShadowAssist.ShadowDepth="Depth1">
+                                    
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        
+                                       
+                                        <TextBlock Text="{Binding DocumentName}" 
+                                                   Grid.Row="0"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Left"
+                                                   Margin="4 2 4 2"
+                                                   x:Name="FileLabel" />                                       
+
+                                        <ProgressBar Orientation="Horizontal"
+                                                     Style="{StaticResource MaterialDesignAccentProgressBarStyle}"
+                                                     Value="0"   
+                                                     Visibility="{Binding DisplayProgress, Converter={StaticResource VisibilityColapsedConverter}}"
+                                                     IsIndeterminate="True" 
+                                                     Grid.Row="1" />
+                                    </Grid>
+                                </md:ColorZone>
+                            </md:TransitioningContent>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="True">
+                                    <Setter TargetName="FileViewContainer" Property="Mode" Value="PrimaryDark" />
+                                    <Setter TargetName="FileLabel" Property="Foreground" Value="{StaticResource SelectedCustomerForeground}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="False">
+                                    <Setter TargetName="FileViewContainer" Property="Mode" Value="Standard" />
+                                    <Setter TargetName="FileLabel" Property="Foreground" Value="{StaticResource NotSelectedCustomerForeground}" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <!-- add download, upload and view and also delete operations -->
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Right">
+                    
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                            IsEnabled="{Binding Path=SelectedItem, ElementName=CustomerFilesListBox, Converter={StaticResource RemoteFileVisibility}}"
+                            Command="{Binding DownloadFileCommand}"
+                            ToolTip="DOWNLOAD">
+
+                        <Button.CommandParameter>
+                            <MultiBinding Converter="{StaticResource CommandParamsConverter}">
+                                <Binding Path="SelectedItem" ElementName="CustomerFilesListBox" />
+                                <Binding Path="SelectedItem" ElementName="CustomerListBox" />
+                            </MultiBinding>
+                        </Button.CommandParameter>
+
+                        <md:PackIcon Kind="Download" 
+                                     Style="{StaticResource MediumPack}" />                       
+                    </Button>
+
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                            IsEnabled="{Binding  Path=SelectedIndex, ElementName=CustomerListBox, Converter={StaticResource SelectionEnabledConverter}}"
+                            Command="{Binding AddFileCommand}"
+                            CommandParameter="{Binding Path=SelectedItem, ElementName=CustomerListBox}"
+                            ToolTip="ADD">
+                        
+                        <md:PackIcon Kind="Plus" 
+                                     Style="{StaticResource MediumPack}" />
+                    </Button>
+
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                            IsEnabled="{Binding Path=SelectedIndex, ElementName=CustomerFilesListBox, Converter={StaticResource SelectionEnabledConverter}}"
+                            Command="{Binding RemoveFileCommand}"            
+                            CommandParameter="{Binding Path=SelectedItem, ElementName=CustomerFilesListBox}"
+                            ToolTip="REMOVE">
+                        
+                        <md:PackIcon Kind="Delete"
+                                     Style="{StaticResource MediumPack}" />
+                    </Button>
+
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                            IsEnabled="{Binding Path=SelectedItem, ElementName=CustomerFilesListBox, Converter={StaticResource LocalFileVisibility}}"
+                            Command="{Binding ViewFileCommand}"
+                            CommandParameter="{Binding Path=SelectedItem, ElementName=CustomerFilesListBox}"
+                            ToolTip="VIEW">
+                        
+                        <md:PackIcon Kind="Eye" 
+                                     Style="{StaticResource MediumPack}" />
+                    </Button>
+                    
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

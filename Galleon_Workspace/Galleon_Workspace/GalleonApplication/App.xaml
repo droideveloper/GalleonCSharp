@@ -1,0 +1,30 @@
+<Application x:Class="GalleonApplication.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             StartupUri="MainWindow.xaml" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             d1p1:Ignorable="d"
+             xmlns:extra="clr-namespace:GalleonApplication.Extra"
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Indigo.xaml"/>                
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Pink.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <extra:ViewModelLocator x:Key="ViewModelLocator" />
+            <extra:StringFormatConverter x:Key="StringFormat" />
+            <extra:UpperCaseConverter x:Key="TitleCaseFormat" />
+            <extra:VisibilityConverter x:Key="VisibilityConverter" />
+            <extra:InverseVisibilityConverter x:Key="InverseVisibilityConverter" />
+            <extra:VisibilityColapsedConverter x:Key="VisibilityColapsedConverter" />
+            <extra:EnabledConverter x:Key="EnabledConverter" />
+            <extra:RemoteFileVisibilityConverter x:Key="RemoteFileVisibility" />
+            <extra:LocalFileVisibilityConverter x:Key="LocalFileVisibility" />
+            <extra:SelectionIndexToEnabledConverter x:Key="SelectionEnabledConverter" />
+            <extra:CommandParamsConverter x:Key="CommandParamsConverter" />
+        </ResourceDictionary>  
+    </Application.Resources>
+</Application>

@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActionCancelText" xml:space="preserve">
+    <value>CANCEL</value>
+  </data>
+  <data name="ActionOKText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="AddContactText" xml:space="preserve">
+    <value>ADD</value>
+  </data>
+  <data name="AddressHint" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="AddressTitle" xml:space="preserve">
+    <value>Address:</value>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="CategoryHint" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="CityHint" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="ClearButtonText" xml:space="preserve">
+    <value>CLEAR</value>
+  </data>
+  <data name="ClearCustomerText" xml:space="preserve">
+    <value>CLEAR</value>
+  </data>
+  <data name="ContactNameHint" xml:space="preserve">
+    <value>Contact Name</value>
+  </data>
+  <data name="ContactNameTitle" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="ContactsTitle" xml:space="preserve">
+    <value>Customer Contact List</value>
+  </data>
+  <data name="CountryHint" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="CustomerInfoTitle" xml:space="preserve">
+    <value>Customer Information</value>
+  </data>
+  <data name="DialogAddNewContactTitle" xml:space="preserve">
+    <value>Add New Contact</value>
+  </data>
+  <data name="DownloadFileErrorText1" xml:space="preserve">
+    <value>You have no sync folder selected.</value>
+  </data>
+  <data name="EditContactText" xml:space="preserve">
+    <value>EDIT</value>
+  </data>
+  <data name="FirstNameHint" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="IdentityHint" xml:space="preserve">
+    <value>Identity No</value>
+  </data>
+  <data name="InvalidAddressText" xml:space="preserve">
+    <value>Address must be at least 2 chars.</value>
+  </data>
+  <data name="InvalidContactNameText" xml:space="preserve">
+    <value>Contact name must be at least 2 chars</value>
+  </data>
+  <data name="InvalidCustomerNameText" xml:space="preserve">
+    <value>Name must be at least 3 chars</value>
+  </data>
+  <data name="InvalidCustomerSurnameText" xml:space="preserve">
+    <value>Surname must be at least 2 chars</value>
+  </data>
+  <data name="InvalidDirectoryText" xml:space="preserve">
+    <value>No such directory exists.</value>
+  </data>
+  <data name="InvalidIdentityText" xml:space="preserve">
+    <value>Idnetity must be 11 digit</value>
+  </data>
+  <data name="InvalidOptionText" xml:space="preserve">
+    <value>Select an option</value>
+  </data>
+  <data name="InvalidPasswordText" xml:space="preserve">
+    <value>Password must be at least 8 chars.</value>
+  </data>
+  <data name="InvalidPhoneText" xml:space="preserve">
+    <value>Phone must be at least 10 digit, start with area code without 0</value>
+  </data>
+  <data name="InvalidUserNameText" xml:space="preserve">
+    <value>UserName must be e-mail format.</value>
+  </data>
+  <data name="LastNameHint" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="LoginButtonText" xml:space="preserve">
+    <value>LOGIN</value>
+  </data>
+  <data name="MiddleNameHint" xml:space="preserve">
+    <value>Middle Name</value>
+  </data>
+  <data name="PasswordHint" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PhoneHint" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="PhoneTitle" xml:space="preserve">
+    <value>Phone:</value>
+  </data>
+  <data name="PreferenceRememberMeDescription" xml:space="preserve">
+    <value>Stores last successfull login for future login usage.</value>
+  </data>
+  <data name="PreferenceRememberMeTitle" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="PreferenceSyncDescription" xml:space="preserve">
+    <value>Starts sync when a file modification occured in the prefered directory.</value>
+  </data>
+  <data name="PreferenceSyncDirectoryDescription" xml:space="preserve">
+    <value>Directory where your cloud files will sync and remain in.</value>
+  </data>
+  <data name="PreferenceSyncDirectoryTitle" xml:space="preserve">
+    <value>Auto Sync Directory</value>
+  </data>
+  <data name="PreferenceSyncTitle" xml:space="preserve">
+    <value>Auto Sync</value>
+  </data>
+  <data name="PreferenceToolsDirectoryDescription" xml:space="preserve">
+    <value>Directory where your tooling results on files will we stored and you can add those your cloud acc easily.</value>
+  </data>
+  <data name="PreferenceToolsDirectoryTitle" xml:space="preserve">
+    <value>Tools Directory</value>
+  </data>
+  <data name="ProcessButtonText" xml:space="preserve">
+    <value>PROCESS</value>
+  </data>
+  <data name="ProgressDialogLoadingText" xml:space="preserve">
+    <value>Please wait for a while...</value>
+  </data>
+  <data name="RememberMeCheckBoxText" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="RemoveButtonText" xml:space="preserve">
+    <value>REMOVE</value>
+  </data>
+  <data name="RemoveContactText" xml:space="preserve">
+    <value>REMOVE</value>
+  </data>
+  <data name="RemoveFileErrorText" xml:space="preserve">
+    <value>Failed to Delete Remote File.</value>
+  </data>
+  <data name="RemoveFileSuccess" xml:space="preserve">
+    <value>Remove File is successful.</value>
+  </data>
+  <data name="SaveCustomerSuccessText" xml:space="preserve">
+    <value>Customer is saved in system, successfully.</value>
+  </data>
+  <data name="SaveCustomerText" xml:space="preserve">
+    <value>SAVE</value>
+  </data>
+  <data name="SearchHint" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="ShowInDirectoryButtonText" xml:space="preserve">
+    <value>SHOW IN DIRECTORY</value>
+  </data>
+  <data name="SyncDirectoryHint" xml:space="preserve">
+    <value>Sync Directory</value>
+  </data>
+  <data name="ToolsDirectoryHint" xml:space="preserve">
+    <value>Tools Directory</value>
+  </data>
+  <data name="UnexpectedErrorText" xml:space="preserve">
+    <value>An unexpeced error occured. Try later again.</value>
+  </data>
+  <data name="UploadHereText" xml:space="preserve">
+    <value>Drag and Drop Files</value>
+  </data>
+  <data name="UserNameHint" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="ViewFileErrorText1" xml:space="preserve">
+    <value>You can not see file that does not downloaded.</value>
+  </data>
+  <data name="ViewFileErrorText2" xml:space="preserve">
+    <value>File you are looking for deleted.</value>
+  </data>
+</root>

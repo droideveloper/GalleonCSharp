@@ -1,0 +1,164 @@
+﻿<UserControl x:Class="GalleonApplication.ContentViews.SettingContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:property="clr-namespace:GalleonApplication.Properties"
+             xmlns:vm="clr-namespace:GalleonApplication.ViewModels"
+             xmlns:cv="clr-namespace:GalleonApplication.ContentViews"
+             xmlns:vd="clr-namespace:GalleonApplication.Domains.Validators"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:dm="clr-namespace:GalleonApplication.Domains"
+             xmlns:entity="clr-namespace:GalleonApplication.Extra"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="768"
+             d:DataContext="{d:DesignInstance vm:SettingsViewModel, d:IsDesignTimeCreatable=False}"
+             DataContext="{Binding SettingsViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                <Setter Property="Margin" Value="0 8 0 8" />
+            </Style>           
+            <Style TargetType="{x:Type md:PackIcon}" BasedOn="{StaticResource {x:Type md:PackIcon}}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="4 0 4 0" />
+            </Style>            
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid MinWidth="720"
+          VerticalAlignment="Center"
+          HorizontalAlignment="Center">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <DockPanel>
+            <StackPanel Orientation="Vertical">
+
+                <DockPanel Margin="0 8 8 8">              
+
+                    <StackPanel Orientation="Vertical" Margin="0 8 8 8">
+                        
+                        <TextBlock Text="{x:Static property:Resources.PreferenceSyncTitle}" 
+                                    FontSize="18" />
+                        <TextBlock Text="{x:Static property:Resources.PreferenceSyncDescription}" 
+                                    TextWrapping="Wrap"
+                                    FontSize="12"
+                                    Foreground="Gray"/>
+                    </StackPanel>
+
+                    <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                  VerticalAlignment="Center" 
+                                  IsChecked="{Binding Sync}"
+                                  HorizontalAlignment="Right"  />
+
+                </DockPanel>
+
+
+                <DockPanel Margin="0 8 8 8">                   
+
+                    <StackPanel Orientation="Vertical" Margin="0 8 8 8">
+                        <TextBlock Text="{x:Static property:Resources.PreferenceRememberMeTitle}" 
+                                   FontSize="18" />
+                        <TextBlock Text="{x:Static property:Resources.PreferenceRememberMeDescription}" 
+                                   TextWrapping="Wrap"
+                                   FontSize="12"
+                                   Foreground="Gray"/>
+                    </StackPanel>
+
+                    <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                  VerticalAlignment="Center" 
+                                  IsChecked="{Binding RememberMe}"
+                                  HorizontalAlignment="Right"  />
+
+                </DockPanel>
+
+                <DockPanel Margin="0 8 8 8">
+
+                    <StackPanel Orientation="Vertical" Margin="0 8 8 8"  MinWidth="310">
+                        <TextBlock Text="{x:Static property:Resources.PreferenceSyncDirectoryTitle}" 
+                               FontSize="18" />
+                        <TextBlock Text="{x:Static property:Resources.PreferenceSyncDirectoryDescription}" 
+                               TextWrapping="Wrap"
+                               FontSize="12"
+                               Foreground="Gray"/>
+                    </StackPanel>
+
+
+                    <TextBox      
+                            MaxWidth="310"    
+                            MinWidth="310"
+                            VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <md:HintAssist.Hint>
+                            <StackPanel Orientation="Horizontal" 
+                                        Margin="-2 0 0 0">
+                                <md:PackIcon Kind="Folder" />
+                                <TextBlock Text="{x:Static property:Resources.SyncDirectoryHint}" />
+                            </StackPanel>
+                        </md:HintAssist.Hint>
+                        <TextBox.Text>
+                            <Binding Path="SyncDirectory" 
+                                     UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <vd:PathValidator ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    
+                </DockPanel>
+
+
+                <DockPanel Margin="0 8 8 8">
+
+                    <StackPanel Orientation="Vertical" Margin="0 8 8 8" MaxWidth="310">
+                        <TextBlock Text="{x:Static property:Resources.PreferenceToolsDirectoryTitle}" 
+                               FontSize="18" />
+                        <TextBlock Text="{x:Static property:Resources.PreferenceToolsDirectoryDescription}" 
+                               TextWrapping="Wrap"
+                               FontSize="12"
+                               Foreground="Gray"/>
+                    </StackPanel>
+
+                    <TextBox          
+                            MaxWidth="310"
+                            MinWidth="310"
+                            HorizontalAlignment="Right"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            VerticalAlignment="Top">
+                        <md:HintAssist.Hint>
+                            <StackPanel Orientation="Horizontal" 
+                                        Margin="-2 0 0 0">
+                                <md:PackIcon Kind="Folder" />
+                                <TextBlock Text="{x:Static property:Resources.ToolsDirectoryHint}" />
+                            </StackPanel>
+                        </md:HintAssist.Hint>
+                        <TextBox.Text>
+                            <Binding Path="ToolsDirectory" 
+                                     UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <vd:PathValidator ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </DockPanel>               
+                
+            </StackPanel>
+        </DockPanel>       
+        
+    </Grid>
+</UserControl>

@@ -1,0 +1,16 @@
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/bin/GallonEndpoint.dll.mdb
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/bin/GallonEndpoint.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/obj/Debug/GallonEndpoint.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/obj/Debug/GallonEndpoint.dll.mdb
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/bin/System.Net.Http.Formatting.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/bin/System.Web.Http.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/bin/System.Web.Http.WebHost.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/bin/Newtonsoft.Json.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/bin/GallonEntity.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/bin/GallonEntity.dll.mdb
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/bin/EntityFramework.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/bin/EntityFramework.SqlServer.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/bin/MySql.Data.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/bin/MySql.Data.Entity.EF6.dll
+/Users/Fatih/Xamarian_Workspaces/Gallon_Workspace/GallonEndpoint/bin/GallonEndpoint.dll.config
